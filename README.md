@@ -16,6 +16,7 @@ This is a template for creating applications using Next.js 13 (app directory) an
   - if u want tour, visit [?path=/story/example-button--primary&onboarding=true](http://localhost:6006/?path=/story/example-button--primary&onboarding=true)
   
 ## TODO
+- MDX markdown page, and documentation
 - Logging(Sentry?)
 - text sanitizer
 - i18n
