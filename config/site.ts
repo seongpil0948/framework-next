@@ -1,5 +1,5 @@
 export type SiteConfig = typeof siteConfig;
-
+export const LANDING_PATH = "/";
 export const siteConfig = {
   name: "Abacus React Framework",
   description: "Make beautiful websites regardless of your design experience.",
@@ -9,12 +9,8 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
+      label: "Doc",
+      href: "/doc",
     },
     {
       label: "Blog",

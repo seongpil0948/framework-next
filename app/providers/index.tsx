@@ -7,6 +7,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 import { ReduxProvider } from "../store";
 import { LoadingProvider } from "./modal";
 import { ToastContainer } from "react-toastify";
+import UserProvider from "./user";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -18,20 +19,22 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   return (
     <NextUIProvider>
       <NextThemesProvider {...themeProps}>
-        <ReduxProvider>
-          <LoadingProvider>
-            {children}
-            <ToastContainer
-              position="bottom-right"
-              autoClose={false}
-              pauseOnHover={false}
-              hideProgressBar={false}
-              theme={theme === "dark" ? "dark" : "light"}
-              newestOnTop={false}
-              rtl={false}
-            />
-          </LoadingProvider>
-        </ReduxProvider>
+        <UserProvider>
+          <ReduxProvider>
+            <LoadingProvider>
+              {children}
+              <ToastContainer
+                position="bottom-right"
+                autoClose={false}
+                pauseOnHover={false}
+                hideProgressBar={false}
+                theme={theme === "dark" ? "dark" : "light"}
+                newestOnTop={false}
+                rtl={false}
+              />
+            </LoadingProvider>
+          </ReduxProvider>
+        </UserProvider>
       </NextThemesProvider>
     </NextUIProvider>
   );

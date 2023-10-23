@@ -6,6 +6,8 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
+import { AuthButton } from "./(auth)/components/buttons";
+import { UserProfile } from "./(auth)/components/profile";
 
 export default function Home() {
   return (
@@ -23,8 +25,8 @@ export default function Home() {
       </div>
 
       <div className="flex gap-3">
-        <Link
-          href="/login"
+        {/* <Link
+          href="/signin"
           className={buttonStyles({
             color: "primary",
             radius: "full",
@@ -32,7 +34,8 @@ export default function Home() {
           })}
         >
           Login
-        </Link>
+        </Link> */}
+        <AuthButton />
         <Link
           isExternal
           as={NextLink}
@@ -57,11 +60,7 @@ export default function Home() {
       </div>
 
       <div className="mt-8">
-        <Snippet hideSymbol hideCopyButton variant="flat">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
+        <UserProfile />
       </div>
     </section>
   );

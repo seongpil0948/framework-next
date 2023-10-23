@@ -5,3 +5,6 @@
 - 
 ## 변수명
 ## 함수명
+## 타입스크립트
+- type: `TPascalCase`
+  - ex) `TUser`

@@ -6,7 +6,8 @@ import { handleError } from "@/app/utils";
 import { ForgetPasswordBtn } from "@/components/buttons";
 import { InputEmail, InputPassword } from "@/components/input/field";
 import { toast } from "react-toastify";
-import { CardBasic } from "@/components/cards";
+import { useRouter, useSearchParams } from "next/navigation";
+
 export function EmailForm(p: {
   email: string;
   setEmail: (s: string) => void;
@@ -25,6 +26,16 @@ export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const param = useSearchParams();
+
+  const pushNextPage = () => {
+    const redirectTo = param.get("redirectTo");
+    if (redirectTo) {
+      return router.push(redirectTo);
+    }
+    router.push("/");
+  };
 
   const signIn = async () => {
     const controller = new AbortController();
@@ -54,9 +65,8 @@ export function LoginForm() {
   const handleSignIn = async () => {
     dispatch(setLoading(true));
     try {
-      console.log("handleSignIn");
-      const body = await signIn();
-      console.info("success to login: ", body);
+      await signIn();
+      pushNextPage();
     } catch (e) {
       const result = handleError(e);
       toast.error(result.message);

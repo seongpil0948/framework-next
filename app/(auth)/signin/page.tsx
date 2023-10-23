@@ -1,6 +1,5 @@
-"use client";
 import { subtitle, title } from "@/components/primitives";
-import { LoginForm } from "./components/form";
+import { LoginForm } from "../components/form";
 
 export default function PageCSR() {
   return (

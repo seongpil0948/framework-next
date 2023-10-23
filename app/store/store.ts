@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import common from "./common";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+
 export const rootStore = configureStore({
   reducer: {
     common,

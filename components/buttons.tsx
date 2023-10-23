@@ -15,7 +15,6 @@ import {
   ModalFooter,
 } from "@nextui-org/modal";
 import { InputEmail } from "./input/field";
-// import { useAppDispatch } from "@/app/store";
 
 export const RouteButton = (
   props: { href: string; children: ReactNode } & ButtonProps
@@ -65,7 +64,7 @@ export function ForgetPasswordBtn() {
           <>
             <ModalHeader className="flex flex-col gap-1">Find </ModalHeader>
             <ModalBody>
-              <p> "Sending password reset email..." </p>
+              <p>Sending password reset email...</p>
               <form>
                 <InputEmail email={email} setEmail={setEmail} />
               </form>

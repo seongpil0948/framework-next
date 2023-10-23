@@ -10,7 +10,7 @@ export const copyWithCommonState = (p?: Partial<ICommonState>): ICommonState =>
   Object.assign({ loading: false, msg: null }, p);
 
 const commonSlice = createSlice({
-  name: "post",
+  name: "common",
   initialState: copyWithCommonState(),
   reducers: {
     setLoading: (state, action: PayloadAction<boolean>) => {

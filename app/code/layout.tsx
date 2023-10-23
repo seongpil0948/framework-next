@@ -1,4 +1,4 @@
-export default function PricingLayout({
+export default function BlogLayout({
 	children,
 }: {
 	children: React.ReactNode;
