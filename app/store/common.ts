@@ -3,11 +3,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface ICommonState {
   loading: boolean;
-  msg: IMessage | null;
 }
 
-export const copyWithCommonState = (p?: Partial<ICommonState>): ICommonState =>
-  Object.assign({ loading: false, msg: null }, p);
+export const copyWithCommonState = (
+  p?: Partial<ICommonState>
+): ICommonState => ({ loading: p?.loading ?? false });
 
 const commonSlice = createSlice({
   name: "common",
