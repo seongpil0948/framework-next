@@ -5,7 +5,7 @@ import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { ReduxProvider } from "../store";
-import { LoadingProvider } from "./modal";
+import { LoadingProvider } from "./loading";
 import { ToastContainer } from "react-toastify";
 import UserProvider from "./user";
 

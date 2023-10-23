@@ -1,5 +1,3 @@
-import { type AppDispatch, setMsg } from "@/app/store";
-
 export function handleError(error: unknown): {
   title?: string;
   message: string;
