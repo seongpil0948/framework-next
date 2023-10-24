@@ -8,7 +8,7 @@ import {
   useContext,
   useCallback,
 } from "react";
-import { ContextUndefined } from "../utils";
+import { ContextUndefined } from "../_utils";
 
 type TUser = any;
 type RTU = ReturnType<typeof useState<TUser | null>>;

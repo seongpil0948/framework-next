@@ -5,12 +5,3 @@
 [참고](https://nextjs.org/docs/app/building-your-application/rendering#network-boundary)
 
 
-## 페이지 파일 작성
-페이지 모듈명은 다음과 같이 작성하세요 
-`export default [RenderMethod]Page`
-### example
-```ts
-export default function SSRPage {}
-export default function SSGPage {}
-export default function CSRPage {}
-```

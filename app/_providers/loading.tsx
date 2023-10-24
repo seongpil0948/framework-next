@@ -1,5 +1,5 @@
-import { LoadingComponent } from "@/components/suspense";
-import { useAppSelector } from "../store";
+import { LoadingComponent } from "@/app/_components/suspense";
+import { useAppSelector } from "../_store";
 
 export function LoadingProvider({ children }: { children: React.ReactNode }) {
   const isLoading = useAppSelector((state) => state.common.loading);

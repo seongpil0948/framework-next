@@ -1,4 +1,3 @@
-import { IMessage, IMessageProgress, IMsessageType } from "@/app/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface ICommonState {

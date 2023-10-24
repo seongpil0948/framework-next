@@ -4,12 +4,12 @@ import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
-import { AuthButton } from "./(auth)/components/buttons";
-import { UserProfile } from "./(auth)/components/profile";
+import { title, subtitle } from "@/app/_components/primitives";
+import { GithubIcon } from "@/app/_components/icons";
+import { AuthButton } from "./(auth)/_components/buttons";
+import { UserProfile } from "./(auth)/_components/profile";
 
-export default function Home() {
+export default function SSGPage() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-lg text-center justify-center">

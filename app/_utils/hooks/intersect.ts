@@ -6,10 +6,10 @@ type IntersectHandler = (
   observer: IntersectionObserver
 ) => void;
 
-export const useIntersect = (
+export function useIntersect(
   onIntersect: IntersectHandler,
   options?: IntersectionObserverInit
-) => {
+) {
   const ref = useRef<HTMLDivElement>(null);
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
@@ -29,4 +29,4 @@ export const useIntersect = (
   }, [ref, options, callback]);
 
   return ref;
-};
+}

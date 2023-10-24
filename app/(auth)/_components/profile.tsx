@@ -1,5 +1,5 @@
 "use client";
-import { useUserCtx } from "@/app/providers/user";
+import { useUserCtx } from "@/app/_providers/user";
 import { Code } from "@nextui-org/code";
 import { Snippet } from "@nextui-org/snippet";
 

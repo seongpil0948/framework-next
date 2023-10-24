@@ -1,6 +1,6 @@
-import { title } from "@/components/primitives";
+import { title } from "@/app/_components/primitives";
 
-export default function CodePage() {
+export default function SSGPage() {
   return (
     <div>
       <h1 className={title()}>Common Code</h1>
