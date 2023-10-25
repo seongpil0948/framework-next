@@ -17,3 +17,10 @@ export type Concrete<Type> = {
 export type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export type PromiseReturnType<T extends (...args: any) => Promise<any>> =
   PromiseType<ReturnType<T>>;
+
+export interface IHrefLink {
+  readonly label: string;
+  readonly href: string;
+}
+
+export type THrefLinks = readonly IHrefLink[];

@@ -1,60 +1,10 @@
+import { THrefLinks } from "@/types";
+
 export type SiteConfig = typeof siteConfig;
-export const LANDING_PATH = "/";
+export const LANDING_PATH = "/home";
 export const siteConfig = {
   name: "Abacus React Framework",
   description: "Make beautiful websites regardless of your design experience.",
-  navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Doc",
-      href: "/doc",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    },
-  ],
-  navMenuItems: [
-    {
-      label: "Profile",
-      href: "/profile",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
-  ],
   links: {
     github: "https://github.com/nextui-org/nextui",
     twitter: "https://twitter.com/getnextui",
@@ -63,3 +13,27 @@ export const siteConfig = {
     sponsor: "https://patreon.com/jrgarciadev",
   },
 };
+export const homeNavItems: THrefLinks = [
+  {
+    label: "Code",
+    href: "/code",
+  },
+  {
+    label: "Doc",
+    href: "/doc",
+  },
+];
+export const homeNavMenuItems: THrefLinks = [
+  {
+    label: "Code",
+    href: "/code",
+  },
+  {
+    label: "Doc",
+    href: "/doc",
+  },
+  {
+    label: "Logout",
+    href: "/logout",
+  },
+];

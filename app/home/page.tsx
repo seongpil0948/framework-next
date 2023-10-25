@@ -1,13 +1,11 @@
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/app/_components/server-only/primitives";
 import { GithubIcon } from "@/app/_components/server-only/icons";
-import { AuthButton } from "./(auth)/_components/client-only/buttons";
-import { UserProfile } from "./(auth)/_components/client-only/profile";
+import { AuthButton } from "../(auth)/_components/client-only/buttons";
+import { UserProfile } from "../(auth)/_components/client-only/profile";
 
 export default function SSGPage() {
   return (
@@ -20,7 +18,7 @@ export default function SSGPage() {
           websites regardless of your design experience.
         </h1>
         <h2 className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+          Beautiful, fast and modern Abacus Framework.
         </h2>
       </div>
 
