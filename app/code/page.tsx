@@ -1,4 +1,4 @@
-import { title } from "@/app/_components/primitives";
+import { title } from "@/app/_components/server-only/primitives";
 
 export default function SSGPage() {
   return (

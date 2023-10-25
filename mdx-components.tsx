@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import { parseNumber } from "./app/_utils";
-import { title } from "./app/_components/primitives";
+import { title } from "./app/_components/server-only/primitives";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,

@@ -9,6 +9,7 @@ import {
   useCallback,
 } from "react";
 import { ContextUndefined } from "../_utils";
+import { toast } from "react-toastify";
 
 type TUser = any;
 type RTU = ReturnType<typeof useState<TUser | null>>;
@@ -33,6 +34,7 @@ export default function UserProvider({
   const path = usePathname();
 
   const goLogin = useCallback(() => {
+    toast.error("Please login first 🤯");
     setUser(null);
     if (path === "/signin") return;
     else if (PublicPath.some((p) => p === path))
@@ -43,13 +45,14 @@ export default function UserProvider({
   const fetchSession = async () => {
     try {
       const resp = await fetch("/dsi/api/common/session");
+      if (resp.status === 401) return goLogin();
       if (resp.status > 300 || resp.status < 200) {
-        console.error(resp);
+        console.error("error status code", resp);
       }
       const body = (await resp.json()).body;
       setUser(body as TUser);
     } catch (e) {
-      setUser(null);
+      console.error("unexpected error", e);
       goLogin();
     }
   };

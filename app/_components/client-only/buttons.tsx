@@ -14,7 +14,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "@nextui-org/modal";
-import { InputEmail } from "./input/field";
+import { InputEmail } from "./input/fields";
 
 export const RouteButton = (
   props: { href: string; children: ReactNode } & ButtonProps

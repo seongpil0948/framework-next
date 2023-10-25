@@ -1,5 +1,5 @@
 import { Input, InputProps } from "@nextui-org/input";
-import { MailIcon, LockIcon } from "../icons";
+import { MailIcon, LockIcon } from "../../server-only/icons";
 
 export function InputEmail(p: {
   email: string;

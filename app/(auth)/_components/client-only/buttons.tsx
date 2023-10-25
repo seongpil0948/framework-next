@@ -1,6 +1,6 @@
 "use client";
 import { useUserCtx } from "@/app/_providers/user";
-import { RouteButton } from "@/app/_components/buttons";
+import { RouteButton } from "@/app/_components/client-only/buttons";
 import { Button, ButtonProps } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
 

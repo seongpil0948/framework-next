@@ -1,5 +1,5 @@
-import { CardBasic } from "@/app/_components/cards";
-import { title } from "@/app/_components/primitives";
+import { CardBasic } from "@/app/_components/server-only/cards";
+import { title } from "@/app/_components/server-only/primitives";
 
 export function ExampleComponent() {
   return (

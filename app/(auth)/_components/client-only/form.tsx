@@ -3,8 +3,11 @@ import { useState } from "react";
 import { setLoading, useAppDispatch } from "@/app/_store";
 import { Button } from "@nextui-org/button";
 import { handleError } from "@/app/_utils";
-import { ForgetPasswordBtn } from "@/app/_components/buttons";
-import { InputEmail, InputPassword } from "@/app/_components/input/field";
+import { ForgetPasswordBtn } from "@/app/_components/client-only/buttons";
+import {
+  InputEmail,
+  InputPassword,
+} from "@/app/_components/client-only/input/fields";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
 

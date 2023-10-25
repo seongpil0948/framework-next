@@ -2,9 +2,9 @@
 
 import React, { forwardRef, useState } from "react";
 import { useInput, type InputProps } from "@nextui-org/input";
-import { SearchIcon, CloseFilledIcon } from "../icons";
+import { SearchIcon, CloseFilledIcon } from "../../server-only/icons";
 import type { SlotsToClasses, InputSlots } from "@nextui-org/theme";
-import { ChipList } from "../list";
+import { ChipList } from "../../server-only/list";
 
 const styles: SlotsToClasses<InputSlots> = {
   label: "text-black/50 dark:text-white/90",

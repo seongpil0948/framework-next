@@ -1,4 +1,4 @@
-import { LoadingComponent } from "@/app/_components/suspense";
+import { LoadingComponent } from "@/app/_components/server-only/suspense";
 import { useAppSelector } from "../_store";
 
 export function LoadingProvider({ children }: { children: React.ReactNode }) {

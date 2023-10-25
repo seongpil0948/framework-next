@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/app/_components/navbar";
+import { Navbar } from "@/app/_components/server-only/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { Providers } from "./_providers";
@@ -40,7 +40,13 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers
+          themeProps={{
+            attribute: "class",
+            defaultTheme: "system",
+            enableSystem: true,
+          }}
+        >
           <div className="relative flex flex-col h-screen">
             <Navbar />
             <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">

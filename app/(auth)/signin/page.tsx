@@ -1,5 +1,5 @@
-import { subtitle, title } from "@/app/_components/primitives";
-import { LoginForm } from "../_components/form";
+import { subtitle, title } from "@/app/_components/server-only/primitives";
+import { LoginForm } from "../_components/client-only/form";
 
 export default function PageCSR() {
   return (

@@ -4,10 +4,10 @@ import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/app/_components/primitives";
-import { GithubIcon } from "@/app/_components/icons";
-import { AuthButton } from "./(auth)/_components/buttons";
-import { UserProfile } from "./(auth)/_components/profile";
+import { title, subtitle } from "@/app/_components/server-only/primitives";
+import { GithubIcon } from "@/app/_components/server-only/icons";
+import { AuthButton } from "./(auth)/_components/client-only/buttons";
+import { UserProfile } from "./(auth)/_components/client-only/profile";
 
 export default function SSGPage() {
   return (
