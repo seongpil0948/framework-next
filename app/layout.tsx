@@ -4,8 +4,6 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import Navbar from "@/app/_components/server-client/navbar";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { Providers } from "./_providers";
 

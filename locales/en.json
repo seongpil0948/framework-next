@@ -1,0 +1,9 @@
+{
+  "status": {
+    "success": "Success",
+    "fail": "Fail"
+  },
+  "manifest": {
+    "title": "Abacus"
+  }
+}

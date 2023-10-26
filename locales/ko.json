@@ -1,0 +1,9 @@
+{
+  "status": {
+    "success": "성공",
+    "fail": "실패"
+  },
+  "manifest": {
+    "title": "애버커스"
+  }
+}

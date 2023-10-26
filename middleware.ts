@@ -1,26 +1,44 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { LANDING_PATH } from "./config/site";
+import { splitLocaleAndPath, getLocaleRequest } from "./app/_utils/locale";
+import { TAvailLocale } from "./config/system";
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|image/*|sw|work*.js|manifest).*)",
     // "/about/:path*",
     // "/blog/:path*",
     // "/code/:path*",
-    // "/signin",
-    // "/:path*",
+    "/signin",
+    "/code",
+    "/doc",
+    "/home",
+    "/",
   ],
 };
-let initial = true;
+
 export async function middleware(request: NextRequest, response: NextResponse) {
-  console.log(
-    `[middleware] from  ${request.url} to: ${request.nextUrl.pathname}`
-  );
-  if (request.nextUrl.pathname === "/") {
-    console.log(`rewrite to  ${LANDING_PATH}`);
-    return NextResponse.rewrite(new URL(LANDING_PATH, request.url));
+  let nextP = request.nextUrl.pathname;
+  let { locale, path: onlyPath } = splitLocaleAndPath(nextP);
+
+  if (response.status === 401 && !onlyPath.includes("signin")) {
+    onlyPath = "/signin";
+  } else if (onlyPath === "/") {
+    onlyPath = LANDING_PATH;
   }
-  NextResponse.next();
+
+  if (!locale) {
+    locale = getLocaleRequest(request);
+  }
+
+  const join = (p: string, l: string) =>
+    new URL(`/${l}${p.startsWith("/") ? "" : "/"}${p}`, request.url);
+
+  const nextUrl = join(onlyPath, locale);
+  if (nextUrl.pathname === nextP) {
+    return NextResponse.next();
+  }
+  // TODO: discuss status code with team
+  return NextResponse.redirect(nextUrl, { status: 301 });
 }

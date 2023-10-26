@@ -6,6 +6,7 @@ const nextConfig = {
   reactStrictMode: false,
   experimental: {
     serverActions: true,
+    serverActionsBodySizeLimit: '2mb',
     // typedRoutes: true
   },
   cleanDistDir: true,

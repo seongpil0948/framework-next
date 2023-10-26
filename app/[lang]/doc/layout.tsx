@@ -1,4 +1,4 @@
-import { title } from "../_components/server-only/primitives";
+import { title } from "../../_components/server-only/primitives";
 
 export default function DocsLayout({
   children,

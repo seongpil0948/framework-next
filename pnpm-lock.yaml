@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@formatjs/intl-localematcher':
+    specifier: ^0.4.2
+    version: 0.4.2
   '@mdi/light-js':
     specifier: ^0.2.63
     version: 0.2.63
@@ -80,6 +83,9 @@ dependencies:
   '@types/mdx':
     specifier: ^2.0.9
     version: 2.0.9
+  '@types/negotiator':
+    specifier: ^0.6.2
+    version: 0.6.2
   '@types/node':
     specifier: 20.8.6
     version: 20.8.6
@@ -110,6 +116,9 @@ dependencies:
   intl-messageformat:
     specifier: ^10.5.4
     version: 10.5.4
+  negotiator:
+    specifier: ^0.6.3
+    version: 0.6.3
   next:
     specifier: 13.5.5
     version: 13.5.5(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
@@ -5306,6 +5315,10 @@ packages:
     resolution: {integrity: sha512-AuHIyzR5Hea7ij0P9q7vx7xu4z0C28ucwjAZC0ja7JhINyCnOw8/DnvAPQQ9TfOlCtZAmCERKQX9+o1mgQhuOQ==}
     dev: false
 
+  /@types/negotiator@0.6.2:
+    resolution: {integrity: sha512-VDLot2SCTUA8snP/tY9piNotcRhxnv/ujim+9Ec6NfoSS2+AZ8CoUaLmKokTaQJ1Tw7qsPcVQApfDogh3SclnQ==}
+    dev: false
+
   /@types/node-fetch@2.6.7:
     resolution: {integrity: sha512-lX17GZVpJ/fuCjguZ5b3TjEbSENxmEk1B2z02yoXSK9WMEWRivhdSY73wWMn6bpcCDAOh6qAdktpKHIlkDk2lg==}
     dependencies:
@@ -9974,7 +9987,6 @@ packages:
   /negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
-    dev: true
 
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
