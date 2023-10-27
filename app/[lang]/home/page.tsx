@@ -8,6 +8,7 @@ import { AuthButton } from "../(auth)/_components/client-only/buttons";
 import { UserProfile } from "../(auth)/_components/client-only/profile";
 import { AVAIL_LOCALES, TAvailLocale } from "@/config/system";
 import { getDictionary } from "../dictionaries";
+import { Example } from "@/app/_components/client-only/drawer";
 
 export async function generateStaticParams() {
   return AVAIL_LOCALES.map((lang) => ({ lang }));
@@ -43,6 +44,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
           Login
         </Link> */}
         <AuthButton />
+        <Example />
         <Link
           isExternal
           as={NextLink}
