@@ -5,5 +5,12 @@
   },
   "manifest": {
     "title": "Abacus"
-  }
+  },
+  "home" : {
+    "description": {
+      "title": "ACF",
+      "by": "by Team Convergence",
+      "summary": "ACF is a framework for building web applications with a focus on expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. ACF attempts to take the pain out of development by easing common tasks used in the majority of web projects"
+    }
+  }  
 }

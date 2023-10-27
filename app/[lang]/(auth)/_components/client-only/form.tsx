@@ -10,6 +10,7 @@ import {
 } from "@/app/_components/client-only/input/fields";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUserCtx } from "@/app/_providers/user";
 
 export function EmailForm(p: {
   email: string;
@@ -31,6 +32,7 @@ export function LoginForm() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const param = useSearchParams();
+  const { fetchSession } = useUserCtx();
 
   const pushNextPage = () => {
     const redirectTo = param.get("redirectTo");
@@ -69,6 +71,7 @@ export function LoginForm() {
     dispatch(setLoading(true));
     try {
       await signIn();
+      await fetchSession();
       pushNextPage();
     } catch (e) {
       const result = handleError(e);

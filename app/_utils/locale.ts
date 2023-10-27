@@ -1,32 +1,21 @@
-import {
-  AVAIL_LOCALES,
-  TAvailLocale,
-  i18n,
-  isAvailableLocale,
-} from "@/config/system";
+import "server-only";
+import { TAvailLocale, i18n, isAvailableLocale } from "@/config/system";
 import Negotiator from "negotiator";
 import { NextRequest } from "next/server";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 
 export function getLocaleRequest(request: NextRequest): TAvailLocale {
-  const l = request.cookies.get("locale");
-  if (l) {
-    console.info("cookie: ", l.value);
-    return l.value as TAvailLocale;
-  }
   // Negotiator expects plain object so we need to transform headers
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
   // @ts-ignore locales are readonly
   const locales = i18n.locales;
-  console.info("negotiatorHeaders: ", negotiatorHeaders);
   // Use negotiator and intl-localematcher to get best locale
   let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales
   );
 
   const locale = matchLocale(languages, locales, i18n.defaultLocale);
-  request.cookies.set("locale", locale);
   return locale as TAvailLocale;
 }
 
@@ -54,7 +43,8 @@ export function matchLocaleStr(input: string): TAvailLocale {
   return i18n.defaultLocale;
 }
 
-export function splitLocaleAndPath(path: string) {
+export async function splitLocaleAndPath(path: string) {
+  "use server";
   const locale = i18n.locales.find(
     (locale) => path.startsWith(`/${locale}/`) || path === `/${locale}`
   );
@@ -62,5 +52,5 @@ export function splitLocaleAndPath(path: string) {
     .split("/")
     .filter((seg) => !(i18n.locales as string[]).includes(seg))
     .join("/");
-  return { locale, path: p };
+  return Promise.resolve({ locale, path: p });
 }

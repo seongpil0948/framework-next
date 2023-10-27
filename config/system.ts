@@ -8,7 +8,7 @@ export const BREAK_POINTS = {
   tablet: 768,
   desktop: 1280,
 };
-export const LANDING_PATH = "/post";
+export const LANDING_PATH = "/home";
 
 export type TAvailLocale = "en" | "ko";
 export const AVAIL_LOCALES: TAvailLocale[] = ["en", "ko"];

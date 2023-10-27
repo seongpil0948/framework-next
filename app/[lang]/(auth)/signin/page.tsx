@@ -11,7 +11,7 @@ interface Param {
   params: { lang: TAvailLocale };
 }
 
-export default async function PageSSG({ params: { lang } }: Param) {
+export default async function SSGPage({ params: { lang } }: Param) {
   const dict = await getDictionary(lang);
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8">

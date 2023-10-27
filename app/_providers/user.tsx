@@ -17,6 +17,7 @@ type UserContextType = {
   user: RTU[0];
   setUser: RTU[1];
   isAdmin: () => boolean;
+  fetchSession: () => Promise<void>;
 };
 
 const PublicPath = ["/signin"];
@@ -34,7 +35,7 @@ export default function UserProvider({
   const path = usePathname();
 
   const goLogin = useCallback(() => {
-    toast.error("Please login first 🤯");
+    toast.error("Please login first 🤯", { autoClose: 3000 });
     setUser(null);
     if (path === "/signin") return;
     else if (PublicPath.some((p) => p === path))
@@ -44,7 +45,9 @@ export default function UserProvider({
 
   const fetchSession = async () => {
     try {
-      const resp = await fetch("/dsi/api/common/session");
+      const resp = await fetch("/dsi/api/common/session", {
+        cache: "no-cache",
+      });
       if (resp.status === 401) return goLogin();
       if (resp.status > 300 || resp.status < 200) {
         console.error("error status code", resp);
@@ -69,6 +72,7 @@ export default function UserProvider({
         user,
         setUser,
         isAdmin: () => user?.uid === "za4rvRj9rrYfovUkMc9TqLA39GG2",
+        fetchSession,
       }}
     >
       {children}
