@@ -5,6 +5,7 @@ import CommonNavbar from "@/app/_components/server-client/navbar";
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import CommonDrawer from "../../_components/client-only/drawer";
+import { TreeSection } from "@/app/_components/client-only/tree-section";
 
 export const metadata: Metadata = {
   title: {
@@ -32,21 +33,7 @@ export default function RootLayout({
     <div className="relative flex flex-col h-screen">
       <CommonNavbar navItems={homeNavItems}>
         <CommonDrawer title="Home Drawer">
-          <ul className="hidden lg:flex gap-4 justify-start ml-2">
-            {homeNavMenuItems.map((item) => (
-              <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="foreground"
-                key={item.href}
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </ul>
+          <TreeSection treeProps={homeNavMenuItems} />
         </CommonDrawer>
       </CommonNavbar>
       <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">

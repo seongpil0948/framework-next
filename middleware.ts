@@ -7,7 +7,7 @@ import { TAvailLocale } from "./config/system";
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: [
-    "/((?!api/*|_next/static|_next/image|favicon.ico|image/*|sw|worker|peach-service-worker).*)",
+    "/((?!api/*|_next/static|_next/image|icon/*|favicon.ico|image/*|sw|worker|peach-service-worker).*)",
     "/dsi/api/:path*",
     // "/((?!api|_next/static|favicon.ico).*)",
     // "/code/:path*",
@@ -17,8 +17,12 @@ export const config = {
     // "/",
   ],
 };
+const IGNORE_PATHS = ["icon/"];
 
 export async function middleware(request: NextRequest, response: NextResponse) {
+  if (IGNORE_PATHS.some((p) => request.nextUrl.pathname.includes(p))) {
+    return NextResponse.next();
+  }
   let nextP = request.nextUrl.pathname;
   let { locale, path: onlyPath } = await splitLocaleAndPath(nextP);
 

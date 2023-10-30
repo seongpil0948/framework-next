@@ -1,3 +1,4 @@
+import type { TreeSectionProps } from "@/app/_components/client-only/tree-section";
 import { THrefLinks } from "@/types";
 
 export type SiteConfig = typeof siteConfig;
@@ -13,7 +14,24 @@ export const siteConfig = {
     sponsor: "https://patreon.com/jrgarciadev",
   },
 };
-export const homeNavItems: THrefLinks = [
+const linkToTree = (links: THrefLinks): TreeSectionProps[] => {
+  return links.map((link) => {
+    const tree = {
+      id: link.href,
+      index: 0,
+      parentid: "",
+      ...link,
+    } as TreeSectionProps;
+    if (link.children) {
+      return {
+        ...tree,
+        children: linkToTree(link.children),
+      };
+    }
+    return tree;
+  });
+};
+export const homeNavItems = linkToTree([
   {
     label: "Code",
     href: "/code",
@@ -22,8 +40,8 @@ export const homeNavItems: THrefLinks = [
     label: "Doc",
     href: "/doc",
   },
-];
-export const homeNavMenuItems: THrefLinks = [
+]);
+export const homeNavMenuItems = linkToTree([
   {
     label: "Code",
     href: "/code",
@@ -36,9 +54,9 @@ export const homeNavMenuItems: THrefLinks = [
     label: "Logout",
     href: "/logout",
   },
-];
+]);
 
-export const docNavMenuItems: THrefLinks = [
+export const docNavMenuItems = linkToTree([
   {
     label: "Convention",
     href: "/doc/convention",
@@ -69,4 +87,4 @@ export const docNavMenuItems: THrefLinks = [
       },
     ],
   },
-];
+]);
