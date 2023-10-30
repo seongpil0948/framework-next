@@ -1,10 +1,10 @@
-import "react-toastify/dist/ReactToastify.css";
-import "@/styles/globals.css";
-
 import { Metadata } from "next";
 import { homeNavItems, homeNavMenuItems, siteConfig } from "@/config/site";
-import Navbar from "@/app/_components/server-client/navbar";
 import { Link } from "@nextui-org/link";
+import CommonNavbar from "@/app/_components/server-client/navbar";
+import { link as linkStyles } from "@nextui-org/theme";
+import clsx from "clsx";
+import CommonDrawer from "../../_components/client-only/drawer";
 
 export const metadata: Metadata = {
   title: {
@@ -30,7 +30,25 @@ export default function RootLayout({
 }) {
   return (
     <div className="relative flex flex-col h-screen">
-      <Navbar navItems={homeNavItems} navMenuItems={homeNavMenuItems} />
+      <CommonNavbar navItems={homeNavItems}>
+        <CommonDrawer title="Home Drawer">
+          <ul className="hidden lg:flex gap-4 justify-start ml-2">
+            {homeNavMenuItems.map((item) => (
+              <Link
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                )}
+                color="foreground"
+                key={item.href}
+                href={item.href}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </ul>
+        </CommonDrawer>
+      </CommonNavbar>
       <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
         {children}
       </main>

@@ -21,6 +21,8 @@ export type PromiseReturnType<T extends (...args: any) => Promise<any>> =
 export interface IHrefLink {
   readonly label: string;
   readonly href: string;
+  readonly children?: readonly IHrefLink[];
+  readonly icon?: string;
 }
 
 export type THrefLinks = readonly IHrefLink[];

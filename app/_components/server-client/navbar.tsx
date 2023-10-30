@@ -1,11 +1,8 @@
 import {
   Navbar as NextUINavbar,
   NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
-  NavbarMenuItem,
 } from "@nextui-org/navbar";
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
@@ -26,11 +23,11 @@ import { Logo } from "@/app/_components/server-only/icons";
 import { THrefLinks } from "@/types";
 import { SearchInput } from "../client-only/input/search";
 
-export default function Navbar(props: {
+export default function CommonNavbar(props: {
   navItems: THrefLinks;
-  navMenuItems: THrefLinks;
+  children?: React.ReactNode;
 }) {
-  const { navItems, navMenuItems } = props;
+  const { navItems, children } = props;
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -56,10 +53,12 @@ export default function Navbar(props: {
             </NavbarItem>
           ))}
         </ul>
+        {children}
       </NavbarContent>
 
       <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
+        // className="hidden sm:flex basis-1/5 sm:basis-full"
+        className="flex basis-1/5 sm:basis-full"
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
@@ -91,15 +90,15 @@ export default function Navbar(props: {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      {/* <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <Link isExternal href={siteConfig.links.github} aria-label="Github">
           <GithubIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
         <NavbarMenuToggle />
-      </NavbarContent>
+      </NavbarContent> */}
 
-      <NavbarMenu>
+      {/* <NavbarMenu>
         <SearchInput />
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {navMenuItems.map((item, index) => (
@@ -120,7 +119,7 @@ export default function Navbar(props: {
             </NavbarMenuItem>
           ))}
         </div>
-      </NavbarMenu>
+      </NavbarMenu> */}
     </NextUINavbar>
   );
 }
