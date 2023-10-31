@@ -63,7 +63,7 @@ export const docNavMenuItems = linkToTree([
     children: [
       {
         label: "File Structure",
-        href: "/doc/convention/file-structure",
+        href: "/doc/convention/structure",
       },
       { label: "File Basic", href: "/doc/convention/file-basic" },
       { label: "Naming", href: "/doc/convention/name" },
@@ -84,6 +84,10 @@ export const docNavMenuItems = linkToTree([
       {
         label: "Server Client Pattern",
         href: "/doc/guide/server-client-pattern",
+      },
+      {
+        label: "Customize Theme",
+        href: "/doc/guide/customize-theme",
       },
     ],
   },

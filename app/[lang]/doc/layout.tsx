@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { docNavMenuItems, homeNavItems, homeNavMenuItems } from "@/config/site";
+import { docNavMenuItems, homeNavItems } from "@/config/site";
 import CommonNavbar from "@/app/_components/server-client/navbar";
 import CommonDrawer from "@/app/_components/client-only/drawer";
 import { TreeSection } from "@/app/_components/client-only/tree-section";
