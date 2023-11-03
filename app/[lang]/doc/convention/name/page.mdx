@@ -1,0 +1,124 @@
+## 파일명
+- 컴포넌트 파일: `PascalCase.tsx`
+- 
+## 폴더명
+폴더명은 케밥 케이스로 작성합니다
+#### Good
+```
+- components
+- network-boundary
+```
+
+## 변수명
+```ts
+const CONSTANT_VALUE = "어퍼 스네이크 케이스" // 상수
+const localVariable = "카멜 케이스" // 지역변수
+const globalVariable = "어퍼 스네이크 케이스" // 전역변수
+export function exportFunction() {} // 함수
+```
+## 함수명
+### 최 상위 함수는 `function keyword` 로 작성합니다
+#### Good
+```tsx
+export function useIntersect(
+  onIntersect: IntersectHandler,
+  options?: IntersectionObserverInit
+) {}
+```
+
+### 지역 함수는 `arrow function` 으로 작성합니다
+#### Good
+```tsx
+export function useIntersect(
+  onIntersect: IntersectHandler,
+  options?: IntersectionObserverInit
+) {
+  const ref = useRef<HTMLDivElement>(null);
+  const callback = useCallback(
+    (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+      console.log("entries onIntersect : ", entries);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) return onIntersect(entry, observer);
+      });
+    },
+    [onIntersect]
+  );
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, options, callback]);
+
+  return ref;
+}
+```
+### 인라인 Functional Component 는 `arrow function` 으로 작성합니다
+#### Good
+```tsx
+const Logo: React.FC<TIconSvgProps> = ({
+  size = 36,
+  width,
+  height,
+  ...props
+}) => (
+  <svg
+    fill="none"
+    height={size || height}
+    viewBox="0 0 32 32"
+    width={size || width}
+    {...props}
+  >
+    <path
+      clipRule="evenodd"
+      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
+      fill="currentColor"
+      fillRule="evenodd"
+    />
+  </svg>
+);
+```
+### 어떤 로직이 추가되는 경우 `function keyword` 로 작성합니다
+#### Good
+```tsx
+export function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const param = useSearchParams();
+```
+
+
+## 타입스크립트
+### Type
+`TPascalCase` 과같이 prefix: T 를 붙여주세요
+#### Good
+```ts
+type TIconSvgProps = SVGProps<SVGSVGElement> & {
+  size?: number;
+};
+```
+
+
+# 폴더 구조
+- app 내 최상위 폴더는 페이지 구성이 아닐경우 prefix: _ (underscore)를 붙여주세요
+- 페이지 구성일 경우 prefix는 없습니다.
+## 파일명
+각 파일명은 케밥 케이스로 작성합니다 
+#### Good
+```
+- file-name.tsx
+- file-name.test.tsx
+- buttons.tsx
+```
+
+## 페이지 모듈명은 다음과 같이 작성하세요 
+`export default [RenderMethod]Page`
+#### Good
+```ts
+export default function SSRPage {}
+export default function SSGPage {}
+export default function CSRPage {}
+```
