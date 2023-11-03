@@ -1,12 +1,38 @@
-import React, { useState } from 'react';
-import { Input, InputProps } from "@nextui-org/input";
+import React from 'react';
+import { Input } from "@nextui-org/input";
+
+enum variantList {
+  flat = 'flat',
+  bordered = 'bordered',
+  faded = 'faded',
+  underlined = 'underlined',
+}
+enum sizeList {
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+}
+enum radiusList {
+  none = 'none',
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+  full = 'full',
+}
+enum labelPlacementList {
+  inside = 'inside',
+  outside = 'outside',
+  outsideLeft = 'outside-left',
+}
 
 interface InputProps {
-  size?: string;
-  variant?: string;
+  className?: string;
+  variant?: variantList;
+  size?: sizeList;
+  radius?: radiusList;
   fullWidth?: boolean;
   label?: string;
-  labelPosition?: string;
+  labelPlacement?: labelPlacementList;
   required?: boolean;
   value: string;
   type?: string;
@@ -18,13 +44,14 @@ interface InputProps {
   errorMsg?: string
 }
 
-
 export const Inputs = ({
-  size = 'md',
-  variant = 'flat',
+  className,
+  variant = variantList.flat,
+  size = sizeList.md,
+  radius = radiusList.md,
   fullWidth = false,
   label,
-  labelPosition='inside',
+  labelPlacement= labelPlacementList.inside,
   required= false,
   value,
   type = 'text',
@@ -34,15 +61,16 @@ export const Inputs = ({
   readOnly = false,
   isError = false,
   errorMsg,
-  ...props
 }: InputProps) => {
   return (
     <Input
-      size={size}
+      className={className}
       variant={variant}
+      size={size}
+      radius={radius}
       fullWidth={fullWidth}
       label={label}
-      labelPlacement={labelPosition}
+      labelPlacement={labelPlacement}
       isRequired={required}
       defaultValue={value}
       type={type}
@@ -52,7 +80,6 @@ export const Inputs = ({
       isReadOnly={readOnly}
       isInvalid={isError}
       errorMessage={errorMsg}
-
     />
   );
 };

@@ -1,11 +1,10 @@
 import {Meta} from "@storybook/react";
-import {Inputs} from "../src/inputs";
+import {Inputs} from "../src";
 
 export default {
-  title: "Example/Input",
+  title: "Components/Input",
   component: Inputs,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: "centered",
     nextjs: {
       appDirectory: true,
@@ -17,25 +16,27 @@ export default {
       },
     },
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ["autodocs"],
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     variant: {
       options: ['flat', 'bordered', 'faded', 'underlined'],
-      control: { type: 'radio' },
+      control: { type: 'select' },
     },
     size: {
       options: ['sm', 'md', 'lg'],
-      control: { type: 'radio' },
+      control: { type: 'select' },
     },
-    labelPosition: {
+    labelPlacement: {
       options: ['inside', 'outside', 'outside-left'],
-      control: { type: 'radio' },
+      control: { type: 'select' },
     },
     type: {
       options: ['text', 'password', 'email', 'search'],
-      control: { type: 'radio' },
+      control: { type: 'select' },
+    },
+    radius: {
+      options: [ "none", "sm", "md", "lg", "full" ],
+      control: { type: "select" },
     },
   },
 

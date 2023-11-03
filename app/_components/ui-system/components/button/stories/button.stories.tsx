@@ -1,13 +1,23 @@
-import React from "react";
 import {Meta} from "@storybook/react";
-import {button} from "@nextui-org/theme";
+import {Buttons} from "../src";
 import {Camera, HeadphonesIcon, Notification} from "@nextui-org/shared-icons";
-
-import {Button} from "../src";
 
 export default {
   title: "Components/Button",
-  component: Button,
+  component: Buttons,
+  parameters: {
+    layout: "centered",
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: "/profile",
+        query: {
+          user: "santa",
+        },
+      },
+    },
+  },
+  tags: ["autodocs"],
   argTypes: {
     variant: {
       control: {
@@ -38,43 +48,37 @@ export default {
       },
       options: ["none", "sm", "md", "lg", "full"],
     },
-    isDisabled: {
+    disabled: {
       control: {
         type: "boolean",
       },
     },
   },
-} as Meta<typeof Button>;
-
-const defaultProps = {
-  children: "Button",
-  ...button.defaultVariants,
-};
+} as Meta<typeof Buttons>;
 
 export const Default = {
   args: {
-    ...defaultProps,
-  },
+    children: 'button',
+  }
 };
 
-export const IsDisabled = {
+export const Disabled = {
   args: {
-    ...defaultProps,
-    isDisabled: true,
-  },
+    children: 'disabled',
+    disabled: true
+  }
 };
 
-export const WithIcons = {
+export const WithIcon = {
   args: {
-    ...defaultProps,
+    children: 'icon',
     startContent: <Notification className="fill-current" />,
     endContent: <Camera className="fill-current" />,
-  },
+  }
 };
 
 export const IconButton = {
   args: {
-    ...defaultProps,
     isIconOnly: true,
     children: <HeadphonesIcon className="w-5 h-5" />,
   },
@@ -82,7 +86,6 @@ export const IconButton = {
 
 export const CustomWithClassNames = {
   args: {
-    ...defaultProps,
     radius: "full",
     className: "bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg",
   },
