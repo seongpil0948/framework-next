@@ -6,7 +6,7 @@ import {
   SheetHeader,
   SheetBody,
   SheetFooter,
-} from "@/app/_components/client-only/drawer-sheet";
+} from "./sheet";
 import Icon from "@mdi/react";
 import { Button, ButtonProps } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/modal";
