@@ -13,10 +13,10 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "white" },
+  //   { media: "(prefers-color-scheme: dark)", color: "black" },
+  // ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -31,12 +31,29 @@ export default function RootLayout({
 }) {
   return (
     <div className="relative flex flex-col h-screen">
-      <CommonNavbar navItems={homeNavItems}>
-        <CommonDrawer title="Home Drawer">
-          <TreeSection treeProps={homeNavMenuItems} />
-        </CommonDrawer>
-      </CommonNavbar>
-      <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+      <CommonNavbar
+        navItems={homeNavItems}
+        prefix={
+          <CommonDrawer
+            title="Home Drawer"
+            sheetProps={{
+              placement: "left",
+              // classNames: {
+              //   wrapper: clsx("absolute"),
+              // },
+              // backdrop: "transparent",
+              // isDismissable: false,
+              // hideCloseButton: true,
+            }}
+          >
+            <TreeSection treeProps={homeNavMenuItems} />
+          </CommonDrawer>
+        }
+      ></CommonNavbar>
+      <main
+        id="content-container"
+        className="pt-16 px-6 flex-grow relative min-w-full"
+      >
         {children}
       </main>
       <footer className="w-full flex items-center justify-center py-3">

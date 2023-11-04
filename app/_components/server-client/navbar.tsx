@@ -7,7 +7,7 @@ import {
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
+import { LANDING_PATH, siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
 
@@ -26,13 +26,18 @@ import { SearchInput } from "../client-only/input/search";
 export default function CommonNavbar(props: {
   navItems: THrefLinks;
   children?: React.ReactNode;
+  prefix?: React.ReactNode;
 }) {
-  const { navItems, children } = props;
+  const { navItems, children, prefix } = props;
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+        {prefix && prefix}
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
+          <NextLink
+            className="flex justify-start items-center gap-1"
+            href={LANDING_PATH}
+          >
             <Logo />
             <p className="font-bold text-inherit">Abacus</p>
           </NextLink>

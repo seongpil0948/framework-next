@@ -4,11 +4,6 @@ const withMDX = require('@next/mdx')()
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   reactStrictMode: false,
-  experimental: {
-    serverActions: true,
-    serverActionsBodySizeLimit: '2mb',
-    // typedRoutes: true
-  },
   cleanDistDir: true,
   async rewrites() {
     return [

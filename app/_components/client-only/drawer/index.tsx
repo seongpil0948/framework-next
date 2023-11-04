@@ -6,6 +6,7 @@ import {
   SheetHeader,
   SheetBody,
   SheetFooter,
+  SheetProps,
 } from "./sheet";
 import Icon from "@mdi/react";
 import { Button, ButtonProps } from "@nextui-org/button";
@@ -15,21 +16,22 @@ import { mdilMenu } from "@mdi/light-js";
 export default function CommonDrawer(props: {
   children: React.ReactNode;
   title?: string;
+  sheetProps?: Partial<SheetProps>;
 }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { children, title } = props;
+  const { children, sheetProps, title } = props;
   return (
     <>
       <Button isIconOnly onPress={onOpen}>
-        <Icon path={mdilMenu} size={1} />
+        <Icon
+          style={{
+            backgroundColor: "transparent",
+          }}
+          path={mdilMenu}
+          size={1}
+        />
       </Button>
-      <Sheet
-        backdrop="opaque"
-        placement="right"
-        size="sm"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-      >
+      <Sheet isOpen={isOpen} onOpenChange={onOpenChange} {...sheetProps}>
         <SheetContent>
           {(onClose) => (
             <>
