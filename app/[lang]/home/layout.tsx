@@ -1,5 +1,10 @@
 import { Metadata } from "next";
-import { homeNavItems, homeNavMenuItems, siteConfig } from "@/config/site";
+import {
+  LANDING_PATH,
+  homeNavItems,
+  homeNavMenuItems,
+  siteConfig,
+} from "@/config/site";
 import { Link } from "@nextui-org/link";
 import CommonNavbar from "@/app/_components/server-client/navbar";
 import { link as linkStyles } from "@nextui-org/theme";
@@ -33,17 +38,12 @@ export default function RootLayout({
     <div className="relative flex flex-col h-screen">
       <CommonNavbar
         navItems={homeNavItems}
+        landingPath={LANDING_PATH}
         prefix={
           <CommonDrawer
             title="Home Drawer"
             sheetProps={{
               placement: "left",
-              // classNames: {
-              //   wrapper: clsx("absolute"),
-              // },
-              // backdrop: "transparent",
-              // isDismissable: false,
-              // hideCloseButton: true,
             }}
           >
             <TreeSection treeProps={homeNavMenuItems} />

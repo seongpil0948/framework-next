@@ -1,5 +1,8 @@
-import { Meta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import Drawer from ".";
+import { Logo } from "../../server-only/icons";
+import clsx from "clsx";
+import { NextUIProvider } from "@nextui-org/system";
 
 export default {
   title: "Components/Drawer",
@@ -24,10 +27,47 @@ export default {
   },
 } satisfies Meta<typeof Drawer>;
 
-export const Default = {
+type Story = StoryObj<typeof Drawer>;
+
+export const Default: Story = {
   args: {
-    label: "default",
-    value: "",
-    placeholder: "입력하세요",
+    title: "Drawer",
   },
 };
+
+export const AsSidebar: Story = {
+  args: {
+    title: "Sidebar",
+    sheetProps: {
+      placement: "left",
+      classNames: {
+        wrapper: clsx(" absolute"),
+      },
+      backdrop: "transparent",
+      isDismissable: false,
+      hideCloseButton: true,
+    },
+  },
+  decorators: [
+    (Story) => (
+      <ExampleApp>
+        <Story />
+      </ExampleApp>
+    ),
+  ],
+};
+
+function ExampleApp(props: { children?: React.ReactNode }) {
+  return (
+    <NextUIProvider>
+      <div className="flex flex-col w-screen h-screen">
+        <nav className=" flex w-full bg-slate-400">
+          {props.children}
+          <Logo />
+          <p className="font-bold text-inherit">Example</p>
+        </nav>
+        <main className="w-full h-full max-h-full relative">zz</main>
+      </div>
+    </NextUIProvider>
+  );
+}

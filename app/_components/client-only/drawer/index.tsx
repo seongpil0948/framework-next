@@ -11,25 +11,23 @@ import {
 import Icon from "@mdi/react";
 import { Button, ButtonProps } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/modal";
-import { mdilMenu } from "@mdi/light-js";
+import { mdiMenuClose, mdiMenuOpen } from "@mdi/js";
 
 export default function CommonDrawer(props: {
   children: React.ReactNode;
   title?: string;
   sheetProps?: Partial<SheetProps>;
 }) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { children, sheetProps, title } = props;
+  const handleClick = () => {
+    console.log("clicked", isOpen);
+    isOpen ? onClose() : onOpen();
+  };
   return (
     <>
-      <Button isIconOnly onPress={onOpen}>
-        <Icon
-          style={{
-            backgroundColor: "transparent",
-          }}
-          path={mdilMenu}
-          size={1}
-        />
+      <Button isIconOnly onPress={handleClick} className="z-50">
+        <Icon path={isOpen ? mdiMenuClose : mdiMenuOpen} size={1} />
       </Button>
       <Sheet isOpen={isOpen} onOpenChange={onOpenChange} {...sheetProps}>
         <SheetContent>

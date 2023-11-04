@@ -4,7 +4,7 @@ import { Button, ButtonProps } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import Icon from "@mdi/react";
-import { mdilPlus } from "@mdi/light-js";
+import { mdiPlus } from "@mdi/js";
 // import { Checkbox } from "@nextui-org/checkbox";
 import {
   useDisclosure,
@@ -36,7 +36,7 @@ export const PlusButton = (props: {
       <Button
         color="danger"
         variant="bordered"
-        startContent={<Icon path={mdilPlus} size={1} />}
+        startContent={<Icon path={mdiPlus} size={1} />}
         {...props.btnProps}
       >
         {props.children}
