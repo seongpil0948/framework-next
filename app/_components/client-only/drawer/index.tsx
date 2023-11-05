@@ -6,30 +6,30 @@ import {
   SheetHeader,
   SheetBody,
   SheetFooter,
-} from "@/app/_components/client-only/drawer-sheet";
+  SheetProps,
+} from "./sheet";
 import Icon from "@mdi/react";
 import { Button, ButtonProps } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/modal";
-import { mdilMenu } from "@mdi/light-js";
+import { mdiMenuClose, mdiMenuOpen } from "@mdi/js";
 
 export default function CommonDrawer(props: {
   children: React.ReactNode;
   title?: string;
+  sheetProps?: Partial<SheetProps>;
 }) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { children, title } = props;
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const { children, sheetProps, title } = props;
+  const handleClick = () => {
+    console.log("clicked", isOpen);
+    isOpen ? onClose() : onOpen();
+  };
   return (
     <>
-      <Button isIconOnly onPress={onOpen}>
-        <Icon path={mdilMenu} size={1} />
+      <Button isIconOnly onPress={handleClick} className="z-50">
+        <Icon path={isOpen ? mdiMenuClose : mdiMenuOpen} size={1} />
       </Button>
-      <Sheet
-        backdrop="opaque"
-        placement="right"
-        size="sm"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-      >
+      <Sheet isOpen={isOpen} onOpenChange={onOpenChange} {...sheetProps}>
         <SheetContent>
           {(onClose) => (
             <>

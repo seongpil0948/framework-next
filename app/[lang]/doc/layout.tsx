@@ -1,5 +1,10 @@
 import { Metadata } from "next";
-import { docNavMenuItems, homeNavItems } from "@/config/site";
+import {
+  LANDING_PATH,
+  docNavMenuItems,
+  homeNavItems,
+  siteConfig,
+} from "@/config/site";
 import CommonNavbar from "@/app/_components/server-client/navbar";
 import CommonDrawer from "@/app/_components/client-only/drawer";
 import { TreeSection } from "@/app/_components/client-only/tree-section";
@@ -15,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="relative flex flex-col h-screen">
-      <CommonNavbar navItems={homeNavItems}>
+      <CommonNavbar landingPath={LANDING_PATH} navItems={homeNavItems}>
         <CommonDrawer title="Doc Drawer">
           <TreeSection treeProps={docNavMenuItems} />
         </CommonDrawer>

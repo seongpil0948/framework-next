@@ -1,5 +1,10 @@
 import { Metadata } from "next";
-import { homeNavItems, homeNavMenuItems, siteConfig } from "@/config/site";
+import {
+  LANDING_PATH,
+  homeNavItems,
+  homeNavMenuItems,
+  siteConfig,
+} from "@/config/site";
 import { Link } from "@nextui-org/link";
 import CommonNavbar from "@/app/_components/server-client/navbar";
 import { link as linkStyles } from "@nextui-org/theme";
@@ -13,10 +18,10 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "white" },
+  //   { media: "(prefers-color-scheme: dark)", color: "black" },
+  // ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -31,12 +36,24 @@ export default function RootLayout({
 }) {
   return (
     <div className="relative flex flex-col h-screen">
-      <CommonNavbar navItems={homeNavItems}>
-        <CommonDrawer title="Home Drawer">
-          <TreeSection treeProps={homeNavMenuItems} />
-        </CommonDrawer>
-      </CommonNavbar>
-      <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+      <CommonNavbar
+        navItems={homeNavItems}
+        landingPath={LANDING_PATH}
+        prefix={
+          <CommonDrawer
+            title="Home Drawer"
+            sheetProps={{
+              placement: "left",
+            }}
+          >
+            <TreeSection treeProps={homeNavMenuItems} />
+          </CommonDrawer>
+        }
+      ></CommonNavbar>
+      <main
+        id="content-container"
+        className="pt-16 px-6 flex-grow relative min-w-full"
+      >
         {children}
       </main>
       <footer className="w-full flex items-center justify-center py-3">

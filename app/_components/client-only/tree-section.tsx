@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { link as linkStyles } from "@nextui-org/theme";
 import Icon from "@mdi/react";
-import { mdilFolder } from "@mdi/light-js";
+import { mdiFolder } from "@mdi/js";
 
 export interface TreeSectionProps {
   id: string;
@@ -28,7 +28,7 @@ export function TreeSection(props: {
       {treeProps.map((item) => (
         <li key={item.id}>
           <div className=" inline-flex gap-1">
-            <Icon path={mdilFolder} size={1} />
+            <Icon path={mdiFolder} size={1} />
             <Link
               className={clsx(
                 linkStyles({ color: "foreground" }),

@@ -7,7 +7,6 @@ import {
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 import { link as linkStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
 
@@ -26,13 +25,25 @@ import { SearchInput } from "../client-only/input/search";
 export default function CommonNavbar(props: {
   navItems: THrefLinks;
   children?: React.ReactNode;
+  prefix?: React.ReactNode;
+  landingPath: string;
+  links?: {
+    twitter?: string;
+    discord?: string;
+    github?: string;
+    sponsor?: string;
+  };
 }) {
-  const { navItems, children } = props;
+  const { navItems, children, prefix, landingPath, links } = props;
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+        {prefix && prefix}
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
+          <NextLink
+            className="flex justify-start items-center gap-1"
+            href={landingPath}
+          >
             <Logo />
             <p className="font-bold text-inherit">Abacus</p>
           </NextLink>
@@ -61,33 +72,43 @@ export default function CommonNavbar(props: {
         className="flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
-            <TwitterIcon className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-            <DiscordIcon className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.github} aria-label="Github">
-            <GithubIcon className="text-default-500" />
-          </Link>
-          <ThemeSwitch />
-        </NavbarItem>
+        {links && (
+          <NavbarItem className="hidden sm:flex gap-2">
+            {links.twitter && (
+              <Link isExternal href={links.twitter} aria-label="Twitter">
+                <TwitterIcon className="text-default-500" />
+              </Link>
+            )}
+            {links.discord && (
+              <Link isExternal href={links.discord} aria-label="Discord">
+                <DiscordIcon className="text-default-500" />
+              </Link>
+            )}
+            {links.github && (
+              <Link isExternal href={links.github} aria-label="Github">
+                <GithubIcon className="text-default-500" />
+              </Link>
+            )}
+            <ThemeSwitch />
+          </NavbarItem>
+        )}
         <NavbarItem className="hidden lg:flex">
           <SearchInput />
         </NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-danger" />}
-            variant="flat"
-          >
-            Contribute
-          </Button>
-        </NavbarItem>
+        {links?.sponsor && (
+          <NavbarItem className="hidden md:flex">
+            <Button
+              isExternal
+              as={Link}
+              className="text-sm font-normal text-default-600 bg-default-100"
+              href={links.sponsor}
+              startContent={<HeartFilledIcon className="text-danger" />}
+              variant="flat"
+            >
+              Contribute
+            </Button>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       {/* <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

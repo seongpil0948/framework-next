@@ -13,6 +13,7 @@ import {
 import { ModalSlots, SlotsToClasses } from "@nextui-org/theme";
 import { HTMLMotionProps } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
+import { useIsSSR } from "@react-aria/ssr";
 
 export function cn(...inputs: ClassValue[]) {
   return clsx(inputs);
@@ -24,6 +25,7 @@ export interface SheetProps extends Omit<ModalProps, "placement"> {
 
 export const Sheet = forwardRef<ElementRef<typeof Modal>, SheetProps>(
   ({ placement = "left", classNames, ...props }, ref) => {
+    const isLeft = placement == "left";
     const extendedClassNames = {
       backdrop: cn(classNames?.backdrop),
       base: cn("!m-0 h-full !rounded-none", classNames?.base),
@@ -32,7 +34,7 @@ export const Sheet = forwardRef<ElementRef<typeof Modal>, SheetProps>(
       footer: cn(classNames?.footer),
       header: cn(classNames?.header),
       wrapper: cn(
-        placement == "left"
+        isLeft
           ? "!justify-start"
           : placement == "right"
           ? "justify-end"
@@ -52,7 +54,7 @@ export const Sheet = forwardRef<ElementRef<typeof Modal>, SheetProps>(
           },
         },
         exit: {
-          x: 40,
+          x: isLeft ? -40 : 40,
           opacity: 0,
           transition: {
             duration: 0.2,
@@ -61,12 +63,18 @@ export const Sheet = forwardRef<ElementRef<typeof Modal>, SheetProps>(
         },
       },
     } as HTMLMotionProps<"section">;
-
+    const isSsr = useIsSSR();
     return (
       <Modal
         ref={ref}
         classNames={extendedClassNames}
         motionProps={motionProps}
+        portalContainer={
+          isSsr
+            ? undefined
+            : document.body.getElementsByTagName("main").item(0) ??
+              document.body
+        }
         {...props}
       />
     );

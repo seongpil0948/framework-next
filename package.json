@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.4.2",
-    "@mdi/light-js": "^0.2.63",
     "@mdi/react": "^1.6.1",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
@@ -67,6 +66,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@mdi/js": "^7.3.67",
     "@storybook/addon-essentials": "^7.5.2",
     "@storybook/addon-interactions": "^7.5.2",
     "@storybook/addon-links": "^7.5.2",

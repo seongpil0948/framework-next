@@ -8,9 +8,6 @@ dependencies:
   '@formatjs/intl-localematcher':
     specifier: ^0.4.2
     version: 0.4.2
-  '@mdi/light-js':
-    specifier: ^0.2.63
-    version: 0.2.63
   '@mdi/react':
     specifier: ^1.6.1
     version: 1.6.1
@@ -169,6 +166,9 @@ dependencies:
     version: 5.2.2
 
 devDependencies:
+  '@mdi/js':
+    specifier: ^7.3.67
+    version: 7.3.67
   '@storybook/addon-essentials':
     specifier: ^7.5.2
     version: 7.5.2(@types/react-dom@18.2.14)(@types/react@18.2.34)(react-dom@18.2.0)(react@18.2.0)
@@ -2052,9 +2052,9 @@ packages:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
     dev: true
 
-  /@mdi/light-js@0.2.63:
-    resolution: {integrity: sha512-+SUtJIOxvEy6DiVq0wTRPIzVuoPB5fhnubmzaN7e2ew0v3/nvnpC4mqbGCjiTK0diVd3+zvhEQHZzPDErGb1fg==}
-    dev: false
+  /@mdi/js@7.3.67:
+    resolution: {integrity: sha512-MnRjknFqpTC6FifhGHjZ0+QYq2bAkZFQqIj8JA2AdPZbBxUvr8QSgB2yPAJ8/ob/XkR41xlg5majDR3c1JP1hw==}
+    dev: true
 
   /@mdi/react@1.6.1:
     resolution: {integrity: sha512-4qZeDcluDFGFTWkHs86VOlHkm6gnKaMql13/gpIcUQ8kzxHgpj31NuCkD8abECVfbULJ3shc7Yt4HJ6Wu6SN4w==}
