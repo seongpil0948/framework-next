@@ -4,27 +4,28 @@ import { Input } from "@nextui-org/input";
 interface InputProps {
   className?: string;
   variant?: 'flat' | 'bordered' | 'faded' | 'underlined';
+  color?: 'default' | 'primary' | 'secondary' |'success' | 'warning' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   radius?: 'none' | 'sm' | 'md' | 'lg'| 'full';
   fullWidth?: boolean;
   label?: string;
   labelPlacement?: 'inside' | 'outside' | 'outside-left';
   required?: boolean;
+  type?: 'text' | 'password';
   value: string;
-  type?: string;
+  maxLength?: number;
   placeholder: string;
   clearable?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
   isError?: boolean;
   errorMsg?: string;
-  showMaxLength?: boolean;
-  maxLength?: number;
 }
 
 export const Inputs = ({
   className,
   variant = 'flat',
+  color = 'default',
   size = 'md',
   radius = 'md',
   fullWidth = false,
@@ -32,44 +33,36 @@ export const Inputs = ({
   labelPlacement= 'inside',
   required= false,
   type = 'text',
+  value,
+  maxLength,
   placeholder,
   clearable = false,
   disabled = false,
   readOnly = false,
   isError = false,
   errorMsg,
-  showMaxLength = false,
-  maxLength,
 }: InputProps) => {
-  const [value, setValue] = React.useState("");
 
   return (
-    <>
-      <Input
-        className={className}
-        variant={variant}
-        size={size}
-        radius={radius}
-        fullWidth={fullWidth}
-        label={label}
-        labelPlacement={labelPlacement}
-        isRequired={required}
-        value={value}
-        onValueChange={setValue}
-        maxLength={maxLength}
-        type={type}
-        placeholder={placeholder}
-        isClearable={clearable}
-        isDisabled={disabled}
-        isReadOnly={readOnly}
-        isInvalid={isError}
-        errorMessage={errorMsg}
-      />
-      {
-        showMaxLength
-        ? <p className="text-right text-default-500 text-small">{value.length} / {maxLength} </p>
-        : null
-      }
-    </>
+    <Input
+      className={className}
+      variant={variant}
+      color={color}
+      size={size}
+      radius={radius}
+      fullWidth={fullWidth}
+      label={label}
+      labelPlacement={labelPlacement}
+      isRequired={required}
+      type={type}
+      defaultValue={value}
+      maxLength={maxLength}
+      placeholder={placeholder}
+      isClearable={clearable}
+      isDisabled={disabled}
+      isReadOnly={readOnly}
+      isInvalid={isError}
+      errorMessage={errorMsg}
+    />
   );
 };

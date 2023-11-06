@@ -35,44 +35,35 @@ export const CmTextArea = ({
   label,
   labelPlacement= 'inside',
   required= false,
+  value,
+  maxLength,
   placeholder,
   disabled = false,
   readOnly = false,
   isError = false,
   errorMsg,
-  maxLength,
-  showMaxLength = false,
 }: TextareaProps) => {
-  const [value, setValue] = React.useState("");
 
   return (
-    <>
-      <Textarea
-        className={className}
-        variant={variant}
-        size={size}
-        color={color}
-        minRows={minRows}
-        maxRows={maxRows}
-        radius={radius}
-        fullWidth={fullWidth}
-        label={label}
-        labelPlacement={labelPlacement}
-        isRequired={required}
-        placeholder={placeholder}
-        value={value}
-        onValueChange={setValue}
-        maxLength={maxLength}
-        isDisabled={disabled}
-        isReadOnly={readOnly}
-        isInvalid={isError}
-        errorMessage={errorMsg}
-      />
-      {
-        showMaxLength
-        ? <p className="text-right text-default-500 text-small">{value.length} / {maxLength} </p>
-        : null
-      }
-    </>
+    <Textarea
+      className={className}
+      variant={variant}
+      size={size}
+      color={color}
+      minRows={minRows}
+      maxRows={maxRows}
+      radius={radius}
+      fullWidth={fullWidth}
+      label={label}
+      labelPlacement={labelPlacement}
+      isRequired={required}
+      defaultValue={value}
+      maxLength={maxLength}
+      placeholder={placeholder}
+      isDisabled={disabled}
+      isReadOnly={readOnly}
+      isInvalid={isError}
+      errorMessage={errorMsg}
+    />
   );
 };
