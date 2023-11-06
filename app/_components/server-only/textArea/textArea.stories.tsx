@@ -1,10 +1,9 @@
 import { Meta } from "@storybook/react";
-import { Buttons } from ".";
-import { HeadphonesIcon } from "@nextui-org/shared-icons";
+import { CmTextArea } from ".";
 
 export default {
-  title: "Components/Button",
-  component: Buttons,
+  title: "Components/TextArea",
+  component: CmTextArea,
   parameters: {
     layout: "centered",
     nextjs: {
@@ -22,33 +21,22 @@ export default {
     variant: {
       control: { type: "select" },
     },
-    color: {
-      control: { type: "select" },
-    },
     size: {
       control: { type: "select" },
     },
-    fullWidth: {
-      control: { type: "boolean" },
+    labelPlacement: {
+      control: { type: "select" },
     },
     radius: {
       control: { type: "select" },
     },
-    disabled: {
-      control: { type: "boolean" },
-    },
   },
-} as Meta<typeof Buttons>;
+} satisfies Meta<typeof CmTextArea>;
 
 export const Default = {
   args: {
-    children: "button",
-  },
-};
-
-export const IconOnly = {
-  args: {
-    isIconOnly: true,
-    children: <HeadphonesIcon className="w-5 h-5" />,
+    label: "default",
+    value: "",
+    placeholder: "입력하세요",
   },
 };
