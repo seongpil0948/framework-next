@@ -10,7 +10,7 @@ export async function fetcher(input: RequestInfo, init?: RequestInit) {
   let url = typeof input === "string" ? input : input.url;
   console.log("[fetching] input url: ", url);
   if (url.startsWith(process.env.NEXT_PUBLIC_BACKEND_BASE_PATH)) {
-    url = process.env.BACKEND_URL + url;
+    url = process.env.NEXT_PUBLIC_BACKEND_URL + url;
     console.log("[fetching] backend url: ", url);
   }
   return fetch(input, init);
