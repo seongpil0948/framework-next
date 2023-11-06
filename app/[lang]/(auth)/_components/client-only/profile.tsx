@@ -9,10 +9,12 @@ export function UserProfile() {
     <>
       <Snippet hideSymbol hideCopyButton variant="flat">
         <span>
-          Hi <Code color="primary">app/page.tsx</Code>
+          In <Code color="primary">app/page.tsx</Code>
         </span>
       </Snippet>
-      {JSON.stringify(userCtx.user, null, 4)}
+      <p>
+        Hello. <span className="font-bold">{userCtx.user?.userName}</span>
+      </p>
     </>
   );
 }
