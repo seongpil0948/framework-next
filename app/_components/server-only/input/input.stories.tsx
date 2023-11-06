@@ -19,23 +19,18 @@ export default {
   tags: ["autodocs"],
   argTypes: {
     variant: {
-      options: ["flat", "bordered", "faded", "underlined"],
       control: { type: "select" },
     },
     size: {
-      options: ["sm", "md", "lg"],
       control: { type: "select" },
     },
     labelPlacement: {
-      options: ["inside", "outside", "outside-left"],
       control: { type: "select" },
     },
     type: {
-      options: ["text", "password", "email", "search"],
       control: { type: "select" },
     },
     radius: {
-      options: ["none", "sm", "md", "lg", "full"],
       control: { type: "select" },
     },
   },
@@ -46,49 +41,5 @@ export const Default = {
     label: "default",
     value: "",
     placeholder: "입력하세요",
-  },
-};
-
-export const Disabled = {
-  args: {
-    label: "disabled",
-    value: "",
-    placeholder: "입력하세요",
-    disabled: true,
-  },
-};
-
-export const ReadOnly = {
-  args: {
-    label: "disabled",
-    value: "",
-    placeholder: "입력하세요",
-    readOnly: true,
-  },
-};
-
-export const clearable = {
-  args: {
-    label: "clearable",
-    value: "",
-    placeholder: "입력하세요",
-    clearable: true,
-  },
-};
-
-export const NoLabel = {
-  args: {
-    value: "",
-    placeholder: "입력하세요",
-  },
-};
-
-export const ValidateError = {
-  args: {
-    label: "is error",
-    value: "잘못된 값입니다.",
-    placeholder: "입력하세요",
-    isError: true,
-    errorMessage: "다시 입력해주세요",
   },
 };

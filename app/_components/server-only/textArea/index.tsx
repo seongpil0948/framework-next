@@ -1,19 +1,20 @@
 import React from 'react';
-import { Input } from "@nextui-org/input";
+import { Textarea } from "@nextui-org/input";
 
-interface InputProps {
+interface TextareaProps {
   className?: string;
   variant?: 'flat' | 'bordered' | 'faded' | 'underlined';
+  color?: 'default' | 'primary' | 'secondary' |'success' | 'warning' | 'danger';
   size?: 'sm' | 'md' | 'lg';
+  minRows?: number,
+  maxRows?: number,
   radius?: 'none' | 'sm' | 'md' | 'lg'| 'full';
   fullWidth?: boolean;
   label?: string;
   labelPlacement?: 'inside' | 'outside' | 'outside-left';
   required?: boolean;
   value: string;
-  type?: string;
   placeholder: string;
-  clearable?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
   isError?: boolean;
@@ -22,44 +23,46 @@ interface InputProps {
   maxLength?: number;
 }
 
-export const Inputs = ({
+export const CmTextArea = ({
   className,
   variant = 'flat',
+  color = 'default',
   size = 'md',
+  minRows,
+  maxRows,
   radius = 'md',
   fullWidth = false,
   label,
   labelPlacement= 'inside',
   required= false,
-  type = 'text',
   placeholder,
-  clearable = false,
   disabled = false,
   readOnly = false,
   isError = false,
   errorMsg,
-  showMaxLength = false,
   maxLength,
-}: InputProps) => {
+  showMaxLength = false,
+}: TextareaProps) => {
   const [value, setValue] = React.useState("");
 
   return (
     <>
-      <Input
+      <Textarea
         className={className}
         variant={variant}
         size={size}
+        color={color}
+        minRows={minRows}
+        maxRows={maxRows}
         radius={radius}
         fullWidth={fullWidth}
         label={label}
         labelPlacement={labelPlacement}
         isRequired={required}
+        placeholder={placeholder}
         value={value}
         onValueChange={setValue}
         maxLength={maxLength}
-        type={type}
-        placeholder={placeholder}
-        isClearable={clearable}
         isDisabled={disabled}
         isReadOnly={readOnly}
         isInvalid={isError}
