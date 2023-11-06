@@ -31,7 +31,6 @@ export const CmChip = ({
       color={color}
       variant={variant}
       isDisabled={disabled}
-      classNames={{ base: { '': readOnly }, content: { '': readOnly } }}
       onClose={() => console.log('close')}
     >
       {content}
