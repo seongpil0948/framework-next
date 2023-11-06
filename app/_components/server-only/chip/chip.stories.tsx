@@ -44,25 +44,4 @@ export const Default = {
   },
 };
 
-export const Disabled = {
-  args: {
-    content: 'Disabled',
-    disabled: true,
-  },
-};
-
-export const ReadOnly = {
-  args: {
-    content: 'ReadOnly',
-    readOnly: true,
-  },
-};
-
-export const Delete = {
-  args: {
-    content: 'Delete',
-    onClose: true,
-  },
-};
-
 
