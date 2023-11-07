@@ -4,7 +4,7 @@ declare namespace NodeJS {
     readonly NEXT_PUBLIC_ENV_VARIABLE: string;
 
     readonly DEVELOPMENT_ENV_VARIABLE: string;
-    readonly NEXT_PUBLIC_BACKEND_URL: string;
+    // readonly NEXT_PUBLIC_BACKEND_URL: string;
     readonly NEXT_PUBLIC_BACKEND_BASE_PATH: string;
     readonly NEXT_PUBLIC_DEVELOPMENT_ENV_VARIABLE: string;
 
