@@ -79,6 +79,10 @@ export const docNavMenuItems = linkToTree([
     href: "/doc/guide",
     children: [
       {
+        label: "Mdx Sample",
+        href: "/doc/guide/mdx-sample",
+      },
+      {
         label: "Keyword",
         href: "/doc/guide/keyword",
       },
