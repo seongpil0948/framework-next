@@ -17,8 +17,9 @@ export async function fetcher(input: RequestInfo, init?: RequestInit) {
   ) {
     url = process.env.NEXT_PUBLIC_BACKEND_URL + url;
     console.log("[fetching] backend url: ", url);
-
-    return fetch(isStr ? url : { ...input, url }, init);
   }
-  return fetch(input, init);
+  return fetch(isStr ? url : { ...input, url }, {
+    ...init,
+    credentials: "include",
+  });
 }
