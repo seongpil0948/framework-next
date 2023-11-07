@@ -1,9 +1,9 @@
 import { Meta } from "@storybook/react";
-import { Inputs } from ".";
+import { CmInput } from ".";
 
 export default {
   title: "Components/Input",
-  component: Inputs,
+  component: CmInput,
   parameters: {
     layout: "centered",
     nextjs: {
@@ -34,7 +34,7 @@ export default {
       control: { type: "select" },
     },
   },
-} satisfies Meta<typeof Inputs>;
+} satisfies Meta<typeof CmInput>;
 
 export const Default = {
   args: {

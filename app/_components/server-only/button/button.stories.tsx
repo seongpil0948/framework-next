@@ -1,10 +1,10 @@
 import { Meta } from "@storybook/react";
-import { Buttons } from ".";
+import { CmButton } from ".";
 import { HeadphonesIcon } from "@nextui-org/shared-icons";
 
 export default {
   title: "Components/Button",
-  component: Buttons,
+  component: CmButton,
   parameters: {
     layout: "centered",
     nextjs: {
@@ -38,7 +38,7 @@ export default {
       control: { type: "boolean" },
     },
   },
-} as Meta<typeof Buttons>;
+} as Meta<typeof CmButton>;
 
 export const Default = {
   args: {

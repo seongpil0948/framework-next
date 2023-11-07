@@ -22,7 +22,7 @@ interface InputProps {
   errorMsg?: string;
 }
 
-export const Inputs = ({
+export const CmInput = ({
   className,
   variant = 'flat',
   color = 'default',
