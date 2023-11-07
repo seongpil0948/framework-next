@@ -15,7 +15,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-export const Buttons = ({
+export const CmButton = ({
   children,
   className,
   variant = 'solid',
