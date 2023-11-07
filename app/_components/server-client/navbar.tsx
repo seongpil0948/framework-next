@@ -3,38 +3,38 @@ import {
   NavbarContent,
   NavbarBrand,
   NavbarItem,
-} from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
-import { link as linkStyles } from "@nextui-org/theme";
-import NextLink from "next/link";
-import clsx from "clsx";
+} from '@nextui-org/navbar'
+import { Button } from '@nextui-org/button'
+import { Link } from '@nextui-org/link'
+import { link as linkStyles } from '@nextui-org/theme'
+import NextLink from 'next/link'
+import clsx from 'clsx'
 
-import { ThemeSwitch } from "@/app/_components/client-only/theme-switch";
+import { ThemeSwitch } from '@/app/_components/client-only/theme-switch'
 import {
   TwitterIcon,
   GithubIcon,
   DiscordIcon,
   HeartFilledIcon,
-} from "@/app/_components/server-only/icons";
+} from '@/app/_components/server-only/icons'
 
-import { Logo } from "@/app/_components/server-only/icons";
-import { THrefLinks } from "@/types";
-import { SearchInput } from "../client-only/input/search";
+import { Logo } from '@/app/_components/server-only/icons'
+import { THrefLinks } from '@/types'
+import { SearchInput } from '../client-only/input/search'
 
 export default function CommonNavbar(props: {
-  navItems: THrefLinks;
-  children?: React.ReactNode;
-  prefix?: React.ReactNode;
-  landingPath: string;
+  navItems: THrefLinks
+  children?: React.ReactNode
+  prefix?: React.ReactNode
+  landingPath: string
   links?: {
-    twitter?: string;
-    discord?: string;
-    github?: string;
-    sponsor?: string;
-  };
+    twitter?: string
+    discord?: string
+    github?: string
+    sponsor?: string
+  }
 }) {
-  const { navItems, children, prefix, landingPath, links } = props;
+  const { navItems, children, prefix, landingPath, links } = props
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -53,8 +53,8 @@ export default function CommonNavbar(props: {
             <NavbarItem key={item.href}>
               <NextLink
                 className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  linkStyles({ color: 'foreground' }),
+                  'data-[active=true]:text-primary data-[active=true]:font-medium',
                 )}
                 color="foreground"
                 href={item.href}
@@ -142,5 +142,5 @@ export default function CommonNavbar(props: {
         </div>
       </NavbarMenu> */}
     </NextUINavbar>
-  );
+  )
 }

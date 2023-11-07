@@ -1,107 +1,107 @@
-import type { TreeSectionProps } from "@/app/_components/client-only/tree-section";
-import { THrefLinks } from "@/types";
+import type { TreeSectionProps } from '@/app/_components/client-only/tree-section'
+import { THrefLinks } from '@/types'
 
-export type SiteConfig = typeof siteConfig;
-export const LANDING_PATH = "/home";
+export type SiteConfig = typeof siteConfig
+export const LANDING_PATH = '/home'
 export const siteConfig = {
-  name: "Abacus React Framework",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: 'Abacus React Framework',
+  description: 'Make beautiful websites regardless of your design experience.',
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: 'https://github.com/nextui-org/nextui',
+    twitter: 'https://twitter.com/getnextui',
+    docs: 'https://nextui.org',
+    discord: 'https://discord.gg/9b6yyZKmH4',
+    sponsor: 'https://patreon.com/jrgarciadev',
   },
-};
+}
 const linkToTree = (links: THrefLinks): TreeSectionProps[] => {
   return links.map((link) => {
     const tree = {
       id: link.href,
       index: 0,
-      parentid: "",
+      parentid: '',
       ...link,
-    } as TreeSectionProps;
+    } as TreeSectionProps
     if (link.children) {
       return {
         ...tree,
         children: linkToTree(link.children),
-      };
+      }
     }
-    return tree;
-  });
-};
+    return tree
+  })
+}
 export const homeNavItems = linkToTree([
   {
-    label: "Code",
-    href: "/code",
+    label: 'Code',
+    href: '/code',
   },
   {
-    label: "Doc",
-    href: "/doc",
+    label: 'Doc',
+    href: '/doc',
   },
-]);
+])
 export const homeNavMenuItems = linkToTree([
   {
-    label: "Code",
-    href: "/code",
+    label: 'Code',
+    href: '/code',
   },
   {
-    label: "Doc",
-    href: "/doc",
+    label: 'Doc',
+    href: '/doc',
   },
   {
-    label: "Logout",
-    href: "/logout",
+    label: 'Logout',
+    href: '/logout',
   },
-]);
+])
 
 export const docNavMenuItems = linkToTree([
   {
-    label: "Getting Started",
-    href: "/doc/getting-started",
+    label: 'Getting Started',
+    href: '/doc/getting-started',
     children: [],
   },
   {
-    label: "Convention",
-    href: "/doc/convention",
+    label: 'Convention',
+    href: '/doc/convention',
     children: [
       {
-        label: "File Structure",
-        href: "/doc/convention/structure",
+        label: 'File Structure',
+        href: '/doc/convention/structure',
       },
-      { label: "File Basic", href: "/doc/convention/file-basic" },
-      { label: "Naming", href: "/doc/convention/name" },
+      { label: 'File Basic', href: '/doc/convention/file-basic' },
+      { label: 'Naming', href: '/doc/convention/name' },
     ],
   },
   {
-    label: "Guide",
-    href: "/doc/guide",
+    label: 'Guide',
+    href: '/doc/guide',
     children: [
       {
-        label: "Mdx Sample",
-        href: "/doc/guide/mdx-sample",
+        label: 'Mdx Sample',
+        href: '/doc/guide/mdx-sample',
       },
       {
-        label: "Keyword",
-        href: "/doc/guide/keyword",
+        label: 'Keyword',
+        href: '/doc/guide/keyword',
       },
       {
-        label: "Mdx",
-        href: "/doc/guide/mdx",
+        label: 'Mdx',
+        href: '/doc/guide/mdx',
       },
       {
-        label: "Server Client Pattern",
-        href: "/doc/guide/server-client-pattern",
+        label: 'Server Client Pattern',
+        href: '/doc/guide/server-client-pattern',
       },
       {
-        label: "Customize Theme",
-        href: "/doc/guide/customize-theme",
+        label: 'Customize Theme',
+        href: '/doc/guide/customize-theme',
       },
       {
-        label: "Contribute",
-        href: "/doc/guide/contribute",
+        label: 'Contribute',
+        href: '/doc/guide/contribute',
       },
     ],
   },
-]);
+])

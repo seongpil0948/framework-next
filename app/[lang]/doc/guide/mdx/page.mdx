@@ -1,4 +1,4 @@
-import { ExampleComponent } from "./_components/server-only/examples";
+import { ExampleComponent } from './_components/server-only/examples'
 
 # What is MDX?
 
@@ -6,16 +6,15 @@ import { ExampleComponent } from "./_components/server-only/examples";
 
 ```tsx
 // _components/examples.tsx
-import { CardBasic } from "@/app/_components/cards";
+import { CardBasic } from '@/app/_components/cards'
 
 export function ExampleComponent() {
-  return <CardBasic title="title" body={<p> Body </p>} footer="footer" />;
+  return <CardBasic title="title" body={<p> Body </p>} footer="footer" />
 }
 
 // mdx/page.mdx
-import { ExampleComponent } from "./_components/examples";
-
-<ExampleComponent />;
+import { ExampleComponent } from './_components/examples'
+;<ExampleComponent />
 ```
 
 #### Result

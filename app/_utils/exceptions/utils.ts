@@ -1,12 +1,12 @@
 export function handleError(error: unknown): {
-  title?: string;
-  message: string;
+  title?: string
+  message: string
 } {
   if (error instanceof Error) {
-    return { message: error.message };
+    return { message: error.message }
   }
-  console.error(error);
-  return { message: "An unknown error occurred" };
+  console.error(error)
+  return { message: 'An unknown error occurred' }
 }
 
 // export async function handleModalError(dispatch: AppDispatch, error: unknown) {

@@ -1,10 +1,10 @@
-"use client";
-import React, { useState } from "react";
-import { Button, ButtonProps } from "@nextui-org/button";
-import { useRouter } from "next/navigation";
-import type { ReactNode } from "react";
-import Icon from "@mdi/react";
-import { mdiPlus } from "@mdi/js";
+'use client'
+import React, { useState } from 'react'
+import { Button, ButtonProps } from '@nextui-org/button'
+import { useRouter } from 'next/navigation'
+import type { ReactNode } from 'react'
+import Icon from '@mdi/react'
+import { mdiPlus } from '@mdi/js'
 // import { Checkbox } from "@nextui-org/checkbox";
 import {
   useDisclosure,
@@ -13,23 +13,23 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from "@nextui-org/modal";
-import { InputEmail } from "./input/fields";
+} from '@nextui-org/modal'
+import { InputEmail } from './input/fields'
 
 export const RouteButton = (
-  props: { href: string; children: ReactNode } & ButtonProps
+  props: { href: string; children: ReactNode } & ButtonProps,
 ) => {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <Button onClick={() => router.push(props.href)} {...props}>
       {props.children}
     </Button>
-  );
-};
+  )
+}
 
 export const PlusButton = (props: {
-  children: ReactNode;
-  btnProps: ButtonProps;
+  children: ReactNode
+  btnProps: ButtonProps
 }) => {
   return (
     <div className="flex gap-4 items-center">
@@ -42,17 +42,17 @@ export const PlusButton = (props: {
         {props.children}
       </Button>
     </div>
-  );
-};
+  )
+}
 
 export function ForgetPasswordBtn() {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const [email, setEmail] = useState("");
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
+  const [email, setEmail] = useState('')
   // const dispatch = useAppDispatch();
 
   const handleSubmit = async () => {
-    console.log("handleSubmit");
-  };
+    console.log('handleSubmit')
+  }
 
   return (
     <>
@@ -78,5 +78,5 @@ export function ForgetPasswordBtn() {
         </ModalContent>
       </Modal>
     </>
-  );
+  )
 }

@@ -4,14 +4,14 @@ import {
   CardBody,
   CardFooter,
   CardProps,
-} from "@nextui-org/card";
-import { Divider } from "@nextui-org/divider";
+} from '@nextui-org/card'
+import { Divider } from '@nextui-org/divider'
 
 export function CardBasic(props: {
-  title?: React.ReactNode;
-  body: React.ReactNode;
-  footer?: React.ReactNode;
-  cardProps?: CardProps;
+  title?: React.ReactNode
+  body: React.ReactNode
+  footer?: React.ReactNode
+  cardProps?: CardProps
 }) {
   return (
     <Card className="max-w-[400px]" {...props.cardProps}>
@@ -29,7 +29,7 @@ export function CardBasic(props: {
         </>
       )}
     </Card>
-  );
+  )
 }
 
 // import { VideoPlayer, PlayerProps } from "@/app/components/video";

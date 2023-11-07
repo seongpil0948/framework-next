@@ -1,4 +1,4 @@
-import { title } from "@/app/_components/server-only/primitives";
+import { title } from '@/app/_components/server-only/primitives'
 
 export default function SSGPage() {
   return (
@@ -20,5 +20,5 @@ export default function SSGPage() {
 				- 컨벤션`}
       </p>
     </div>
-  );
+  )
 }

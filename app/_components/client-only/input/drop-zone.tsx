@@ -1,9 +1,9 @@
-import { useDropzone, DropzoneOptions } from "react-dropzone";
+import { useDropzone, DropzoneOptions } from 'react-dropzone'
 
 export function PDropZone({
   dropZoneProps,
 }: {
-  dropZoneProps: DropzoneOptions;
+  dropZoneProps: DropzoneOptions
 }) {
   const {
     getRootProps,
@@ -11,7 +11,7 @@ export function PDropZone({
     isDragActive,
     isDragAccept,
     isDragReject,
-  } = useDropzone(dropZoneProps);
+  } = useDropzone(dropZoneProps)
 
   return (
     <div {...getRootProps()}>
@@ -19,7 +19,7 @@ export function PDropZone({
         className="text-default-500 text-sm"
         {...getInputProps({
           accept: dropZoneProps.accept
-            ? Object.keys(dropZoneProps.accept).join(",")
+            ? Object.keys(dropZoneProps.accept).join(',')
             : undefined,
         })}
       />
@@ -32,5 +32,5 @@ export function PDropZone({
       )}
       {!isDragActive && <p className="text-center">Drop some files here ...</p>}
     </div>
-  );
+  )
 }

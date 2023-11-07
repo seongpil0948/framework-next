@@ -49,29 +49,34 @@ If you include multiple screenshots it can be helpful to hide all but the first 
 
 ### Possible fixes
 
-
 <!-- Default due date. -->
+
 /due in 2 weeks
 
 <!-- Base labels. -->
+
 /label ~Quality ~QA ~test
 
 <!-- Work classification type label, please apply ignore type label until the investigation is complete and an [issue type](https://about.gitlab.com/handbook/engineering/metrics/#work-type-classification) is determined.-->
-/label ~"type::ignore" 
+
+/label ~"type::ignore"
 
 <!-- Test failure type label, please use just one.-->
+
 /label ~"failure::broken-test" ~"failure::flaky-test" ~"failure::stale-test" ~"failure::test-environment" ~"failure::investigating" ~"failure::new"
 
 <!--
 Choose the stage that appears in the test path, e.g. ~"devops::create" for
 `qa/specs/features/browser_ui/3_create/web_ide/add_file_template_spec.rb`.
 -->
+
 /label ~devops::
 
 <!--
 Select a label for where the failure was found, e.g. if the failure occurred in
 a nightly pipeline, select ~"found:nightly".
 -->
+
 /label ~found:
 
 <!--
@@ -79,7 +84,9 @@ https://about.gitlab.com/handbook/engineering/quality/guidelines/#priorities:
 - ~"priority::1": Tests that are needed to verify fundamental GitLab functionality.
 - ~"priority::2": Tests that deal with external integrations which may take a longer time to debug and fix.
 -->
+
 /label ~priority::
 
 <!-- Select the current milestone if ~"priority::1" or the next milestone if ~"priority::2". -->
+
 /milestone %

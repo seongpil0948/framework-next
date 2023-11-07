@@ -1,89 +1,89 @@
-import { Meta } from "@storybook/react";
-import { CmInput } from ".";
+import { Meta } from '@storybook/react'
+import { CmInput } from '.'
 
 export default {
-  title: "Components/Input",
+  title: 'Components/Input',
   component: CmInput,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     size: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     labelPlacement: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     type: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     radius: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
   },
-} satisfies Meta<typeof CmInput>;
+} satisfies Meta<typeof CmInput>
 
 export const Default = {
   args: {
-    label: "default",
-    value: "",
-    placeholder: "입력하세요",
+    label: 'default',
+    value: '',
+    placeholder: '입력하세요',
   },
-};
+}
 
 export const Disabled = {
   args: {
-    label: "disabled",
-    value: "",
-    placeholder: "입력하세요",
+    label: 'disabled',
+    value: '',
+    placeholder: '입력하세요',
     disabled: true,
   },
-};
+}
 
 export const ReadOnly = {
   args: {
-    label: "disabled",
-    value: "",
-    placeholder: "입력하세요",
+    label: 'disabled',
+    value: '',
+    placeholder: '입력하세요',
     readOnly: true,
   },
-};
+}
 
 export const Clearable = {
   args: {
-    label: "clearable",
-    value: "",
-    placeholder: "입력하세요",
+    label: 'clearable',
+    value: '',
+    placeholder: '입력하세요',
     clearable: true,
   },
-};
+}
 
 export const NoLabel = {
   args: {
-    value: "",
-    placeholder: "입력하세요",
+    value: '',
+    placeholder: '입력하세요',
   },
-};
+}
 
 export const ValidateError = {
   args: {
-    label: "is error",
-    value: "잘못된 값입니다.",
-    placeholder: "입력하세요",
+    label: 'is error',
+    value: '잘못된 값입니다.',
+    placeholder: '입력하세요',
     isError: true,
-    errorMessage: "다시 입력해주세요",
+    errorMessage: '다시 입력해주세요',
   },
-};
+}

@@ -1,27 +1,27 @@
-import React, { ReactNode } from 'react';
-import {Accordion, AccordionItem} from "@nextui-org/accordion";
+import React, { ReactNode } from 'react'
+import { Accordion, AccordionItem } from '@nextui-org/accordion'
 
 interface AccordionProps {
   accordionList: [
     {
-      id: string;
-      ariaLabel: string;
-      title: string;
-      subtitle?: string;
+      id: string
+      ariaLabel: string
+      title: string
+      subtitle?: string
       indicator?: ReactNode
       contents: ReactNode | string
       disabled?: boolean
-      startContent?: ReactNode;
+      startContent?: ReactNode
       disableIndicatorAnimation?: boolean
-    }
-  ];
-  variant?: 'light' | 'shadow' | 'bordered' | 'splitted';
-  selectionMode?: 'none' | 'single' | 'multiple';
-  selectionBehavior?: 'toggle' | 'replace';
-  isCompact?: boolean;
-  showDivider?: boolean;
-  hideIndicator	?: boolean;
-  fullWidth	?: boolean;
+    },
+  ]
+  variant?: 'light' | 'shadow' | 'bordered' | 'splitted'
+  selectionMode?: 'none' | 'single' | 'multiple'
+  selectionBehavior?: 'toggle' | 'replace'
+  isCompact?: boolean
+  showDivider?: boolean
+  hideIndicator?: boolean
+  fullWidth?: boolean
 }
 
 export const CmAccordion = ({
@@ -35,19 +35,18 @@ export const CmAccordion = ({
   fullWidth,
   ...props
 }: AccordionProps) => {
-
   return (
     <Accordion
-      variant = {variant}
-      selectionMode = {selectionMode}
-      selectionBehavior = {selectionBehavior}
-      isCompact = {isCompact}
-      showDivider = {showDivider}
-      hideIndicator = {hideIndicator}
-      fullWidth = {fullWidth}
+      variant={variant}
+      selectionMode={selectionMode}
+      selectionBehavior={selectionBehavior}
+      isCompact={isCompact}
+      showDivider={showDivider}
+      hideIndicator={hideIndicator}
+      fullWidth={fullWidth}
     >
       {accordionList.map((accordion) => (
-        <AccordionItem 
+        <AccordionItem
           key={`accordion-key-${accordion.id}`}
           aria-label={accordion.ariaLabel}
           title={accordion.title}
@@ -61,5 +60,5 @@ export const CmAccordion = ({
         </AccordionItem>
       ))}
     </Accordion>
-  );
-};
+  )
+}

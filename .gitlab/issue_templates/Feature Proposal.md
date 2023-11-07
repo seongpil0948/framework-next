@@ -1,22 +1,22 @@
 <!-- What problem do we solve? Try to define the who/what/why of the opportunity as a user story. For example, "As a (who), I want (what), so I can (why/value)." -->
-### Problem to solve
 
+### Problem to solve
 
 <!-- Who will use this feature? If known, include any of the following: types of users (e.g. Developer), personas, or specific company roles (e.g. Release Manager). It's okay to write "Unknown" and fill this field in later.
 Personas are described at https://about.gitlab.com/handbook/product/personas/
 -->
-### Intended users
 
+### Intended users
 
 <!-- What is the single user experience workflow this problem addresses?
 For example, "The user should be able to use the UI/API/.gitlab-ci.yml with GitLab to <perform a specific task>"
 https://about.gitlab.com/handbook/product/ux/ux-research-training/user-story-mapping/ -->
+
 ### User experience goal
 
-
 <!-- How are we going to solve the problem? Try to include the user journey! https://about.gitlab.com/handbook/journeys/#user-journey -->
-### Proposal
 
+### Proposal
 
 ### Further details
 
@@ -40,8 +40,8 @@ Please list the test areas (unit, integration and end-to-end) that needs to be a
 * Integration test changes
 * End-to-end test change
 
-See the Quality Engineering quad planning and test planning processes and reach out to your counterpart Software Engineer in Test for assistance. 
-Quad Planning: https://about.gitlab.com/handbook/engineering/quality/quality-engineering/quad-planning 
+See the Quality Engineering quad planning and test planning processes and reach out to your counterpart Software Engineer in Test for assistance.
+Quad Planning: https://about.gitlab.com/handbook/engineering/quality/quality-engineering/quad-planning
 Test Planning: https://about.gitlab.com/handbook/engineering/quality/quality-engineering/test-engineering/#test-planning -->
 
 <!--
@@ -49,13 +49,12 @@ Define both the success metrics and acceptance criteria. Note that success metri
 
 Create tracking issue using the Snowplow event tracking template. See https://gitlab.com/gitlab-org/gitlab/-/blob/master/.gitlab/issue_templates/Snowplow%20event%20tracking.md
 -->
+
 ### What does success look like, and how can we measure that?
 
-
-
 <!-- Communicate if this change will affect multiple Stage Groups or product areas. We recommend always start with the assumption that a feature request will have an impact into another Group. Loop in the most relevant PM and Product Designer from that Group to provide strategic support to help align the Group's broader plan and vision, as well as to avoid UX and technical debt. https://about.gitlab.com/handbook/product/#cross-stage-features -->
-### Is this a cross-stage feature?
 
+### Is this a cross-stage feature?
 
 <!-- Label reminders - you should have one of each of the following labels.
 Use the following resources to find the appropriate labels:
@@ -63,6 +62,7 @@ Use the following resources to find the appropriate labels:
 - https://gitlab.com/gitlab-org/gitlab/-/labels
 - https://about.gitlab.com/handbook/product/categories/features/
 -->
+
 ### Links / references
 
 /label ~group:: ~section:: ~Category:

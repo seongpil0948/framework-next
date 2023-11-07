@@ -1,18 +1,18 @@
-import React from 'react';
-import { Checkbox, CheckboxGroup } from "@nextui-org/checkbox";
+import React from 'react'
+import { Checkbox, CheckboxGroup } from '@nextui-org/checkbox'
 
 interface CheckboxProps {
-  label?: string,
-  required?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
-  disabled?: boolean;
-  readOnly?: boolean;
-  seleted?: boolean;
-  successMsg?: string;
-  errorMsg?: string;
-  isInvalid?: boolean;
-  validationState?: 'valid' | 'invalid';
+  label?: string
+  required?: boolean
+  size?: 'sm' | 'md' | 'lg'
+  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  disabled?: boolean
+  readOnly?: boolean
+  seleted?: boolean
+  successMsg?: string
+  errorMsg?: string
+  isInvalid?: boolean
+  validationState?: 'valid' | 'invalid'
 }
 
 export const CmCheckbox = ({
@@ -40,9 +40,13 @@ export const CmCheckbox = ({
         isInvalid={isInvalid === true || validationState === 'invalid'}
       >
         {label}
-      </Checkbox >
-      {isInvalid === false && validationState === 'valid' && <p>{successMsg}</p>}
-      {(isInvalid === true || validationState === 'invalid') && <p>{errorMsg}</p>}
+      </Checkbox>
+      {isInvalid === false && validationState === 'valid' && (
+        <p>{successMsg}</p>
+      )}
+      {(isInvalid === true || validationState === 'invalid') && (
+        <p>{errorMsg}</p>
+      )}
     </>
-  );
-};
+  )
+}

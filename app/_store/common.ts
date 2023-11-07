@@ -1,25 +1,25 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface ICommonState {
-  loading: boolean;
+  loading: boolean
 }
 
 export const copyWithCommonState = (
-  p?: Partial<ICommonState>
-): ICommonState => ({ loading: p?.loading ?? false });
+  p?: Partial<ICommonState>,
+): ICommonState => ({ loading: p?.loading ?? false })
 
 const commonSlice = createSlice({
-  name: "common",
+  name: 'common',
   initialState: copyWithCommonState(),
   reducers: {
     setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
+      state.loading = action.payload
     },
     // setCommonError: (state, action: PayloadAction<IMessage | null>) => {
     //   state.error = action.payload
     // },
   },
-});
+})
 
-export const { setLoading } = commonSlice.actions;
-export default commonSlice.reducer;
+export const { setLoading } = commonSlice.actions
+export default commonSlice.reducer

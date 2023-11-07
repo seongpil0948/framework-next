@@ -1,5 +1,5 @@
-import { CircularProgress, CircularProgressProps } from "@nextui-org/progress";
-import { Suspense } from "react";
+import { CircularProgress, CircularProgressProps } from '@nextui-org/progress'
+import { Suspense } from 'react'
 
 export function LoadingComponent(props: CircularProgressProps) {
   return (
@@ -10,9 +10,9 @@ export function LoadingComponent(props: CircularProgressProps) {
       aria-label="Loading..."
       {...props}
     />
-  );
+  )
 }
 
 export function LoadingSuspense({ children }: { children: React.ReactNode }) {
-  return <Suspense fallback={<LoadingComponent />}>{children}</Suspense>;
+  return <Suspense fallback={<LoadingComponent />}>{children}</Suspense>
 }
