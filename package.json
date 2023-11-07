@@ -37,6 +37,7 @@
     "@nextui-org/switch": "2.0.23",
     "@nextui-org/system": "2.0.12",
     "@nextui-org/table": "^2.0.25",
+    "@nextui-org/tabs": "^2.0.24",
     "@nextui-org/theme": "2.1.12",
     "@react-aria/ssr": "^3.8.0",
     "@react-aria/visually-hidden": "^3.8.6",
