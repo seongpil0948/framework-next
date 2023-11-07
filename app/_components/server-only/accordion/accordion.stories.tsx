@@ -57,18 +57,18 @@ export const Default = {
       {
         id: 4,
         ariaLabel: 'custom',
-        title: <span className="text-secondary">ist's custom title</span>,
-        subtitle: <span className="text-primary">ist's custom style</span>,
+        title: <span className="text-secondary">it&#39;s custom title</span>,
+        subtitle: <span className="text-primary">it&#39;s custom style</span>,
         indicator: <HeadphonesIcon className="w-5 h-5" />,
         disableIndicatorAnimation: true,
-        contents: <div>hi it's <strong>custom style</strong></div>,
+        contents: <div>hi it&#39;s <strong>custom style</strong></div>,
       },
       {
         id: 5,
         ariaLabel: 'use icon',
         title: 'use icon',
         startContent: <HeadphonesIcon className="w-5 h-5" />,
-        contents: "it's content",
+        contents: "use icon header",
       },
     ]
   },

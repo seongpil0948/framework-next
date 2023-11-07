@@ -8,7 +8,7 @@ import { AuthButton } from "../(auth)/_components/client-only/buttons";
 import { UserProfile } from "../(auth)/_components/client-only/profile";
 import { AVAIL_LOCALES, TAvailLocale } from "@/config/system";
 import { getDictionary } from "../dictionaries";
-import { Buttons } from "@/app/_components/server-only/button";
+import { CmButton } from "@/app/_components/server-only/button";
 
 export async function generateStaticParams() {
   return AVAIL_LOCALES.map((lang) => ({ lang }));
@@ -20,7 +20,7 @@ interface Param {
 
 export default async function SSGPage({ params: { lang } }: Param) {
   const dict = await getDictionary(lang);
-  const storyComp = () => <Buttons>button</Buttons>;
+  const storyComp = () => <CmButton>button</CmButton>;
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-lg text-center justify-center">
