@@ -1,41 +1,48 @@
-import { Meta } from "@storybook/react";
-import { CmCheckbox } from ".";
+import { Meta } from '@storybook/react'
+import { CmCheckbox } from '.'
 
 export default {
-  title: "Components/Checkbox",
+  title: 'Components/Checkbox',
   component: CmCheckbox,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     size: {
-      options: ["sm", "md", "lg"],
-      control: "select",
+      options: ['sm', 'md', 'lg'],
+      control: 'select',
     },
     color: {
-      options: ['default', 'primary', 'secondary', 'success', 'warning', 'danger'],
-      control: "select",
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+      ],
+      control: 'select',
     },
     validationState: {
       options: ['valid', 'invalid'],
-      control: "radio",
+      control: 'radio',
     },
   },
-} satisfies Meta<typeof CmCheckbox>;
+} satisfies Meta<typeof CmCheckbox>
 
 export const Default = {
   args: {
-    label: "default",
+    label: 'default',
     seleted: true,
   },
-};
+}

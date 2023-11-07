@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Chip } from "@nextui-org/chip";
-import { PressEvent } from 'react-aria';
+import React, { useState } from 'react'
+import { Chip } from '@nextui-org/chip'
+import { PressEvent } from 'react-aria'
 
 interface ChipProps {
-  content?: string,
-  size?: 'sm' | 'md' | 'lg';
-  radius?: 'sm' | 'md' | 'lg' | 'full';
-  color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
-  variant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow' | 'dot';
-  disabled?: boolean;
-  readOnly?: boolean;
-  onClose?: Function;
+  content?: string
+  size?: 'sm' | 'md' | 'lg'
+  radius?: 'sm' | 'md' | 'lg' | 'full'
+  color: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  variant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow' | 'dot'
+  disabled?: boolean
+  readOnly?: boolean
+  onClose?: Function
 }
 
 export const CmChip = ({
@@ -34,6 +34,6 @@ export const CmChip = ({
       onClose={() => console.log('close')}
     >
       {content}
-    </Chip >
-  );
-};
+    </Chip>
+  )
+}

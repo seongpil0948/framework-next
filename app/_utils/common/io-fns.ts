@@ -13,69 +13,69 @@
 // }
 
 export const uniqueArr = <T extends string | number>(arr: T[]): T[] =>
-  Array.from(new Set(arr));
+  Array.from(new Set(arr))
 export function uniqueFilter<T>(arr: T[]): T[] {
   // used when There are many Duplicate values
-  return arr.filter((x, idx) => arr.indexOf(x) === idx);
+  return arr.filter((x, idx) => arr.indexOf(x) === idx)
 }
 export function range(start: number, end: number) {
-  return Array.from(Array(end - start).keys()).map((x) => x + 1);
+  return Array.from(Array(end - start).keys()).map((x) => x + 1)
 }
 export function choice<T>(choices: T[]): T {
-  const index = Math.floor(Math.random() * choices.length);
-  return choices[index];
+  const index = Math.floor(Math.random() * choices.length)
+  return choices[index]
 }
 
 export function valueByDotsKey(obj: any, key: string) {
-  let result: any = null;
-  key.split(".").forEach((k) => {
-    result = result === null ? obj[k] : result[k];
-  });
-  return result;
+  let result: any = null
+  key.split('.').forEach((k) => {
+    result = result === null ? obj[k] : result[k]
+  })
+  return result
 }
 
 export const getCopyWith = <T extends {}>(
-  defaultObj: () => T
+  defaultObj: () => T,
 ): ((props?: Partial<T>) => T) => {
   return function (props?: Partial<T>) {
-    return Object.assign<T, Partial<T>>(defaultObj(), props ?? {}) as T;
-  };
-};
+    return Object.assign<T, Partial<T>>(defaultObj(), props ?? {}) as T
+  }
+}
 
 export const debounceFunction = <Func extends (args: any) => void>(
   callback: Func,
-  delay: number
+  delay: number,
 ) => {
-  let timer: NodeJS.Timeout;
+  let timer: NodeJS.Timeout
   return (args: any) => {
     // 실행한 함수(setTimeout())를 취소
-    clearTimeout(timer);
+    clearTimeout(timer)
     // delay가 지나면 callback 함수를 실행
-    timer = setTimeout(() => callback(args), delay);
-  };
-};
+    timer = setTimeout(() => callback(args), delay)
+  }
+}
 
 const twoSetDifferece = <T>(a: Set<T>, b: Set<T>): Set<T> => {
-  const difference = new Set<T>();
+  const difference = new Set<T>()
   a.forEach((element) => {
     if (!b.has(element)) {
-      difference.add(element);
+      difference.add(element)
     }
-  });
-  return difference;
-};
+  })
+  return difference
+}
 
 const twoSetIntersection = <T>(a: Set<T>, b: Set<T>): Set<T> => {
-  const intersection = new Set<T>();
+  const intersection = new Set<T>()
   a.forEach((element) => {
     if (b.has(element)) {
-      intersection.add(element);
+      intersection.add(element)
     }
-  });
-  return intersection;
-};
+  })
+  return intersection
+}
 
 export const SetUtils = {
   diff: twoSetDifferece,
   inter: twoSetIntersection,
-};
+}

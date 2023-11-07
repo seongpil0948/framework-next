@@ -1,18 +1,25 @@
-import React from "react";
-import { Button } from "@nextui-org/button";
+import React from 'react'
+import { Button } from '@nextui-org/button'
 
 interface ButtonProps {
-  children: string;
-  className?: string;
-  variant?: 'solid' | 'bordered' | 'light' | 'flat'| 'faded' | 'shadow' | 'ghost';
-  color?: 'default' | 'primary' | 'secondary' | 'success'| 'warning' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
-  radius?: 'none' | 'sm' | 'md' | 'lg'| 'full';
-  fullWidth?: boolean;
-  startContent?: string;
-  endContent?: string;
-  isIconOnly?: boolean;
-  disabled?: boolean;
+  children: string
+  className?: string
+  variant?:
+    | 'solid'
+    | 'bordered'
+    | 'light'
+    | 'flat'
+    | 'faded'
+    | 'shadow'
+    | 'ghost'
+  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  size?: 'sm' | 'md' | 'lg'
+  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+  fullWidth?: boolean
+  startContent?: string
+  endContent?: string
+  isIconOnly?: boolean
+  disabled?: boolean
 }
 
 export const CmButton = ({
@@ -43,5 +50,5 @@ export const CmButton = ({
     >
       {children}
     </Button>
-  );
-};
+  )
+}

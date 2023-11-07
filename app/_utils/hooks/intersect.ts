@@ -1,32 +1,32 @@
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect } from 'react'
 
 // [코드 11] IntersectionObserver custom hook
 type IntersectHandler = (
   entry: IntersectionObserverEntry,
-  observer: IntersectionObserver
-) => void;
+  observer: IntersectionObserver,
+) => void
 
 export function useIntersect(
   onIntersect: IntersectHandler,
-  options?: IntersectionObserverInit
+  options?: IntersectionObserverInit,
 ) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null)
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      console.log("entries onIntersect : ", entries);
+      console.log('entries onIntersect : ', entries)
       entries.forEach((entry) => {
-        if (entry.isIntersecting) return onIntersect(entry, observer);
-      });
+        if (entry.isIntersecting) return onIntersect(entry, observer)
+      })
     },
-    [onIntersect]
-  );
+    [onIntersect],
+  )
 
   useEffect(() => {
-    if (!ref.current) return;
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [ref, options, callback]);
+    if (!ref.current) return
+    const observer = new IntersectionObserver(callback, options)
+    observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [ref, options, callback])
 
-  return ref;
+  return ref
 }

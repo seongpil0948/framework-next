@@ -1,15 +1,15 @@
 export async function fetcherJson<JSON = any>(
   input: RequestInfo,
-  init?: RequestInit
+  init?: RequestInit,
 ): Promise<JSON> {
-  const res = await fetcher(input, init);
-  return res.json();
+  const res = await fetcher(input, init)
+  return res.json()
 }
 
 export async function fetcher(input: RequestInfo, init?: RequestInit) {
-  const isStr = typeof input === "string";
-  let url = isStr ? input : input.url;
-  console.log("[fetching] input url: ", url);
+  const isStr = typeof input === 'string'
+  let url = isStr ? input : input.url
+  console.log('[fetching] input url: ', url)
 
   // if (
   //   url.startsWith(process.env.NEXT_PUBLIC_BACKEND_BASE_PATH) &&
@@ -20,6 +20,6 @@ export async function fetcher(input: RequestInfo, init?: RequestInit) {
   // }
   return fetch(isStr ? url : { ...input, url }, {
     ...init,
-    credentials: "include",
-  });
+    credentials: 'include',
+  })
 }

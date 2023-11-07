@@ -1,49 +1,49 @@
-import { Meta, StoryObj } from "@storybook/react";
-import Drawer from ".";
-import { Logo } from "../../server-only/icons";
-import clsx from "clsx";
-import { NextUIProvider } from "@nextui-org/system";
+import { Meta, StoryObj } from '@storybook/react'
+import Drawer from '.'
+import { Logo } from '../../server-only/icons'
+import clsx from 'clsx'
+import { NextUIProvider } from '@nextui-org/system'
 
 export default {
-  title: "Components/Drawer",
+  title: 'Components/Drawer',
   component: Drawer,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     title: {
-      control: { type: "text" },
+      control: { type: 'text' },
     },
   },
-} satisfies Meta<typeof Drawer>;
+} satisfies Meta<typeof Drawer>
 
-type Story = StoryObj<typeof Drawer>;
+type Story = StoryObj<typeof Drawer>
 
 export const Default: Story = {
   args: {
-    title: "Drawer",
+    title: 'Drawer',
   },
-};
+}
 
 export const AsSidebar: Story = {
   args: {
-    title: "Sidebar",
+    title: 'Sidebar',
     sheetProps: {
-      placement: "left",
+      placement: 'left',
       classNames: {
-        wrapper: clsx(" absolute"),
+        wrapper: clsx(' absolute'),
       },
-      backdrop: "transparent",
+      backdrop: 'transparent',
       isDismissable: false,
       hideCloseButton: true,
     },
@@ -55,7 +55,7 @@ export const AsSidebar: Story = {
       </ExampleApp>
     ),
   ],
-};
+}
 
 function ExampleApp(props: { children?: React.ReactNode }) {
   return (
@@ -69,5 +69,5 @@ function ExampleApp(props: { children?: React.ReactNode }) {
         <main className="w-full h-full max-h-full relative">zz</main>
       </div>
     </NextUIProvider>
-  );
+  )
 }

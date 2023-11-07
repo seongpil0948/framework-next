@@ -1,11 +1,11 @@
-import "react-toastify/dist/ReactToastify.css";
-import "@/styles/globals.css";
+import 'react-toastify/dist/ReactToastify.css'
+import '@/styles/globals.css'
 
-import { Metadata } from "next";
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import clsx from "clsx";
-import { Providers } from "./_providers";
+import { Metadata } from 'next'
+import { siteConfig } from '@/config/site'
+import { fontSans } from '@/config/fonts'
+import clsx from 'clsx'
+import { Providers } from './_providers'
 
 export const metadata: Metadata = {
   title: {
@@ -18,31 +18,31 @@ export const metadata: Metadata = {
   //   { media: "(prefers-color-scheme: dark)", color: "black" },
   // ],
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: '/favicon.ico',
+    shortcut: 'favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          'min-h-screen bg-background font-sans antialiased',
+          fontSans.variable,
         )}
       >
         <Providers
           themeProps={{
-            attribute: "class",
+            attribute: 'class',
             // defaultTheme: "system",
-            defaultTheme: "dark",
+            defaultTheme: 'dark',
             enableSystem: true,
           }}
         >
@@ -50,5 +50,5 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
-  );
+  )
 }

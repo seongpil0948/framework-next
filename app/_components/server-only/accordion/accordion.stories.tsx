@@ -1,35 +1,35 @@
-import { Meta } from "@storybook/react";
-import { CmAccordion } from ".";
-import { HeadphonesIcon } from "@nextui-org/shared-icons";
+import { Meta } from '@storybook/react'
+import { CmAccordion } from '.'
+import { HeadphonesIcon } from '@nextui-org/shared-icons'
 
 export default {
-  title: "Components/Accordion",
+  title: 'Components/Accordion',
   component: CmAccordion,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     selectionMode: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     selectionBehavior: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
   },
-} satisfies Meta<typeof CmAccordion>;
+} satisfies Meta<typeof CmAccordion>
 
 export const Default = {
   args: {
@@ -61,15 +61,19 @@ export const Default = {
         subtitle: <span className="text-primary">it&#39;s custom style</span>,
         indicator: <HeadphonesIcon className="w-5 h-5" />,
         disableIndicatorAnimation: true,
-        contents: <div>hi it&#39;s <strong>custom style</strong></div>,
+        contents: (
+          <div>
+            hi it&#39;s <strong>custom style</strong>
+          </div>
+        ),
       },
       {
         id: 5,
         ariaLabel: 'use icon',
         title: 'use icon',
         startContent: <HeadphonesIcon className="w-5 h-5" />,
-        contents: "use icon header",
+        contents: 'use icon header',
       },
-    ]
+    ],
   },
-};
+}

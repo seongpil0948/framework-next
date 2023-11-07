@@ -1,52 +1,52 @@
-"use client";
+'use client'
 
-import React, { forwardRef, useState } from "react";
-import { useInput, type InputProps } from "@nextui-org/input";
-import { SearchIcon, CloseFilledIcon } from "../../server-only/icons";
-import type { SlotsToClasses, InputSlots } from "@nextui-org/theme";
-import { ChipList } from "../../server-only/list";
+import React, { forwardRef, useState } from 'react'
+import { useInput, type InputProps } from '@nextui-org/input'
+import { SearchIcon, CloseFilledIcon } from '../../server-only/icons'
+import type { SlotsToClasses, InputSlots } from '@nextui-org/theme'
+import { ChipList } from '../../server-only/list'
 
 const styles: SlotsToClasses<InputSlots> = {
-  label: "text-black/50 dark:text-white/90",
+  label: 'text-black/50 dark:text-white/90',
   input: [
-    "bg-transparent",
-    "text-black/90 dark:text-white/90",
-    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+    'bg-transparent',
+    'text-black/90 dark:text-white/90',
+    'placeholder:text-default-700/50 dark:placeholder:text-white/60',
   ],
-  innerWrapper: "bg-transparent",
+  innerWrapper: 'bg-transparent',
   inputWrapper: [
-    "shadow-xl",
-    "bg-default-200/50",
-    "dark:bg-default/60",
-    "backdrop-blur-xl",
-    "backdrop-saturate-200",
-    "hover:bg-default-200/70",
-    "focus-within:!bg-default-200/50",
-    "dark:hover:bg-default/70",
-    "dark:focus-within:!bg-default/60",
-    "!cursor-text",
+    'shadow-xl',
+    'bg-default-200/50',
+    'dark:bg-default/60',
+    'backdrop-blur-xl',
+    'backdrop-saturate-200',
+    'hover:bg-default-200/70',
+    'focus-within:!bg-default-200/50',
+    'dark:hover:bg-default/70',
+    'dark:focus-within:!bg-default/60',
+    '!cursor-text',
   ],
-};
+}
 interface InputTagProps extends InputProps {
-  initialValue?: string;
-  initialTags?: string[];
-  onTagChange?: (tags: string[]) => void;
-  onSearch?: (tags: string[]) => void;
+  initialValue?: string
+  initialTags?: string[]
+  onTagChange?: (tags: string[]) => void
+  onSearch?: (tags: string[]) => void
 }
 const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
-  const [tags, setTags] = useState<string[]>(props.initialTags ?? []);
-  const [value, setValue] = useState(props.initialValue ?? "");
+  const [tags, setTags] = useState<string[]>(props.initialTags ?? [])
+  const [value, setValue] = useState(props.initialValue ?? '')
   const handleValueTags = (val: string) => {
-    const t = [...tags, ...val.split(" ").filter((x) => x)];
-    setTags(t.reverse().slice(0, 5).reverse());
-    props.onTagChange && props.onTagChange(tags);
-    setValue("");
-  };
+    const t = [...tags, ...val.split(' ').filter((x) => x)]
+    setTags(t.reverse().slice(0, 5).reverse())
+    props.onTagChange && props.onTagChange(tags)
+    setValue('')
+  }
 
   const handleSearch = () => {
-    handleValueTags(value);
-    props.onSearch && props.onSearch(tags);
-  };
+    handleValueTags(value)
+    props.onSearch && props.onSearch(tags)
+  }
 
   const {
     Component,
@@ -68,8 +68,8 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
     getErrorMessageProps,
     getClearButtonProps,
   } = useInput({
-    type: "search",
-    placeholder: "Type to search...",
+    type: 'search',
+    placeholder: 'Type to search...',
     ...props,
     ref,
 
@@ -77,7 +77,7 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
       <ChipList
         tags={tags}
         onClose={(item) => {
-          setTags(tags.filter((tag) => item !== tag));
+          setTags(tags.filter((tag) => item !== tag))
         }}
       />
     ),
@@ -85,8 +85,8 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
       <SearchIcon
         onClick={handleSearch}
         onKeyUp={(e) => {
-          if (e.key === "Enter") {
-            handleSearch();
+          if (e.key === 'Enter') {
+            handleSearch()
           }
         }}
         className="text-black/50 dark:text-white/90 text-slate-400 flex-shrink-0 cursor-pointer"
@@ -99,19 +99,19 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
     onValueChange: setValue,
     value,
     onKeyUp: (e) => {
-      if (e.key === "Spacebar" || e.key === " ") {
-        handleValueTags(value);
+      if (e.key === 'Spacebar' || e.key === ' ') {
+        handleValueTags(value)
       }
-      if (e.key === "Enter") {
-        handleSearch();
+      if (e.key === 'Enter') {
+        handleSearch()
       }
     },
     onBlur: () => {
-      handleValueTags(value);
+      handleValueTags(value)
     },
-  });
+  })
 
-  const labelContent = <label {...getLabelProps()}>{label}</label>;
+  const labelContent = <label {...getLabelProps()}>{label}</label>
 
   const end = React.useMemo(() => {
     if (isClearable) {
@@ -119,11 +119,11 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
         <span {...getClearButtonProps()}>
           {endContent || <CloseFilledIcon />}
         </span>
-      );
+      )
     }
 
-    return endContent;
-  }, [isClearable, endContent, getClearButtonProps]);
+    return endContent
+  }, [isClearable, endContent, getClearButtonProps])
 
   const innerWrapper = React.useMemo(() => {
     if (startContent || end) {
@@ -133,11 +133,11 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
           <input {...getInputProps()} />
           {end}
         </div>
-      );
+      )
     }
 
-    return <input {...getInputProps()} />;
-  }, [startContent, end, getInputProps, getInnerWrapperProps]);
+    return <input {...getInputProps()} />
+  }, [startContent, end, getInputProps, getInnerWrapperProps])
 
   return (
     <Component {...getBaseProps()}>
@@ -146,7 +146,7 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
         {...getInputWrapperProps()}
         role="button"
         onClick={() => {
-          domRef.current?.focus();
+          domRef.current?.focus()
         }}
       >
         {shouldLabelBeInside ? labelContent : null}
@@ -155,9 +155,9 @@ const InputTag = forwardRef<any, InputTagProps>((props, ref) => {
       {description && <div {...getDescriptionProps()}>{description}</div>}
       {errorMessage && <div {...getErrorMessageProps()}>{errorMessage}</div>}
     </Component>
-  );
-});
+  )
+})
 
-InputTag.displayName = "InputTag";
+InputTag.displayName = 'InputTag'
 
-export default InputTag;
+export default InputTag

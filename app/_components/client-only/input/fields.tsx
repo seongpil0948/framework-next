@@ -1,10 +1,10 @@
-import { Input, InputProps } from "@nextui-org/input";
-import { MailIcon, LockIcon } from "../../server-only/icons";
+import { Input, InputProps } from '@nextui-org/input'
+import { MailIcon, LockIcon } from '../../server-only/icons'
 
 export function InputEmail(p: {
-  email: string;
-  setEmail: (s: string) => void;
-  inputParam?: InputProps;
+  email: string
+  setEmail: (s: string) => void
+  inputParam?: InputProps
 }) {
   return (
     <Input
@@ -20,11 +20,11 @@ export function InputEmail(p: {
       {...p.inputParam}
       autoComplete="email"
     />
-  );
+  )
 }
 export function InputPassword(p: {
-  password: string;
-  setPassword: (s: string) => void;
+  password: string
+  setPassword: (s: string) => void
 }) {
   return (
     <Input
@@ -39,5 +39,5 @@ export function InputPassword(p: {
       onValueChange={p.setPassword}
       autoComplete="current-password"
     />
-  );
+  )
 }

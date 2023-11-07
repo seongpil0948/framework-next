@@ -1,42 +1,42 @@
-import { Meta } from "@storybook/react";
-import { CmTextArea } from ".";
+import { Meta } from '@storybook/react'
+import { CmTextArea } from '.'
 
 export default {
-  title: "Components/TextArea",
+  title: 'Components/TextArea',
   component: CmTextArea,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     size: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     labelPlacement: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     radius: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
   },
-} satisfies Meta<typeof CmTextArea>;
+} satisfies Meta<typeof CmTextArea>
 
 export const Default = {
   args: {
-    label: "default",
-    value: "",
-    placeholder: "입력하세요",
+    label: 'default',
+    value: '',
+    placeholder: '입력하세요',
   },
-};
+}

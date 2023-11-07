@@ -22,9 +22,9 @@
 ## 변수명
 
 ```ts
-const CONSTANT_VALUE = "어퍼 스네이크 케이스"; // 상수
-const localVariable = "카멜 케이스"; // 지역변수
-const globalVariable = "어퍼 스네이크 케이스"; // 전역변수
+const CONSTANT_VALUE = '어퍼 스네이크 케이스' // 상수
+const localVariable = '카멜 케이스' // 지역변수
+const globalVariable = '어퍼 스네이크 케이스' // 전역변수
 export function exportFunction() {} // 함수
 ```
 
@@ -39,7 +39,7 @@ export function exportFunction() {} // 함수
 ```tsx
 export function useIntersect(
   onIntersect: IntersectHandler,
-  options?: IntersectionObserverInit
+  options?: IntersectionObserverInit,
 ) {}
 ```
 
@@ -50,27 +50,27 @@ export function useIntersect(
 ```tsx
 export function useIntersect(
   onIntersect: IntersectHandler,
-  options?: IntersectionObserverInit
+  options?: IntersectionObserverInit,
 ) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null)
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      console.log("entries onIntersect : ", entries);
+      console.log('entries onIntersect : ', entries)
       entries.forEach((entry) => {
-        if (entry.isIntersecting) return onIntersect(entry, observer);
-      });
+        if (entry.isIntersecting) return onIntersect(entry, observer)
+      })
     },
-    [onIntersect]
-  );
+    [onIntersect],
+  )
 
   useEffect(() => {
-    if (!ref.current) return;
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [ref, options, callback]);
+    if (!ref.current) return
+    const observer = new IntersectionObserver(callback, options)
+    observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [ref, options, callback])
 
-  return ref;
+  return ref
 }
 ```
 
@@ -99,7 +99,7 @@ const Logo: React.FC<TIconSvgProps> = ({
       fillRule="evenodd"
     />
   </svg>
-);
+)
 ```
 
 ### 어떤 로직이 추가되는 경우 `function keyword` 로 작성합니다
@@ -127,8 +127,8 @@ export function LoginForm() {
 
 ```ts
 type TIconSvgProps = SVGProps<SVGSVGElement> & {
-  size?: number;
-};
+  size?: number
+}
 ```
 
 ---

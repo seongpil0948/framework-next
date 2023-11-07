@@ -1,25 +1,25 @@
-import React from 'react';
-import { Input } from "@nextui-org/input";
+import React from 'react'
+import { Input } from '@nextui-org/input'
 
 interface InputProps {
-  className?: string;
-  variant?: 'flat' | 'bordered' | 'faded' | 'underlined';
-  color?: 'default' | 'primary' | 'secondary' |'success' | 'warning' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
-  radius?: 'none' | 'sm' | 'md' | 'lg'| 'full';
-  fullWidth?: boolean;
-  label?: string;
-  labelPlacement?: 'inside' | 'outside' | 'outside-left';
-  required?: boolean;
-  type?: 'text' | 'password';
-  value: string;
-  maxLength?: number;
-  placeholder: string;
-  clearable?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  isError?: boolean;
-  errorMsg?: string;
+  className?: string
+  variant?: 'flat' | 'bordered' | 'faded' | 'underlined'
+  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  size?: 'sm' | 'md' | 'lg'
+  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+  fullWidth?: boolean
+  label?: string
+  labelPlacement?: 'inside' | 'outside' | 'outside-left'
+  required?: boolean
+  type?: 'text' | 'password'
+  value: string
+  maxLength?: number
+  placeholder: string
+  clearable?: boolean
+  disabled?: boolean
+  readOnly?: boolean
+  isError?: boolean
+  errorMsg?: string
 }
 
 export const CmInput = ({
@@ -30,8 +30,8 @@ export const CmInput = ({
   radius = 'md',
   fullWidth = false,
   label,
-  labelPlacement= 'inside',
-  required= false,
+  labelPlacement = 'inside',
+  required = false,
   type = 'text',
   value,
   maxLength,
@@ -42,7 +42,6 @@ export const CmInput = ({
   isError = false,
   errorMsg,
 }: InputProps) => {
-
   return (
     <Input
       className={className}
@@ -64,5 +63,5 @@ export const CmInput = ({
       isInvalid={isError}
       errorMessage={errorMsg}
     />
-  );
-};
+  )
+}

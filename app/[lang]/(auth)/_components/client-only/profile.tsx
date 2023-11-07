@@ -1,10 +1,10 @@
-"use client";
-import { useUserCtx } from "@/app/_providers/user";
-import { Code } from "@nextui-org/code";
-import { Snippet } from "@nextui-org/snippet";
+'use client'
+import { useUserCtx } from '@/app/_providers/user'
+import { Code } from '@nextui-org/code'
+import { Snippet } from '@nextui-org/snippet'
 
 export function UserProfile() {
-  const userCtx = useUserCtx();
+  const userCtx = useUserCtx()
   return (
     <>
       <Snippet hideSymbol hideCopyButton variant="flat">
@@ -16,5 +16,5 @@ export function UserProfile() {
         Hello. <span className="font-bold">{userCtx.user?.userName}</span>
       </p>
     </>
-  );
+  )
 }

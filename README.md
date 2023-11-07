@@ -17,18 +17,17 @@ This is a template for creating applications using Next.js 13 (app directory) an
 - [react-spectrum](https://react-spectrum.adobe.com/react-spectrum/index.html)
   - 모든 기존/신규 기능은 다음 라이브러리를 이용합니다.
 - [mdx](https://mdxjs.com/)
-  
+
 ## TODO
-- 폴더 구조 변경 및 컨벤션 명시 : _
+
+- 폴더 구조 변경 및 컨벤션 명시 : \_
 - MDX markdown page, and documentation
 - Logging(Sentry?)
 - text sanitizer
 - i18n
 - intl-messageformat
 
-
 ## How to Use
-
 
 ### Use the template with create-next-app
 

@@ -1,12 +1,12 @@
-import CommonDrawer from "@/app/_components/client-only/drawer";
-import { TreeSection } from "@/app/_components/client-only/tree-section";
-import CommonNavbar from "@/app/_components/server-client/navbar";
-import { homeNavItems, LANDING_PATH, homeNavMenuItems } from "@/config/site";
+import CommonDrawer from '@/app/_components/client-only/drawer'
+import { TreeSection } from '@/app/_components/client-only/tree-section'
+import CommonNavbar from '@/app/_components/server-client/navbar'
+import { homeNavItems, LANDING_PATH, homeNavMenuItems } from '@/config/site'
 
 export default function BlogLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <div className="relative flex flex-col h-screen">
@@ -17,7 +17,7 @@ export default function BlogLayout({
           <CommonDrawer
             title="Home Drawer"
             sheetProps={{
-              placement: "left",
+              placement: 'left',
             }}
           >
             <TreeSection treeProps={homeNavMenuItems} />
@@ -31,5 +31,5 @@ export default function BlogLayout({
         {children}
       </main>
     </div>
-  );
+  )
 }

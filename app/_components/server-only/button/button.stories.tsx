@@ -1,54 +1,54 @@
-import { Meta } from "@storybook/react";
-import { CmButton } from ".";
-import { HeadphonesIcon } from "@nextui-org/shared-icons";
+import { Meta } from '@storybook/react'
+import { CmButton } from '.'
+import { HeadphonesIcon } from '@nextui-org/shared-icons'
 
 export default {
-  title: "Components/Button",
+  title: 'Components/Button',
   component: CmButton,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     color: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     size: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     fullWidth: {
-      control: { type: "boolean" },
+      control: { type: 'boolean' },
     },
     radius: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     disabled: {
-      control: { type: "boolean" },
+      control: { type: 'boolean' },
     },
   },
-} as Meta<typeof CmButton>;
+} as Meta<typeof CmButton>
 
 export const Default = {
   args: {
-    children: "button",
+    children: 'button',
   },
-};
+}
 
 export const IconOnly = {
   args: {
     isIconOnly: true,
     children: <HeadphonesIcon className="w-5 h-5" />,
   },
-};
+}

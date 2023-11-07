@@ -1,26 +1,26 @@
-import React from 'react';
-import { Textarea } from "@nextui-org/input";
+import React from 'react'
+import { Textarea } from '@nextui-org/input'
 
 interface TextareaProps {
-  className?: string;
-  variant?: 'flat' | 'bordered' | 'faded' | 'underlined';
-  color?: 'default' | 'primary' | 'secondary' |'success' | 'warning' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
-  minRows?: number,
-  maxRows?: number,
-  radius?: 'none' | 'sm' | 'md' | 'lg'| 'full';
-  fullWidth?: boolean;
-  label?: string;
-  labelPlacement?: 'inside' | 'outside' | 'outside-left';
-  required?: boolean;
-  value: string;
-  placeholder: string;
-  disabled?: boolean;
-  readOnly?: boolean;
-  isError?: boolean;
-  errorMsg?: string;
-  showMaxLength?: boolean;
-  maxLength?: number;
+  className?: string
+  variant?: 'flat' | 'bordered' | 'faded' | 'underlined'
+  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  size?: 'sm' | 'md' | 'lg'
+  minRows?: number
+  maxRows?: number
+  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+  fullWidth?: boolean
+  label?: string
+  labelPlacement?: 'inside' | 'outside' | 'outside-left'
+  required?: boolean
+  value: string
+  placeholder: string
+  disabled?: boolean
+  readOnly?: boolean
+  isError?: boolean
+  errorMsg?: string
+  showMaxLength?: boolean
+  maxLength?: number
 }
 
 export const CmTextArea = ({
@@ -33,8 +33,8 @@ export const CmTextArea = ({
   radius = 'md',
   fullWidth = false,
   label,
-  labelPlacement= 'inside',
-  required= false,
+  labelPlacement = 'inside',
+  required = false,
   value,
   maxLength,
   placeholder,
@@ -43,7 +43,6 @@ export const CmTextArea = ({
   isError = false,
   errorMsg,
 }: TextareaProps) => {
-
   return (
     <Textarea
       className={className}
@@ -65,5 +64,5 @@ export const CmTextArea = ({
       isInvalid={isError}
       errorMessage={errorMsg}
     />
-  );
-};
+  )
+}

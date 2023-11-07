@@ -1,16 +1,16 @@
-import { Metadata } from "next";
+import { Metadata } from 'next'
 import {
   LANDING_PATH,
   homeNavItems,
   homeNavMenuItems,
   siteConfig,
-} from "@/config/site";
-import { Link } from "@nextui-org/link";
-import CommonNavbar from "@/app/_components/server-client/navbar";
-import { link as linkStyles } from "@nextui-org/theme";
-import clsx from "clsx";
-import CommonDrawer from "../../_components/client-only/drawer";
-import { TreeSection } from "@/app/_components/client-only/tree-section";
+} from '@/config/site'
+import { Link } from '@nextui-org/link'
+import CommonNavbar from '@/app/_components/server-client/navbar'
+import { link as linkStyles } from '@nextui-org/theme'
+import clsx from 'clsx'
+import CommonDrawer from '../../_components/client-only/drawer'
+import { TreeSection } from '@/app/_components/client-only/tree-section'
 
 export const metadata: Metadata = {
   title: {
@@ -23,16 +23,16 @@ export const metadata: Metadata = {
   //   { media: "(prefers-color-scheme: dark)", color: "black" },
   // ],
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <div className="relative flex flex-col h-screen">
@@ -43,7 +43,7 @@ export default function RootLayout({
           <CommonDrawer
             title="Home Drawer"
             sheetProps={{
-              placement: "left",
+              placement: 'left',
             }}
           >
             <TreeSection treeProps={homeNavMenuItems} />
@@ -68,5 +68,5 @@ export default function RootLayout({
         </Link>
       </footer>
     </div>
-  );
+  )
 }

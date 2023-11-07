@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Sheet,
@@ -7,23 +7,23 @@ import {
   SheetBody,
   SheetFooter,
   SheetProps,
-} from "./sheet";
-import Icon from "@mdi/react";
-import { Button, ButtonProps } from "@nextui-org/button";
-import { useDisclosure } from "@nextui-org/modal";
-import { mdiMenuClose, mdiMenuOpen } from "@mdi/js";
+} from './sheet'
+import Icon from '@mdi/react'
+import { Button, ButtonProps } from '@nextui-org/button'
+import { useDisclosure } from '@nextui-org/modal'
+import { mdiMenuClose, mdiMenuOpen } from '@mdi/js'
 
 export default function CommonDrawer(props: {
-  children: React.ReactNode;
-  title?: string;
-  sheetProps?: Partial<SheetProps>;
+  children: React.ReactNode
+  title?: string
+  sheetProps?: Partial<SheetProps>
 }) {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const { children, sheetProps, title } = props;
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
+  const { children, sheetProps, title } = props
   const handleClick = () => {
-    console.log("clicked", isOpen);
-    isOpen ? onClose() : onOpen();
-  };
+    console.log('clicked', isOpen)
+    isOpen ? onClose() : onOpen()
+  }
   return (
     <>
       <Button isIconOnly onPress={handleClick} className="z-50">
@@ -52,7 +52,7 @@ export default function CommonDrawer(props: {
         </SheetContent>
       </Sheet>
     </>
-  );
+  )
 }
 /*
  - https://github.com/nextui-org/nextui/blob/main/packages/components/modal/src/use-modal.ts 
