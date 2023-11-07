@@ -3,6 +3,7 @@ import { useUserCtx } from "@/app/_providers/user";
 import { RouteButton } from "@/app/_components/client-only/buttons";
 import { Button, ButtonProps } from "@nextui-org/button";
 import { useRouter } from "next/navigation";
+import { fetcher } from "@/app/_utils/fetch";
 
 function LogoutButton() {
   const router = useRouter();
@@ -10,7 +11,7 @@ function LogoutButton() {
   return (
     <Button
       onPress={async () => {
-        await fetch("/dsi/api/logout");
+        await fetcher(`${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/logout`);
         router.push("/signin");
       }}
     >

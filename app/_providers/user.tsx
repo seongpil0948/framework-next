@@ -10,6 +10,7 @@ import {
 } from "react";
 import { ContextUndefined } from "../_utils";
 import { toast } from "react-toastify";
+import { fetcher } from "../_utils/fetch";
 
 type TUser = any;
 type RTU = ReturnType<typeof useState<TUser | null>>;
@@ -44,10 +45,14 @@ export default function UserProvider({
   }, [path, router]);
 
   const fetchSession = async () => {
+    console.log("process.env: ", process.env, JSON.stringify(process.env));
     try {
-      const resp = await fetch("/dsi/api/common/session", {
-        cache: "no-cache",
-      });
+      const resp = await fetcher(
+        `${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/common/session`,
+        {
+          cache: "no-cache",
+        }
+      );
       if (resp.status === 401) return goLogin();
       if (resp.status > 300 || resp.status < 200) {
         console.error("error status code", resp);

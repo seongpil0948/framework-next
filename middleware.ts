@@ -2,13 +2,13 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { LANDING_PATH } from "./config/site";
 import { splitLocaleAndPath, getLocaleRequest } from "./app/_utils/locale";
-import { TAvailLocale } from "./config/system";
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: [
-    "/((?!api/*|_next/static|_next/image|icon/*|favicon.ico|image/*|sw|worker|peach-service-worker).*)",
-    "/dsi/api/:path*",
+    "/((?!api/*|_next/static|_next/image|icon/*|favicon.ico|image/*|sw|worker|peach-service-worker|workbox).*)",
+    `/dsi/api/:path*`,
+    `/acf/api/:path*`,
     // "/((?!api|_next/static|favicon.ico).*)",
     // "/code/:path*",
     // "/signin",

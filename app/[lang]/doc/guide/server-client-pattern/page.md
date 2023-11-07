@@ -8,7 +8,7 @@ React 애플리케이션을 구축할 때 서버나 클라이언트에서 애플
 서버에서 데이터를 가져올 때 여러 구성 요소 간에 데이터를 공유해야 하는 경우가 있을 수 있습니다.  
 예를 들어 동일한 데이터에 의존하는 레이아웃과 페이지가 있을 수 있습니다.
 
-서버에서 사용할 수 없는 React Context를 사용하거나 데이터를 props로 전달하는 대신 fetch 또는 React의 캐시 기능을 사용하여 필요한 구성 요소에서 동일한 데이터를 가져올 수 있습니다.
+서버에서 사용할 수 없는 React Context를 사용하거나 데이터를 props로 전달하는 대신 fetcherJson 또는 React의 캐시 기능을 사용하여 필요한 구성 요소에서 동일한 데이터를 가져올 수 있습니다.
 
 동일한 데이터에 대한 중복 요청에 대해 걱정할 필요가 없습니다. React는 데이터 요청을 자동으로 메모하기 위해 fetch를 확장하고, fetch가 불가능할 때 캐시 기능을 사용할 수 있기 때문입니다.
 
@@ -16,7 +16,7 @@ React 애플리케이션을 구축할 때 서버나 클라이언트에서 애플
 import 'server-only'
 
 export async function getData() {
-  const res = await fetch('https://external-service.com/data', {
+  const res = await fetcherJson('https://external-service.com/data', {
     headers: {
       authorization: process.env.API_KEY,
     },

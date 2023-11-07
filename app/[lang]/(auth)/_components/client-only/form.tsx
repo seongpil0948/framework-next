@@ -11,6 +11,7 @@ import {
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUserCtx } from "@/app/_providers/user";
+import { fetcher } from "@/app/_utils/fetch";
 
 export function EmailForm(p: {
   email: string;
@@ -46,15 +47,25 @@ export function LoginForm() {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort("timeout"), 3000);
     try {
-      const response = await fetch("/dsi/api/login", {
-        method: "POST",
-        body: `info1=${email}&info2=${password}`,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          // Authorization: `Bearer ${await userCredential.user.getIdToken()}`,
-        },
-        signal: controller.signal,
-      });
+      const response = await fetcher(
+        `${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/login?info1=admin&info2=U2FsdGVkX1%2FW9xtgxK5iaWm6Wsbmi5y1PoUf2WP5SSk%3D`,
+        {
+          method: "POST",
+          signal: controller.signal,
+        }
+      );
+      // const response = await fetcher(
+      //   `${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/login`,
+      //   {
+      //     method: "POST",
+      //     body: `info1=${email}&info2=${password}`,
+      //     headers: {
+      //       "Content-Type": "application/x-www-form-urlencoded",
+      //       // Authorization: `Bearer ${await userCredential.user.getIdToken()}`,
+      //     },
+      //     signal: controller.signal,
+      //   }
+      // );
       if (!response.ok)
         throw new Error(
           `에러: ${response.status} ${

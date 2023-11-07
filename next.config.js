@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source:'/dsi/api/:path*',
-        destination: 'http://192.168.0.113:29090/dsi/api/:path*'
+        destination: 'https://dev.a-stro.sktelecom.com/dsi/api/:path*'
       },
       {
         source:'/acf/api/:path*',
