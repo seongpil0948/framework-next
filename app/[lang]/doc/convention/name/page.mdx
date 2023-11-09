@@ -43,7 +43,7 @@ export function useIntersect(
 ) {}
 ```
 
-### 지역 함수는 `arrow function` 으로 작성합니다
+### 지역(scope) 함수는 `arrow function` 으로 작성합니다
 
 #### Good
 
@@ -102,22 +102,11 @@ const Logo: React.FC<TIconSvgProps> = ({
 )
 ```
 
-### 어떤 로직이 추가되는 경우 `function keyword` 로 작성합니다
-
-#### Good
-
-```tsx
-export function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const param = useSearchParams();
-```
-
 ---
 
 ## 타입스크립트
+
+타입 스트립트를 사용할 경우 타입을 명시해주세요
 
 ### Type
 
@@ -128,6 +117,19 @@ export function LoginForm() {
 ```ts
 type TIconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number
+}
+```
+
+### Interface
+
+모듈 인터페이스는 `IPascalCase` 과같이 prefix: I를 붙여주세요
+
+#### Good
+
+```ts
+export interface ICommonDate {
+  readonly createdAt: Date
+  readonly updatedAt: Date
 }
 ```
 
