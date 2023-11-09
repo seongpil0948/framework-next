@@ -1,22 +1,23 @@
 import type { MDXComponents } from 'mdx/types'
 import Image from 'next/image'
 import { parseNumber } from './app/_utils'
-import { Link } from '@nextui-org/link'
+import { Link as NextLink } from '@nextui-org/link'
 import { Snippet } from '@nextui-org/snippet'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    a: (props) => (
-      <Link
-        isBlock
-        isExternal
-        showAnchorIcon
-        href={props.href}
-        className="pr-1 pl-2 mx-[-2px]"
-        {...props}
-      />
-    ),
+    // a: (props) => (
+    //   <Link
+    //     isBlock
+    //     isExternal
+    //     showAnchorIcon
+    //     href={props.href}
+    //     className="pr-1 pl-2 mx-[-2px]"
+    //     {...props}
+    //   />
+    // ),
+    a: (props: React.HTMLAttributes<HTMLAnchorElement>) => <Link {...props} />,
     blockquote: (props) => (
       <blockquote
         className="border px-4 my-6 py-3 rounded-xl [&>p]:m-0 border-default-200 dark:border-default-100 bg-default-200/20"
@@ -89,17 +90,33 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     p: (props) => (
       <p className="font-normal my-3 [blockquote_&]:my-2" {...props} />
     ),
-    pre: (props) => (
-      <Snippet size="sm" hideSymbol {...props}>
-        <span className="inline-flex p-2.5 whitespace-pre-wrap leading-5">
-          {props.children}
-        </span>
-      </Snippet>
-    ),
+    pre: (props) => {
+      return (
+        <Snippet size="sm" hideSymbol>
+          <span className="inline-flex p-2.5 whitespace-pre-wrap leading-5">
+            {props.children}
+          </span>
+        </Snippet>
+      )
+    },
     // strong: (props) => (
 
     // ),
     ul: (props) => <ul className="ml-5 mt-2 mb-5 list-disc" {...props} />,
     ol: (props) => <ul className="ml-5 mt-2 mb-5 list-decimal" {...props} />,
   }
+}
+
+const Link = ({
+  href,
+  children,
+}: {
+  href?: string
+  children?: React.ReactNode
+}) => {
+  return (
+    <NextLink href={href} isExternal showAnchorIcon>
+      {children}
+    </NextLink>
+  )
 }
