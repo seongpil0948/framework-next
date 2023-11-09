@@ -1,34 +1,23 @@
 import type { MDXComponents } from 'mdx/types'
 import Image from 'next/image'
 import { parseNumber } from './app/_utils'
+import { Link as NextLink } from '@nextui-org/link'
+import { Snippet } from '@nextui-org/snippet'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    a: (props) => (
-      <a href={props.href} target="_blank">
-        <span className="inline-flex items-center text-blue-500">
-          {props.children}
-          <svg
-            aria-hidden="true"
-            fill="none"
-            focusable="false"
-            height="1em"
-            shape-rendering="geometricPrecision"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            width="1em"
-          >
-            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-            <path d="M15 3h6v6"></path>
-            <path d="M10 14L21 3"></path>
-          </svg>
-        </span>
-      </a>
-    ),
+    // a: (props) => (
+    //   <Link
+    //     isBlock
+    //     isExternal
+    //     showAnchorIcon
+    //     href={props.href}
+    //     className="pr-1 pl-2 mx-[-2px]"
+    //     {...props}
+    //   />
+    // ),
+    a: (props: React.HTMLAttributes<HTMLAnchorElement>) => <Link {...props} />,
     blockquote: (props) => (
       <blockquote
         className="border px-4 my-6 py-3 rounded-xl [&>p]:m-0 border-default-200 dark:border-default-100 bg-default-200/20"
@@ -101,24 +90,33 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     p: (props) => (
       <p className="font-normal my-3 [blockquote_&]:my-2" {...props} />
     ),
-    pre: (props) => (
-      <pre
-        className={`
-        p-4
-        text-sm
-        bg-gray-800 text-white
-        dark:bg-[#222] dark:text-gray-300
-        overflow-x-auto
-        rounded-md
-      `}
-      >
-        <code {...props} />
-      </pre>
-    ),
+    pre: (props) => {
+      return (
+        <Snippet size="sm" hideSymbol>
+          <span className="inline-flex p-2.5 whitespace-pre-wrap leading-5">
+            {props.children}
+          </span>
+        </Snippet>
+      )
+    },
     // strong: (props) => (
 
     // ),
     ul: (props) => <ul className="ml-5 mt-2 mb-5 list-disc" {...props} />,
     ol: (props) => <ul className="ml-5 mt-2 mb-5 list-decimal" {...props} />,
   }
+}
+
+const Link = ({
+  href,
+  children,
+}: {
+  href?: string
+  children?: React.ReactNode
+}) => {
+  return (
+    <NextLink href={href} isExternal showAnchorIcon>
+      {children}
+    </NextLink>
+  )
 }
