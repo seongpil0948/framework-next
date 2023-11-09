@@ -1,63 +1,64 @@
-import { useState } from "react";
-import type { Meta } from '@storybook/react';
-import { CmModal } from ".";
-import { CmButton } from ".././button/";
+import React, { useState } from 'react'
+import type { Meta } from '@storybook/react'
+import { CmModal } from '.'
+import { CmButton } from '.././button/'
 
 export default {
-  title: "Components/Modal",
+  title: 'Components/Modal',
   component: CmModal,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     size: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     radius: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     shadow: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     alignButton: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
   },
   args: {
     modalTitle: 'modal title',
     modalContents: 'modal contents',
     size: 'md',
-    customFooterButton: 
+    customFooterButton: (
       <CmButton color="success" variant="solid">
         custom
-      </CmButton>,
+      </CmButton>
+    ),
   },
-} satisfies Meta<typeof CmModal>;
+} satisfies Meta<typeof CmModal>
 
-export const Default= (arg: any) => {
-  const [isShow, setIsShow] = useState(false);
+export const Default = (arg: any) => {
+  const [isShow, setIsShow] = useState(false)
 
   const OpenModal = () => {
-    setIsShow(!isShow);
-  };
+    setIsShow(!isShow)
+  }
   const CloseModal = () => {
-    setIsShow(false);
-  };
+    setIsShow(false)
+  }
 
   return (
     <>
       <CmButton onClick={OpenModal}>click</CmButton>
-      <CmModal {...arg} isShow={isShow} closeModal={CloseModal}/>
+      <CmModal {...arg} isShow={isShow} closeModal={CloseModal} />
     </>
   )
-};
+}
