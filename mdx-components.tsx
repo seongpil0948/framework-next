@@ -12,8 +12,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         isBlock
         isExternal
         showAnchorIcon
-        href="{props.href}"
-        color="primary"
+        href={props.href}
         className="pr-1 pl-2 mx-[-2px]"
         {...props}
       />
