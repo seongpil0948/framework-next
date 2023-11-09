@@ -1,7 +1,7 @@
 import { subtitle, title } from '@/app/_components/server-only/primitives'
 import { LoginForm } from '../_components/client-only/form'
 import { AVAIL_LOCALES, TAvailLocale } from '@/config/system'
-import { getDictionary } from '../../dictionaries'
+import { getDictionary } from '@/app/[lang]/dictionaries'
 
 export async function generateStaticParams() {
   return AVAIL_LOCALES.map((lang) => ({ lang }))

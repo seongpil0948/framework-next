@@ -70,7 +70,6 @@ export const docNavMenuItems = linkToTree([
         label: 'File Structure',
         href: '/doc/convention/structure',
       },
-      { label: 'File Basic', href: '/doc/convention/file-basic' },
       { label: 'Naming', href: '/doc/convention/name' },
     ],
   },
@@ -85,10 +84,6 @@ export const docNavMenuItems = linkToTree([
       {
         label: 'Keyword',
         href: '/doc/guide/keyword',
-      },
-      {
-        label: 'Mdx',
-        href: '/doc/guide/mdx',
       },
       {
         label: 'Server Client Pattern',

@@ -6,6 +6,9 @@
 
 ## 시작하기
 
+Node.js 버전 "18.12" 이상과 PNPM 버전 "8" 이상이 필요합니다.
+최신 버전의 Node.js를 설치하려면 [Node.js 공식 홈페이지](https://nodejs.org/ko/)를 참고하세요.
+
 ### 1. 프로젝트 클론
 
 ```bash
@@ -30,35 +33,87 @@ pnpm dev
 
 ### 1. 페이지 생성
 
-`pages` 디렉토리에 새로운 페이지를 생성합니다.
+`app/[lang]/{moudule-name}` 디렉토리에 page.tsx 파일을 생성합니다.
+아래 명령어의 test 부분을 원하는 페이지 이름으로 변경합니다.
 
-### 2. 라우팅 설정
-
-`src/routes.ts` 파일에 라우팅 설정을 추가합니다.
-
-### 3. 페이지 컴포넌트 작성
-
-## `src/pages` 디렉토리에 생성한 페이지 컴포넌트를 작성합니다.
-
----
-
-## 새로운 컴포넌트 추가하기
-
-### 1. 컴포넌트 생성
-
-`src/components` 디렉토리에 새로운 컴포넌트를 생성합니다.
-
-### 2. 컴포넌트 스타일 작성
-
-`src/components/styles` 디렉토리에 컴포넌트 스타일을 작성합니다.
-
-### 3. 컴포넌트 스토리북 작성
-
-## `src/components/stories` 디렉토리에 컴포넌트 스토리북을 작성합니다.
+```bash
+moduleName=test
+mkdir -p app/[lang]/$moduleName
+touch app/[lang]/$moduleName/page.tsx
+code app/[lang]/$moduleName/page.tsx
+```
 
 ---
 
-## 결론
+### 2. 페이지 컴포넌트 작성
 
-이제 애버커스의 프론트엔드 개발자들은 리액트 프로젝트를 시작할 때마다 프로젝트 구조를 만들고, 라우팅을 설정하고, 스타일을 작성하는 등의 반복적인 작업을 하지 않아도 됩니다. 이제부터는 이 템플릿을 사용하여 프로젝트를 시작하면 됩니다.
-더 알고싶은 분들은~
+아래 코드를 붙여넣습니다.
+
+```tsx
+import { subtitle, title } from '@/app/_components/server-only/primitives'
+import { AVAIL_LOCALES, TAvailLocale } from '@/config/system'
+import { getDictionary } from '@/app/[lang]/dictionaries'
+
+export async function generateStaticParams() {
+  return AVAIL_LOCALES.map((lang) => ({ lang }))
+}
+
+interface Param {
+  params: { lang: TAvailLocale }
+}
+
+export default async function SSGPage({ params: { lang } }: Param) {
+  const dict = await getDictionary(lang)
+  return (
+    <section className="flex flex-col items-center justify-center gap-4 py-8">
+      <div className="inline-block max-w-lg text-center justify-center">
+        <h1 className={title()}>Welcome to &nbsp;</h1>
+        <h1 className={title({ color: 'violet' })}>Hi?</h1>
+        <br />
+        <h2 className={subtitle({ class: 'mt-4' })}>by Abacus</h2>
+      </div>
+    </section>
+  )
+}
+```
+
+### 3. 컴포넌트 선정 및 삽입
+
+이미 프레임워크는 예시 컴포넌트 목록 페이지를 제공하고 있습니다.
+
+1. `pnpm storybook` 명령어를 통해 storybook 서버를 실행합니다.
+2. http://localhost:6006/ 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
+
+---
+
+## Linting
+
+애버커스는 [ESLint](https://eslint.org), [Prettier](https://prettier.io/) 를 사용하여 코드를 검사, 통일화합니다.  
+모든 코드를 린트하려면 다음을 실행할 수 있습니다.
+
+```
+pnpm format:fix
+```
+
+### ESLint
+
+We recommend installing the [ESLint plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+
+You can find the enabled rules in the [ESLint config](https://github.com/vercel/next.js/blob/canary/.eslintrc.json).
+
+### Prettier
+
+We recommend installing the [Prettier plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
+
+You can find the format configuration in the [Prettier config](https://github.com/vercel/next.js/blob/canary/.prettierrc.json).
+
+## 마무리
+
+우리는 이제 Next.js 프로젝트를 시작할 준비가 되었습니다. 이제 프로젝트를 시작하고, 개발을 시작할 수 있습니다.  
+아래 링크를 확인하여, 더 자세히 알아보세요
+
+- [Framework structure](/doc/convention/structure)
+- [Naming](/doc/convention/name)
+- [Storybook](https://storybook.js.org/)
+- [Next.js](https://nextjs.org/)
+- [Contribute](/doc/guide/contribute)
