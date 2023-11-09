@@ -1,20 +1,20 @@
-import React, { ReactNode } from 'react';
-import {Tabs, Tab} from "@nextui-org/tabs";
+import React from 'react'
+import { Tabs, Tab } from '@nextui-org/tabs'
 
 interface TabProps {
   tabs: [
     {
-      id: string;
-      ariaLabel?: string;
-      title: string;
-      contents: string;
+      id: string
+      ariaLabel?: string
+      title: string
+      contents: string
       disabled?: boolean
-    }
-  ];
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'solid' | 'bordered' | 'light' | 'underlined';
-  color?: 'default' | 'primary' | 'secondary' |'success' | 'warning' | 'danger';
-  radius?: 'none' | 'sm' | 'md' | 'lg'| 'full';
+    },
+  ]
+  size?: 'sm' | 'md' | 'lg'
+  variant?: 'solid' | 'bordered' | 'light' | 'underlined'
+  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
   fullWidth?: boolean
 }
 
@@ -26,7 +26,6 @@ export const CmTab = ({
   radius = 'md',
   fullWidth,
 }: TabProps) => {
-
   return (
     <Tabs
       size={size}
@@ -36,7 +35,7 @@ export const CmTab = ({
       fullWidth={fullWidth}
     >
       {tabs.map((tab) => (
-        <Tab 
+        <Tab
           key={`tab-key-${tab.id}`}
           aria-label={tab.ariaLabel}
           title={tab.title}
@@ -44,7 +43,7 @@ export const CmTab = ({
         >
           {tab.contents}
         </Tab>
-        ))}
+      ))}
     </Tabs>
-  );
-};
+  )
+}

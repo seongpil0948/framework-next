@@ -1,41 +1,34 @@
-import { Meta } from "@storybook/react";
-import { CmTab } from ".";
-import { HeadphonesIcon } from "@nextui-org/shared-icons";
+import { Meta } from '@storybook/react'
+import { CmTab } from '.'
 
 export default {
-  title: "Components/Tab",
+  title: 'Components/Tab',
   component: CmTab,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
     nextjs: {
       appDirectory: true,
       navigation: {
-        pathname: "/profile",
+        pathname: '/profile',
         query: {
-          user: "santa",
+          user: 'santa',
         },
       },
     },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     size: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     variant: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
     radius: {
-      control: { type: "select" },
+      control: { type: 'select' },
     },
-    // selectionMode: {
-    //   control: { type: "select" },
-    // },
-    // selectionBehavior: {
-    //   control: { type: "select" },
-    // },
   },
-} satisfies Meta<typeof CmTab>;
+} satisfies Meta<typeof CmTab>
 
 export const Default = {
   args: {
@@ -59,6 +52,6 @@ export const Default = {
         contents: '',
         disabled: true,
       },
-    ]
+    ],
   },
-};
+}
