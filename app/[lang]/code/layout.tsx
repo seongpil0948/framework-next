@@ -2,6 +2,7 @@ import CommonDrawer from '@/app/_components/client-only/drawer'
 import { TreeSection } from '@/app/_components/client-only/tree-section'
 import CommonNavbar from '@/app/_components/server-client/navbar'
 import { homeNavItems, LANDING_PATH, homeNavMenuItems } from '@/config/site'
+import { main } from '@/app/_components/server-only/primitives'
 
 export default function BlogLayout({
   children,
@@ -24,10 +25,7 @@ export default function BlogLayout({
           </CommonDrawer>
         }
       ></CommonNavbar>
-      <main
-        id="content-container"
-        className="pt-16 px-6 flex-grow relative min-w-full"
-      >
+      <main id="content-container" className={main()}>
         {children}
       </main>
     </div>

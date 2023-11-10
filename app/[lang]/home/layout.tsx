@@ -11,6 +11,7 @@ import { link as linkStyles } from '@nextui-org/theme'
 import clsx from 'clsx'
 import CommonDrawer from '../../_components/client-only/drawer'
 import { TreeSection } from '@/app/_components/client-only/tree-section'
+import { layout, main } from '@/app/_components/server-only/primitives'
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="relative flex flex-col h-screen">
+    <div className={layout()}>
       <CommonNavbar
         navItems={homeNavItems}
         landingPath={LANDING_PATH}
@@ -50,10 +51,7 @@ export default function RootLayout({
           </CommonDrawer>
         }
       ></CommonNavbar>
-      <main
-        id="content-container"
-        className="pt-16 px-6 flex-grow relative min-w-full"
-      >
+      <main id="content-container" className={main()}>
         {children}
       </main>
       <footer className="w-full flex items-center justify-center py-3">

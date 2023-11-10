@@ -10,7 +10,12 @@ module.exports = {
     './mdx-components.tsx',
   ],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        '4xl': '56rem',
+        '6xl': '72rem',
+      }
+    },
   },
   darkMode: 'class',
   plugins: [nextui()],
