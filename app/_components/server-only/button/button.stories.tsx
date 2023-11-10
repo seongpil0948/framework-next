@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmButton } from '.'
+import CmButton from '.'
 import { HeadphonesIcon } from '@nextui-org/shared-icons'
 
 export default {
@@ -20,18 +20,37 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     variant: {
+      options: [
+        'solid',
+        'bordered',
+        'light',
+        'flat',
+        'faded',
+        'shadow',
+        'ghost',
+      ],
       control: { type: 'select' },
     },
     color: {
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     size: {
+      options: ['sm', 'md', 'lg'],
       control: { type: 'select' },
     },
     fullWidth: {
       control: { type: 'boolean' },
     },
     radius: {
+      options: ['sm', 'md', 'lg', 'full'],
       control: { type: 'select' },
     },
     disabled: {

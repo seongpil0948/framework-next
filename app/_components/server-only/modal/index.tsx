@@ -6,7 +6,7 @@ import {
   ModalBody,
   ModalFooter,
 } from '@nextui-org/modal'
-import { CmButton } from '.././button'
+import CmButton from '.././button'
 
 interface ModalProps {
   className?: string

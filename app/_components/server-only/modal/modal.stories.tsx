@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { Meta } from '@storybook/react'
 import { CmModal } from '.'
-import { CmButton } from '.././button/'
+import CmButton from '.././button/'
 
 export default {
   title: 'Components/Modal',
