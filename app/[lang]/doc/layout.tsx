@@ -8,6 +8,7 @@ import {
 import CommonNavbar from '@/app/_components/server-client/navbar'
 import CommonDrawer from '@/app/_components/client-only/drawer'
 import { TreeSection } from '@/app/_components/client-only/tree-section'
+import { docWrapper } from '@/app/_components/server-only/primitives'
 
 export const metadata: Metadata = {
   description: 'Abacus Documentation',
@@ -25,9 +26,7 @@ export default function RootLayout({
           <TreeSection treeProps={docNavMenuItems} />
         </CommonDrawer>
       </CommonNavbar>
-      <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-        {children}
-      </main>
+      <main className={docWrapper()}>{children}</main>
     </div>
   )
 }

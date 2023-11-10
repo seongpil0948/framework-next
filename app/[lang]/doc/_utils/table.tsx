@@ -25,7 +25,7 @@ export default function MdxTable(props: Props) {
   const { columns, rows } = props
 
   return (
-    <Table aria-label="Example static collection table">
+    <Table aria-label="Example static collection table" className="my-7">
       <TableHeader>
         {...columns.map((col) => (
           <TableColumn key={col.key}>{col.title}</TableColumn>

@@ -51,3 +51,17 @@ export const subtitle = tv({
     fullWidth: true,
   },
 })
+
+// =================================================================== in pre..
+export const layout = tv({
+  base: "flex flex-col h-screen relative",
+});
+ 
+export const main = tv({
+  base: "flex-grow min-w-full pt-20 px-14 relative",
+});
+
+export const docWrapper = tv({
+  base: "max-w-6xl md:py-10 mx-auto px-4 py-10 relative w-4xl",
+});
+ 
