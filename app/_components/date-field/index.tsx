@@ -5,7 +5,7 @@ import {
   DateFieldStateOptions,
   useDateFieldState,
 } from 'react-stately'
-import { RefObject, forwardRef, useRef, useState } from 'react'
+import { RefObject, forwardRef, useMemo, useRef, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover'
 import { Button } from '@nextui-org/button'
 import Calendar from '../calendar'
@@ -32,9 +32,19 @@ export default function DateField(props: DateFieldProps) {
     locale,
     createCalendar,
   })
-
   let ref = useRef(null)
   let { labelProps, fieldProps } = useDateField(props, state, ref)
+
+  const segments = useMemo(() => {
+    console.info('state.segments', state.segments)
+    return (
+      <>
+        {state.segments.map((segment, i) => (
+          <DateSegment key={i} segment={segment} state={state} />
+        ))}
+      </>
+    )
+  }, [state])
 
   return (
     <div className=" flex flex-col items-center">
@@ -44,9 +54,7 @@ export default function DateField(props: DateFieldProps) {
         ref={ref}
         className="flex-nowrap px-2 py-3 inline-flex border-solid border-2 border-sky-500 "
       >
-        {state.segments.map((segment, i) => (
-          <DateSegment key={i} segment={segment} state={state} />
-        ))}
+        {segments}
         {state.isInvalid && <span aria-hidden="true">🚫</span>}
         <PopoverCalendar
           calendarProps={{
@@ -77,7 +85,8 @@ function DateSegment({ segment, state }: any) {
       ref={ref}
       className={`segment ${segment.isPlaceholder ? 'placeholder' : ''}`}
     >
-      {segment.text}
+      {/* {segment.text} */}
+      {segment.value ?? segment.text}
     </div>
   )
 }

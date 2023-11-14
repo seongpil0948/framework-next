@@ -20,7 +20,12 @@ import { useDOMRef } from '@nextui-org/react-utils'
 import clsx from 'clsx'
 import { UseButtonProps, useButton } from '@nextui-org/button/dist/use-button'
 import { Spinner } from '@nextui-org/spinner'
-import { dataFocusVisibleClasses } from '@nextui-org/theme'
+import {
+  button,
+  colorVariants,
+  dataFocusVisibleClasses,
+  table,
+} from '@nextui-org/theme'
 
 // interface Props {
 //   divProps: HTMLNextUIProps<'div'>
@@ -41,10 +46,19 @@ const Calendar = forwardRef<'div', CalendarStateOptions<CalendarDate>>(
     return (
       <Component
         ref={domRef}
-        className={clsx(
-          className,
-          'block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700',
-        )}
+        className={clsx(className, [
+          'flex',
+          'flex-col',
+          'relative',
+          'overflow-hidden',
+          'height-auto',
+          'outline-none',
+          'text-foreground',
+          'box-border',
+          'bg-content1',
+          // focus ring
+          ...dataFocusVisibleClasses,
+        ])}
         {...calendarProps}
       >
         <div className="header 'inline-block text-gray-800'">
@@ -118,11 +132,15 @@ function CalendarCell({
     formattedDate,
   } = useCalendarCell({ date }, state, ref)
 
+  // button({ variant: 'ghost' })
+  const tableSlotClasses = table({ isCompact: true, isSelectable: true })
+  const btnClasses = button({ variant: 'ghost' })
   return (
     <td
       {...cellProps}
       className={clsx(
-        'py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700',
+        // 'py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700',
+        tableSlotClasses.td,
         cellProps.className,
       )}
     >
@@ -134,26 +152,7 @@ function CalendarCell({
           `cell ${isSelected ? 'selected' : ''} ${
             isDisabled ? 'disabled' : ''
           } ${isUnavailable ? 'unavailable' : ''}`,
-          [
-            'z-0',
-            'group',
-            'relative',
-            'inline-flex',
-            'items-center',
-            'justify-center',
-            'box-border',
-            'appearance-none',
-            'outline-none',
-            'select-none',
-            'whitespace-nowrap',
-            'min-w-max',
-            'font-normal',
-            'subpixel-antialiased',
-            'overflow-hidden',
-            'tap-highlight-transparent',
-            // focus ring
-            ...dataFocusVisibleClasses,
-          ],
+          btnClasses,
           buttonProps.className,
         )}
       >
