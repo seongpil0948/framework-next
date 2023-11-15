@@ -19,7 +19,7 @@ import { Button } from '@nextui-org/button'
 import Icon from '@mdi/react'
 import { mdiCalendar } from '@mdi/js'
 
-import Calendar from '../../calendar'
+import Calendar from '../calendar'
 import {
   today,
   getLocalTimeZone,
