@@ -48,6 +48,8 @@ export default function CommonNavbar(props: {
             <p className="font-bold text-inherit">Abacus</p>
           </NextLink>
         </NavbarBrand>
+        <ThemeSwitch />
+
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {navItems.map((item) => (
             <NavbarItem key={item.href}>
@@ -89,7 +91,6 @@ export default function CommonNavbar(props: {
                 <GithubIcon className="text-default-500" />
               </Link>
             )}
-            <ThemeSwitch />
           </NavbarItem>
         )}
         <NavbarItem className="hidden lg:flex">
