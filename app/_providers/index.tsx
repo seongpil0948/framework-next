@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify'
 import UserProvider from './user'
 import { useEffect } from 'react'
 import { I18nProvider } from 'react-aria'
+import { useRouter } from 'next/navigation'
 
 export interface ProvidersProps {
   children: React.ReactNode
@@ -17,12 +18,13 @@ export interface ProvidersProps {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
   const { theme } = useTheme()
+  const router = useRouter()
 
   useEffect(() => {
     console.log('theme: ', theme)
   }, [theme])
   return (
-    <NextUIProvider>
+    <NextUIProvider navigate={router.push}>
       <NextThemesProvider {...themeProps}>
         {/* Fixme as user locale */}
         <I18nProvider locale="ko">
