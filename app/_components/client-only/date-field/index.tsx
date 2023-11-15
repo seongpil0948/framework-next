@@ -1,14 +1,25 @@
 'use client'
-import { DateValue, useDateField, useDateSegment, useLocale } from 'react-aria'
+import {
+  DateValue,
+  mergeProps,
+  useDateField,
+  useDateSegment,
+  useLocale,
+} from 'react-aria'
 import {
   CalendarStateOptions,
+  DateFieldState,
   DateFieldStateOptions,
+  DateSegment,
   useDateFieldState,
 } from 'react-stately'
 import { RefObject, forwardRef, useMemo, useRef, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover'
 import { Button } from '@nextui-org/button'
-import Calendar from '../calendar'
+import Icon from '@mdi/react'
+import { mdiCalendar } from '@mdi/js'
+
+import Calendar from '../../calendar'
 import {
   today,
   getLocalTimeZone,
@@ -36,7 +47,6 @@ export default function DateField(props: DateFieldProps) {
   let { labelProps, fieldProps } = useDateField(props, state, ref)
 
   const segments = useMemo(() => {
-    console.info('state.segments', state.segments)
     return (
       <>
         {state.segments.map((segment, i) => (
@@ -47,12 +57,12 @@ export default function DateField(props: DateFieldProps) {
   }, [state])
 
   return (
-    <div className=" flex flex-col items-center">
+    <div className=" flex flex-col items-center ">
       <span {...labelProps}>{props.label}</span>
       <div
         {...fieldProps}
         ref={ref}
-        className="flex-nowrap px-2 py-3 inline-flex border-solid border-2 border-sky-500 "
+        className="flex-nowrap px-2 py-3 inline-flex border-solid border-2 align-middle items-center "
       >
         {segments}
         {state.isInvalid && <span aria-hidden="true">🚫</span>}
@@ -75,7 +85,13 @@ export default function DateField(props: DateFieldProps) {
   )
 }
 
-function DateSegment({ segment, state }: any) {
+function DateSegment({
+  segment,
+  state,
+}: {
+  segment: DateSegment
+  state: DateFieldState
+}) {
   let ref = useRef(null)
   let { segmentProps } = useDateSegment(segment, state, ref)
 
@@ -94,13 +110,21 @@ function DateSegment({ segment, state }: any) {
 export function PopoverCalendar(props: {
   calendarProps: CalendarStateOptions<CalendarDate>
 }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const calendarProps = mergeProps(props.calendarProps, {
+    onChange: () => {
+      if (isOpen) setIsOpen(false)
+    },
+  })
   return (
-    <Popover>
+    <Popover isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>
       <PopoverTrigger>
-        <Button>Open Popover</Button>
+        <Button isIconOnly variant="light" size="sm" radius="none">
+          <Icon path={mdiCalendar} size={1} />
+        </Button>
       </PopoverTrigger>
       <PopoverContent>
-        <Calendar {...props.calendarProps} />
+        <Calendar {...calendarProps} />
       </PopoverContent>
     </Popover>
   )

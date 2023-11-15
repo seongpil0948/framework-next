@@ -1,5 +1,5 @@
 'use client'
-import DateField from '@/app/_components/date-field'
+import DateField from '@/app/_components/client-only/date-field'
 import { useUserCtx } from '@/app/_providers/user'
 import { Code } from '@nextui-org/code'
 import { Snippet } from '@nextui-org/snippet'

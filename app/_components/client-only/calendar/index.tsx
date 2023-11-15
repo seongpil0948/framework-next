@@ -43,6 +43,12 @@ const Calendar = forwardRef<'div', CalendarStateOptions<CalendarDate>>(
     let { calendarProps, prevButtonProps, nextButtonProps, title } =
       useCalendar(props, state)
 
+    const btnClasses = button({
+      variant: 'ghost',
+      size: 'sm',
+      color: 'primary',
+    })
+
     return (
       <Component
         ref={domRef}
@@ -61,10 +67,14 @@ const Calendar = forwardRef<'div', CalendarStateOptions<CalendarDate>>(
         ])}
         {...calendarProps}
       >
-        <div className="header 'inline-block text-gray-800'">
-          <h2>{title}</h2>
-          <Button {...prevButtonProps}>prev &lt;</Button>
-          <Button {...nextButtonProps}>go &gt;</Button>
+        <div className="header  text-gray-800 inline-flex ">
+          <h2 className=" items-center">{title}</h2>
+          <Button size="sm" className={clsx(btnClasses)} {...prevButtonProps}>
+            저번달 &lt;
+          </Button>
+          <Button size="sm" className={clsx(btnClasses)} {...nextButtonProps}>
+            다음달 &gt;
+          </Button>
         </div>
         <CalendarGrid state={state} />
       </Component>
@@ -85,6 +95,7 @@ function CalendarGrid({
 
   // Get the number of weeks in the month so we can render the proper number of rows.
   let weeksInMonth = getWeeksInMonth(state.visibleRange.start, locale)
+  console.log(locale)
 
   return (
     <table {...gridProps}>
@@ -134,7 +145,7 @@ function CalendarCell({
 
   // button({ variant: 'ghost' })
   const tableSlotClasses = table({ isCompact: true, isSelectable: true })
-  const btnClasses = button({ variant: 'ghost' })
+  const btnClasses = button({ variant: 'ghost', size: 'sm' })
   return (
     <td
       {...cellProps}
