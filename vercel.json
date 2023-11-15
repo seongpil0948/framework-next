@@ -3,6 +3,6 @@
   "buildCommand": "npm run build-storybook",
   "devCommand": "npm run storybook",
   "installCommand": "npm install",
-  "framework": null,
+  "framework": "storybook",
   "outputDirectory": "./storybook-static"
 }
