@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Select, SelectItem } from '@nextui-org/select'
+import { Select, SelectItem, SelectProps } from '@nextui-org/select'
 import { CmChip } from '../chip'
 import { CmButton } from '../button'
 interface DropdownItem {
@@ -12,9 +12,9 @@ interface DropdownProps {
   dropdownItem: DropdownItem[]
   selectionMode?: 'single' | 'multiple'
   triggerType?: 'input' | 'button'
-  selectedKeys?: 'all' | React.Key[]
-  disabledKeys?: 'all' | React.Key[]
-  defaultSelectedKeys?: 'all' | React.Key[]
+  selectedKeys?: SelectProps['selectedKeys']
+  disabledKeys?: SelectProps['disabledKeys']
+  defaultSelectedKeys?: SelectProps['defaultSelectedKeys']
   size?: 'sm' | 'md' | 'lg'
   placeholder?: string
   label?: string
