@@ -6,7 +6,7 @@ import {
   ModalBody,
   ModalFooter,
 } from '@nextui-org/modal'
-import { CmButton } from '.././button'
+import CmButton from '.././button'
 
 interface ModalProps {
   className?: string
@@ -79,10 +79,10 @@ export const CmModal = ({
           {useFooter == true ? (
             <ModalFooter className={alignButton}>
               {customFooterButton}
-              <CmButton color="danger" variant="light" onClick={closeModal}>
+              <CmButton color="danger" variant="light" onPress={closeModal}>
                 {closeButtonText}
               </CmButton>
-              <CmButton color="primary" onClick={closeModal}>
+              <CmButton color="primary" onPress={closeModal}>
                 {confirmButtonText}
               </CmButton>
             </ModalFooter>
