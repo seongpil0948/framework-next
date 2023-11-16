@@ -1,40 +1,26 @@
-import React, {
-  forwardRef,
-  ForwardRefExoticComponent,
-  RefAttributes,
-} from 'react'
-import { Button, useButton } from '@nextui-org/button'
-import { PropGetter } from '@nextui-org/system'
+import React, { forwardRef } from 'react'
+import { Button, ButtonProps } from '@nextui-org/button'
 
-interface CmButtonProps {
-  ref?: React.Ref<HTMLButtonElement>
-  children: React.ReactNode
+interface CmButtonProps extends ButtonProps {
+  ref?: React.Ref<HTMLButtonElement> | undefined
+  children?: string
   className?: string
-  variant?:
-    | 'solid'
-    | 'bordered'
-    | 'light'
-    | 'flat'
-    | 'faded'
-    | 'shadow'
-    | 'ghost'
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  size?: 'sm' | 'md' | 'lg'
-  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+  variant?: ButtonProps['variant']
+  color?: ButtonProps['color']
+  size?: ButtonProps['size']
+  radius?: ButtonProps['radius']
   fullWidth?: boolean
-  startContent?: React.ReactNode
-  endContent?: React.ReactNode
+  startContent?: string
+  endContent?: string
   isIconOnly?: boolean
   disabled?: boolean
   onPress?: () => void
 }
 
-// ForwardRefExoticComponent에 defaultProps 추가
-const CmButton: ForwardRefExoticComponent<
-  Omit<CmButtonProps, 'ref'> & RefAttributes<HTMLButtonElement>
-> = forwardRef(
+export const CmButton = forwardRef<HTMLButtonElement, CmButtonProps>(
   (
     {
+      children,
       className,
       variant = 'solid',
       color = 'default',
@@ -44,24 +30,15 @@ const CmButton: ForwardRefExoticComponent<
       isIconOnly = false,
       disabled = false,
       onPress,
+      startContent,
+      endContent,
       ...props
-    },
-    ref?: React.ForwardedRef<HTMLButtonElement> | undefined,
+    }: CmButtonProps,
+    ref?: React.ForwardedRef<HTMLButtonElement>,
   ) => {
-    const { domRef, children, startContent, endContent, getButtonProps } =
-      useButton({
-        ref,
-        ...props,
-      })
-
-    const buttonProps = getButtonProps() as PropGetter<
-      { className?: string },
-      React.ButtonHTMLAttributes<HTMLButtonElement>
-    >
-
     return (
       <Button
-        ref={domRef}
+        ref={ref}
         className={className}
         variant={variant}
         color={color}
@@ -73,7 +50,7 @@ const CmButton: ForwardRefExoticComponent<
         isIconOnly={isIconOnly}
         isDisabled={disabled}
         onPress={onPress}
-        {...buttonProps}
+        {...props}
       >
         {children}
       </Button>
@@ -81,17 +58,4 @@ const CmButton: ForwardRefExoticComponent<
   },
 )
 
-// defaultProps 추가
-CmButton.defaultProps = {
-  variant: 'solid',
-  color: 'default',
-  size: 'md',
-  radius: 'md',
-  fullWidth: false,
-  isIconOnly: false,
-  disabled: false,
-}
-
 CmButton.displayName = 'CmButton'
-
-export default CmButton

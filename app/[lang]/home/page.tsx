@@ -8,7 +8,7 @@ import { AuthButton } from '../(auth)/_components/client-only/buttons'
 import { UserProfile } from '../(auth)/_components/client-only/profile'
 import { AVAIL_LOCALES, TAvailLocale } from '@/config/system'
 import { getDictionary } from '../dictionaries'
-import CmButton from '@/app/_components/server-only/button'
+import { CmButton } from '@/app/_components/server-only/button'
 
 export async function generateStaticParams() {
   return AVAIL_LOCALES.map((lang) => ({ lang }))

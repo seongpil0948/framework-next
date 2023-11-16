@@ -1,7 +1,7 @@
 import React from 'react'
 import { Meta, StoryObj } from '@storybook/react'
 import { CmPopover } from '.'
-import CmButton from '.././button/'
+import { CmButton } from '.././button/'
 
 export default {
   title: 'Components/Popover',

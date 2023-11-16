@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import CmButton from '.'
+import { CmButton } from '.'
 import { HeadphonesIcon } from '@nextui-org/shared-icons'
 
 export default {
