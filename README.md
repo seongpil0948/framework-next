@@ -18,14 +18,13 @@ This is a template for creating applications using Next.js 13 (app directory) an
   - 모든 기존/신규 기능은 다음 라이브러리를 이용합니다.
 - [mdx](https://mdxjs.com/)
 
-## TODO
-
-- 폴더 구조 변경 및 컨벤션 명시 : \_
-- MDX markdown page, and documentation
-- Logging(Sentry?)
-- text sanitizer
-- i18n
-- intl-messageformat
+## 개발 환경 구성
+| 종류               | 내용                                                                                                  |
+| ------------------ | ----------------------------------------------------------------------------------------------------- |
+| 서비스 개발계 배포 | [링크](https://framework-next-git-dev-seongpil0948.vercel.app)                                        |
+| 서비스 운영계 배포 | [링크](https://vercel.com/seongpil0948/framework-next/9N72p8CRDq7pt4999eAbsQFbr9eJ)                   |
+| 스토리북 배포      | [링크](https://framework-next-git-storybook-seongpil0948.vercel.app/)                                 |
+| 슬랙 링크          | [링크](https://join.slack.com/t/abacus-convergence/shared_invite/zt-26cnmx4jm-Lfm~NvE0Zcok3CkFUoPH4Q) |
 
 ## How to Use
 
