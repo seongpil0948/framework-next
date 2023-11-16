@@ -6,7 +6,7 @@ import { splitLocaleAndPath, getLocaleRequest } from './app/_utils/locale'
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: [
-    '/((?!api/*|_next/static|_next/image|icon/*|favicon.ico|image/*|sw|worker|peach-service-worker|workbox).*)',
+    '/((?!api/*|_next/static|_next/image|icon/*|favicon.ico|image/*|sw|worker|peach-service-worker|workbox|__nextjs_original-stack-frame).*)',
     `/dsi/api/:path*`,
     `/acf/api/:path*`,
     // "/((?!api|_next/static|favicon.ico).*)",
@@ -20,6 +20,7 @@ export const config = {
 const IGNORE_PATHS = ['icon/']
 
 export async function middleware(request: NextRequest, response: NextResponse) {
+  console.log('response: ', response.status, response.statusText)
   if (IGNORE_PATHS.some((p) => request.nextUrl.pathname.includes(p))) {
     return NextResponse.next()
   }
@@ -46,7 +47,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
   const nextUrl = join(onlyPath, locale)
   if (nextUrl.pathname === nextP) {
-    console.log(' go next ')
     return NextResponse.next()
   }
   // TODO: discuss status code with team

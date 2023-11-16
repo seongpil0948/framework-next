@@ -1,5 +1,7 @@
 'use client'
 import { Component, ErrorInfo, ReactNode } from 'react'
+import { FetchApiError } from '../errors'
+import { useRouter } from 'next/router'
 
 interface Props {
   children?: ReactNode
@@ -22,6 +24,11 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error) {
+    if (error instanceof FetchApiError) {
+      if (error.status === 403) {
+        // go router
+      }
+    }
     return { hasError: true, info: error }
   }
 
