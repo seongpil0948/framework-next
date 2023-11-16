@@ -1,51 +1,91 @@
+'use client'
 import React from 'react'
-import { Checkbox, CheckboxGroup } from '@nextui-org/checkbox'
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupProps,
+  CheckboxProps,
+} from '@nextui-org/checkbox'
 
-interface CheckboxProps {
-  label?: string
-  required?: boolean
-  size?: 'sm' | 'md' | 'lg'
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  disabled?: boolean
-  readOnly?: boolean
-  seleted?: boolean
+interface CmCheckboxProps {
+  checkboxList?: Array<{
+    label?: CheckboxProps['children']
+    value?: string
+    size?: CheckboxProps['size']
+    color?: CheckboxProps['color']
+    disabled?: CheckboxProps['isDisabled']
+    readOnly?: CheckboxProps['isReadOnly']
+  }>
+  label?: CheckboxGroupProps['label']
+  value?: string
+  required?: CheckboxGroupProps['isRequired']
+  size?: CheckboxGroupProps['size']
+  color?: CheckboxGroupProps['color']
+  disabled?: CheckboxGroupProps['isDisabled']
+  readOnly?: CheckboxGroupProps['isReadOnly']
   successMsg?: string
-  errorMsg?: string
-  isInvalid?: boolean
-  validationState?: 'valid' | 'invalid'
+  errorMsg?: CheckboxGroupProps['errorMessage']
+  isInvalid?: CheckboxGroupProps['isInvalid']
+  validationState?: CheckboxGroupProps['validationState']
+  orientation?: CheckboxGroupProps['orientation']
+  selectedVaule?: boolean
+  selected?: CheckboxGroupProps['value']
+  onValueChange?: (isSelected: boolean) => void
 }
 
-export const CmCheckbox = ({
+export default function CmCheckbox({
   label,
+  value,
   required = false,
   size = 'md',
   color = 'primary',
   disabled = false,
   readOnly = false,
-  seleted = false,
   isInvalid = false,
   validationState,
   successMsg = 'successMessage.',
   errorMsg = 'errorMessage.',
+  checkboxList,
+  orientation = 'vertical',
+  selected,
+  onValueChange,
   ...props
-}: CheckboxProps) => {
+}: CmCheckboxProps) {
+  const [selectedVaule, setSelected] = React.useState(selected)
+  const noCheckboxGroup: CmCheckboxProps =
+    !checkboxList || checkboxList.length === 0 ? { label, value } : {}
   return (
     <>
-      <Checkbox
+      <CheckboxGroup
+        label={checkboxList && label}
+        isRequired={required}
         size={size}
-        color={color}
+        color={validationState === 'valid' ? 'success' : color}
         isDisabled={disabled}
         isReadOnly={readOnly}
-        defaultSelected={seleted}
         isInvalid={isInvalid === true || validationState === 'invalid'}
+        errorMessage={
+          (isInvalid === true || validationState === 'invalid') && errorMsg
+        }
+        orientation={orientation}
+        value={selectedVaule}
+        onValueChange={setSelected}
       >
-        {label}
-      </Checkbox>
+        {(checkboxList || [noCheckboxGroup]).map((checkbox) => (
+          <Checkbox
+            key={`checkbox-list-${checkbox.value}`}
+            value={checkbox.value}
+            size={checkbox.size}
+            color={checkbox.color}
+            isDisabled={checkbox.disabled}
+            isReadOnly={checkbox.readOnly}
+          >
+            {checkbox.label}
+          </Checkbox>
+        ))}
+      </CheckboxGroup>
       {isInvalid === false && validationState === 'valid' && (
-        <p>{successMsg}</p>
-      )}
-      {(isInvalid === true || validationState === 'invalid') && (
-        <p>{errorMsg}</p>
+        <p className="mt-2 text-xs text-green-500">{successMsg}</p>
       )}
     </>
   )
