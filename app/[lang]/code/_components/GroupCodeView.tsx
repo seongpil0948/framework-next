@@ -27,7 +27,7 @@ function Page(props: { index: number; setPage?: (i: number) => void }) {
   console.log('data: ', data)
   if (!data) return <div>Loading...</div>
   const { totalPage, data: bodyData, currentPage } = data.body
-  const loadingState = isLoading || bodyData.length === 0 ? 'loading' : 'idle'
+  const loadingState = isLoading || bodyData?.length === 0 ? 'loading' : 'idle'
 
   return (
     <Table

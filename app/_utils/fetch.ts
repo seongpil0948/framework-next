@@ -1,3 +1,5 @@
+import { FetchApiError } from './exceptions'
+
 export async function fetcherJson<JSON = any>(
   input: RequestInfo,
   init?: RequestInit,
@@ -18,8 +20,16 @@ export async function fetcher(input: RequestInfo, init?: RequestInit) {
   //   url = process.env.NEXT_PUBLIC_BACKEND_URL + url;
   //   console.log("[fetching] backend url: ", url);
   // }
-  return fetch(isStr ? url : { ...input, url }, {
+  const res = await fetch(isStr ? url : { ...input, url }, {
     ...init,
     credentials: 'include',
+  })
+  if (res.ok) {
+    return res
+  }
+  throw new FetchApiError({
+    status: res.status,
+    statusText: res.statusText,
+    url: url,
   })
 }
