@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmAccordion } from '.'
+import CmAccordion from '.'
 import { HeadphonesIcon } from '@nextui-org/shared-icons'
 
 export default {
@@ -20,12 +20,15 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     variant: {
+      options: ['light', 'shadow', 'bordered', 'splitted'],
       control: { type: 'select' },
     },
     selectionMode: {
+      options: ['none', 'single', 'multiple'],
       control: { type: 'select' },
     },
     selectionBehavior: {
+      options: ['toggle', 'replace'],
       control: { type: 'select' },
     },
   },

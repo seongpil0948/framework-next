@@ -1,35 +1,34 @@
 import React from 'react'
-import { Textarea } from '@nextui-org/input'
+import { Textarea, TextAreaProps } from '@nextui-org/input'
 
-interface TextareaProps {
+interface CmTextareaProps {
   className?: string
-  variant?: 'flat' | 'bordered' | 'faded' | 'underlined'
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  size?: 'sm' | 'md' | 'lg'
-  minRows?: number
-  maxRows?: number
-  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-  fullWidth?: boolean
-  label?: string
-  labelPlacement?: 'inside' | 'outside' | 'outside-left'
-  required?: boolean
-  value: string
-  placeholder: string
-  disabled?: boolean
-  readOnly?: boolean
-  isError?: boolean
-  errorMsg?: string
-  showMaxLength?: boolean
-  maxLength?: number
+  variant?: TextAreaProps['variant']
+  color?: TextAreaProps['color']
+  size?: TextAreaProps['size']
+  minRows?: TextAreaProps['minRows']
+  maxRows?: TextAreaProps['maxRows']
+  radius?: TextAreaProps['radius']
+  fullWidth?: TextAreaProps['fullWidth']
+  label?: TextAreaProps['label']
+  labelPlacement?: TextAreaProps['labelPlacement']
+  required?: TextAreaProps['required']
+  value?: TextAreaProps['value']
+  placeholder?: TextAreaProps['placeholder']
+  disabled?: TextAreaProps['disabled']
+  readOnly?: TextAreaProps['readOnly']
+  isError?: TextAreaProps['isInvalid']
+  errorMsg?: TextAreaProps['errorMessage']
+  maxLength?: TextAreaProps['maxLength']
 }
 
-export const CmTextArea = ({
+export default function CmTextArea({
   className,
   variant = 'flat',
   color = 'default',
   size = 'md',
-  minRows,
-  maxRows,
+  minRows = 3,
+  maxRows = 8,
   radius = 'md',
   fullWidth = false,
   label,
@@ -42,7 +41,7 @@ export const CmTextArea = ({
   readOnly = false,
   isError = false,
   errorMsg,
-}: TextareaProps) => {
+}: CmTextareaProps) {
   return (
     <Textarea
       className={className}

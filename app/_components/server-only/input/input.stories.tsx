@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmInput } from '.'
+import CmInput from '.'
 
 export default {
   title: 'Components/Input',
@@ -19,19 +19,58 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     variant: {
+      options: ['flat', 'bordered', 'faded', 'underlined'],
       control: { type: 'select' },
+    },
+    color: {
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+      ],
+      control: 'select',
     },
     size: {
-      control: { type: 'select' },
-    },
-    labelPlacement: {
-      control: { type: 'select' },
-    },
-    type: {
+      options: ['sm', 'md', 'lg'],
       control: { type: 'select' },
     },
     radius: {
+      options: ['none', 'sm', 'md', 'lg', 'full'],
       control: { type: 'select' },
+    },
+    fullWidth: {
+      control: { type: 'boolean' },
+    },
+    labelPlacement: {
+      options: ['inside', 'outside', 'outside-left'],
+      control: { type: 'select' },
+    },
+    required: {
+      control: { type: 'boolean' },
+    },
+    type: {
+      control: { type: 'text' },
+    },
+    clearable: {
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+    readOnly: {
+      control: { type: 'boolean' },
+    },
+    maxLength: {
+      control: { type: 'number' },
+    },
+    isError: {
+      control: { type: 'boolean' },
+    },
+    errorMsg: {
+      control: { type: 'text' },
     },
   },
 } satisfies Meta<typeof CmInput>

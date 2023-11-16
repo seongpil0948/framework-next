@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmTab } from '.'
+import CmTab from '.'
 
 export default {
   title: 'Components/Tab',
@@ -19,12 +19,26 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     size: {
+      options: ['solid', 'bordered', 'light', 'underlined'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     variant: {
+      options: ['solid', 'bordered', 'light', 'underlined'],
       control: { type: 'select' },
     },
     radius: {
+      options: ['none', 'sm', 'md', 'lg', 'full'],
       control: { type: 'select' },
     },
   },

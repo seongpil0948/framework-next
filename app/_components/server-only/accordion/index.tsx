@@ -1,30 +1,35 @@
-import React, { ReactNode } from 'react'
-import { Accordion, AccordionItem } from '@nextui-org/accordion'
+import React from 'react'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionProps,
+  AccordionItemProps,
+} from '@nextui-org/accordion'
 
-interface AccordionProps {
+interface CmAccordionProps {
   accordionList: [
     {
       id: string
       ariaLabel: string
-      title: string
-      subtitle?: string
-      indicator?: ReactNode
-      contents: ReactNode | string
-      disabled?: boolean
-      startContent?: ReactNode
-      disableIndicatorAnimation?: boolean
+      title: AccordionItemProps['title']
+      subtitle?: AccordionItemProps['subtitle']
+      indicator?: AccordionItemProps['indicator']
+      contents: AccordionItemProps['content']
+      disabled?: AccordionItemProps['disabled']
+      startContent?: AccordionItemProps['startContent']
+      disableIndicatorAnimation?: AccordionProps['disableIndicatorAnimation']
     },
   ]
-  variant?: 'light' | 'shadow' | 'bordered' | 'splitted'
-  selectionMode?: 'none' | 'single' | 'multiple'
-  selectionBehavior?: 'toggle' | 'replace'
-  isCompact?: boolean
-  showDivider?: boolean
-  hideIndicator?: boolean
-  fullWidth?: boolean
+  variant?: AccordionProps['variant']
+  selectionMode?: AccordionProps['selectionMode']
+  selectionBehavior?: AccordionProps['selectionBehavior']
+  isCompact?: AccordionProps['isCompact']
+  showDivider?: AccordionProps['showDivider']
+  hideIndicator?: AccordionProps['hideIndicator']
+  fullWidth?: AccordionProps['fullWidth']
 }
 
-export const CmAccordion = ({
+export default function CmAccordion({
   accordionList,
   variant = 'light',
   selectionMode = 'single',
@@ -33,8 +38,7 @@ export const CmAccordion = ({
   showDivider,
   hideIndicator,
   fullWidth,
-  ...props
-}: AccordionProps) => {
+}: CmAccordionProps) {
   return (
     <Accordion
       variant={variant}
