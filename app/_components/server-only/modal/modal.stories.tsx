@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { Meta } from '@storybook/react'
-import { CmModal } from '.'
-import { CmButton } from '.././button/'
+import CmModal from '.'
+import CmButton from '.././button/'
 
 export default {
   title: 'Components/Modal',
@@ -21,16 +21,46 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     size: {
+      options: [
+        'xs',
+        'sm',
+        'md',
+        'lg',
+        'xl',
+        '2xl',
+        '3xl',
+        '4xl',
+        '5xl',
+        'full',
+      ],
       control: { type: 'select' },
     },
     radius: {
+      options: ['none', 'sm', 'md', 'lg'],
       control: { type: 'select' },
     },
     shadow: {
+      options: ['none', 'sm', 'md', 'lg'],
       control: { type: 'select' },
     },
     alignButton: {
+      options: ['justify-start', 'justify-center', 'justify-end'],
       control: { type: 'select' },
+    },
+    isShow: {
+      control: { type: 'boolean' },
+    },
+    hideCloseButton: {
+      control: { type: 'boolean' },
+    },
+    isDismissable: {
+      control: { type: 'boolean' },
+    },
+    isKeyboardDismissDisabled: {
+      control: { type: 'boolean' },
+    },
+    closeModal: {
+      control: { type: 'boolean' },
     },
   },
   args: {
@@ -57,7 +87,7 @@ export const Default = (arg: any) => {
 
   return (
     <>
-      <CmButton onClick={OpenModal}>click</CmButton>
+      <CmButton onPress={OpenModal}>click</CmButton>
       <CmModal {...arg} isShow={isShow} closeModal={CloseModal} />
     </>
   )

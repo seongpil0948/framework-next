@@ -1,28 +1,28 @@
 import React from 'react'
-import { Input } from '@nextui-org/input'
+import { Input, InputProps } from '@nextui-org/input'
 
-interface InputProps {
+interface CmInputProps {
   className?: string
-  variant?: 'flat' | 'bordered' | 'faded' | 'underlined'
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  size?: 'sm' | 'md' | 'lg'
-  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-  fullWidth?: boolean
-  label?: string
-  labelPlacement?: 'inside' | 'outside' | 'outside-left'
-  required?: boolean
-  type?: 'text' | 'password'
-  value: string
-  maxLength?: number
-  placeholder: string
-  clearable?: boolean
-  disabled?: boolean
-  readOnly?: boolean
-  isError?: boolean
-  errorMsg?: string
+  variant?: InputProps['variant']
+  color?: InputProps['color']
+  size?: InputProps['size']
+  radius?: InputProps['radius']
+  fullWidth?: InputProps['fullWidth']
+  label?: InputProps['label']
+  labelPlacement?: InputProps['labelPlacement']
+  required?: InputProps['required']
+  type?: InputProps['type']
+  value?: InputProps['value']
+  maxLength?: InputProps['maxLength']
+  placeholder?: InputProps['placeholder']
+  clearable?: InputProps['isClearable']
+  disabled?: InputProps['disabled']
+  readOnly?: InputProps['readOnly']
+  isError?: InputProps['isInvalid']
+  errorMsg?: InputProps['errorMessage']
 }
 
-export const CmInput = ({
+export default function CmInput({
   className,
   variant = 'flat',
   color = 'default',
@@ -41,7 +41,7 @@ export const CmInput = ({
   readOnly = false,
   isError = false,
   errorMsg,
-}: InputProps) => {
+}: CmInputProps) {
   return (
     <Input
       className={className}

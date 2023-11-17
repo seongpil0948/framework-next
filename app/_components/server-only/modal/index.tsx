@@ -1,19 +1,20 @@
 import React, { ReactNode } from 'react'
 import {
   Modal,
+  ModalProps,
   ModalContent,
   ModalHeader,
   ModalBody,
   ModalFooter,
 } from '@nextui-org/modal'
-import { CmButton } from '.././button'
+import CmButton from '.././button'
 
-interface ModalProps {
+interface CmModalProps {
   className?: string
-  isShow: boolean
+  isShow: ModalProps['isOpen']
   useHeader?: boolean
-  hideCloseButton?: boolean
-  closeButton?: ReactNode
+  hideCloseButton?: ModalProps['hideCloseButton']
+  closeButton?: ModalProps['closeButton']
   modalTitle?: ReactNode
   modalContents?: ReactNode
   useFooter?: boolean
@@ -21,25 +22,15 @@ interface ModalProps {
   closeButtonText?: string
   confirmButtonText?: string
   customFooterButton?: ReactNode
-  size?:
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | '2xl'
-    | '3xl'
-    | '4xl'
-    | '5xl'
-    | 'full'
-  radius?: 'none' | 'sm' | 'md' | 'lg'
-  shadow?: 'sm' | 'md' | 'lg'
-  isDismissable?: boolean
-  isKeyboardDismissDisabled?: boolean
-  closeModal: () => void
+  size?: ModalProps['size']
+  radius?: ModalProps['radius']
+  shadow?: ModalProps['shadow']
+  isDismissable?: ModalProps['isDismissable']
+  isKeyboardDismissDisabled?: ModalProps['isKeyboardDismissDisabled']
+  closeModal?: ModalProps['onClose']
 }
 
-export const CmModal = ({
+export default function CmModal({
   className,
   isShow = false,
   useHeader = true,
@@ -58,37 +49,35 @@ export const CmModal = ({
   isDismissable = false,
   isKeyboardDismissDisabled = true,
   closeModal,
-}: ModalProps) => {
+}: CmModalProps) {
   return (
-    <>
-      <Modal
-        isOpen={isShow}
-        hideCloseButton={hideCloseButton}
-        closeButton={closeButton}
-        className={className}
-        size={size}
-        radius={radius}
-        onClose={closeModal}
-        shadow={shadow}
-        isDismissable={isDismissable}
-        isKeyboardDismissDisabled={isKeyboardDismissDisabled}
-      >
-        <ModalContent>
-          {useHeader == true ? <ModalHeader>{modalTitle}</ModalHeader> : null}
-          <ModalBody>{modalContents}</ModalBody>
-          {useFooter == true ? (
-            <ModalFooter className={alignButton}>
-              {customFooterButton}
-              <CmButton color="danger" variant="light" onClick={closeModal}>
-                {closeButtonText}
-              </CmButton>
-              <CmButton color="primary" onClick={closeModal}>
-                {confirmButtonText}
-              </CmButton>
-            </ModalFooter>
-          ) : null}
-        </ModalContent>
-      </Modal>
-    </>
+    <Modal
+      isOpen={isShow}
+      hideCloseButton={hideCloseButton}
+      closeButton={closeButton}
+      className={className}
+      size={size}
+      radius={radius}
+      onClose={closeModal}
+      shadow={shadow}
+      isDismissable={isDismissable}
+      isKeyboardDismissDisabled={isKeyboardDismissDisabled}
+    >
+      <ModalContent>
+        {useHeader == true ? <ModalHeader>{modalTitle}</ModalHeader> : null}
+        <ModalBody>{modalContents}</ModalBody>
+        {useFooter == true ? (
+          <ModalFooter className={alignButton}>
+            {customFooterButton}
+            <CmButton color="danger" variant="light" onPress={closeModal}>
+              {closeButtonText}
+            </CmButton>
+            <CmButton color="primary" onPress={closeModal}>
+              {confirmButtonText}
+            </CmButton>
+          </ModalFooter>
+        ) : null}
+      </ModalContent>
+    </Modal>
   )
 }
