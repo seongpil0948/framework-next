@@ -1,7 +1,11 @@
+"use client"
+
 import React, { useState } from 'react'
 import { Select, SelectItem, SelectProps } from '@nextui-org/select'
 import { CmChip } from '../chip'
 import CmButton from '../button'
+import { dropdown } from '@/app/_components/server-only/primitives'
+
 interface DropdownItem {
   item?: string
   value?: string
@@ -9,6 +13,7 @@ interface DropdownItem {
   startContent?: React.ReactNode
 }
 interface DropdownProps {
+  className?: string
   dropdownItem: DropdownItem[]
   selectionMode?: 'single' | 'multiple'
   triggerType?: 'input' | 'button'
@@ -33,6 +38,7 @@ interface DropdownProps {
 }
 
 export const CmDropdown = ({
+  className,
   dropdownItem,
   triggerType = 'input',
   selectionMode = 'single',
@@ -63,8 +69,9 @@ export const CmDropdown = ({
 
   return (
     <>
-      <div className="flex items-end">
+      <div className={dropdown()}>
         <Select
+          className={className}
           isOpen={isOpen}
           onOpenChange={(open) => open !== isOpen && setIsOpen(open)}
           items={dropdownItem}
