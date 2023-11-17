@@ -4,6 +4,7 @@
     "Booleanish",
     "messageformat",
     "Msessage",
+    "openapi",
     "signin",
     "storysource",
     "toastify"
