@@ -13,6 +13,7 @@ import { Pagination } from '@nextui-org/pagination'
 import { Spinner } from '@nextui-org/spinner'
 import { fetcherJson } from '@/app/_utils/fetch'
 import { pagination } from '@/app/_components/server-only/primitives'
+import useCommonCode from '@/app/_utils/hooks/code'
 
 export default function CommonCodeTable(props: {
   page: number
@@ -22,18 +23,13 @@ export default function CommonCodeTable(props: {
   codeGroup: string
 }) {
   const { page, setPage, handleSelect, codeGroup } = props
-
-  const { data, isLoading } = useSWR<any>(
-    `${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/codes?codeGroup=${codeGroup}&currentPage=${page}`,
-    fetcherJson,
-    {
-      keepPreviousData: true,
-    },
-  )
+  const { data, isLoading, error } = useCommonCode({ params: { codeGroup, currentPage: page }})
   if (!data) return <div>Loading...</div>
+  console.log("data", data)
   const { totalPage, data: bodyData, currentPage } = data.body
-  const loadingState = isLoading  ? 'loading' : !bodyData   ? 'error':  'idle'
-
+  const isCompleted = bodyData && bodyData.length > 0 && totalPage && totalPage > 0
+  const loadingState = isLoading  ? 'loading' : error   ? 'error':  'idle'
+  
   return (
       <Table
         key={`common-code-table-${page}`}
@@ -41,8 +37,7 @@ export default function CommonCodeTable(props: {
         classNames={props.classNames}
         removeWrapper 
         bottomContent={
-          totalPage > 0 ? (
-            <Pagination
+          isCompleted ? <Pagination
               isCompact
               showControls
               showShadow
@@ -53,8 +48,7 @@ export default function CommonCodeTable(props: {
               classNames={{
                 base: pagination()
               }}
-            />
-          ) : null
+            /> : null
         }
       >
         <TableHeader key={'common-code-table-header'}>

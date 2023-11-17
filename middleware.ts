@@ -20,7 +20,6 @@ export const config = {
 const IGNORE_PATHS = ['icon/']
 
 export async function middleware(request: NextRequest, response: NextResponse) {
-  console.log('response: ', response.status, response.statusText)
   if (IGNORE_PATHS.some((p) => request.nextUrl.pathname.includes(p))) {
     return NextResponse.next()
   }

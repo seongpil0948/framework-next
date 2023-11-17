@@ -29,21 +29,21 @@ export default function CodeController() {
   const CmCodeTable = () =>
     selectedGroupCode ? (
       <div className={table({isSplit: true})}>
+        <CommonCodeTable
+          codeGroup={selectedGroupCode}
+          page={pageIndex}
+          setPage={(newPage) => setPageIndex(newPage)}
+          handleSelect={(code) => setSelectedCode(code)}
+          classNames={classNames}
+        />
         <div className="hidden">
           <CommonCodeTable
             codeGroup={selectedGroupCode}
-            page={pageIndex}
-            setPage={(newPage) => setPageIndex(newPage)}
+            page={pageIndex + 1}
             handleSelect={(code) => setSelectedCode(code)}
             classNames={classNames}
           />
         </div>
-        <CommonCodeTable
-          codeGroup={selectedGroupCode}
-          page={pageIndex + 1}
-          handleSelect={(code) => setSelectedCode(code)}
-          classNames={classNames}
-        />
       </div>
     ) : (
       <></>
