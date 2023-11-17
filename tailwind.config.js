@@ -47,12 +47,6 @@ module.exports = {
           display: 'flex',
           justifyContent: 'center'
         },
-        // Truncate 
-        '.truncate': {
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap'
-        },
       })
     })
   ],

@@ -9,9 +9,10 @@ import {
   getKeyValue,
   TableProps,
 } from '@nextui-org/table'
-import { Pagination, PaginationProps } from '@nextui-org/pagination'
+import { Pagination } from '@nextui-org/pagination'
 import { Spinner } from '@nextui-org/spinner'
 import { fetcherJson } from '@/app/_utils/fetch'
+import { pagination } from '@/app/_components/server-only/primitives'
 
 export default function GroupCodeTable(props: {
   page: number
@@ -33,28 +34,25 @@ export default function GroupCodeTable(props: {
   const loadingState = isLoading || bodyData?.length === 0 ? 'loading' : 'idle'
 
   return (
-    <>
       <Table
         key={`group-code-table-${page}`}
         aria-label="Group Code Table"
         classNames={props.classNames}
-        color="secondary"
+        removeWrapper 
         bottomContent={
           totalPage > 0 ? (
-            <div className="flex w-full justify-center">
-              <Pagination
-                isCompact
-                showControls
-                showShadow
-                color="primary"
-                page={currentPage}
-                total={totalPage}
-                onChange={(page) => setPage && setPage(page)}
-                classNames={{
-                  cursor: 'bg-foreground text-background',
-                }}
-              />
-            </div>
+            <Pagination
+              isCompact
+              showControls
+              showShadow
+              color="primary"
+              page={currentPage}
+              total={totalPage}
+              onChange={(page) => setPage && setPage(page)}
+              classNames={{
+                base: pagination()
+              }}
+            />
           ) : null
         }
       >
@@ -86,6 +84,5 @@ export default function GroupCodeTable(props: {
           )}
         </TableBody>
       </Table>
-    </>
   )
 }

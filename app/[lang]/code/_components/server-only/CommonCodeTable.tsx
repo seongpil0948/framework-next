@@ -12,11 +12,13 @@ import {
 import { Pagination } from '@nextui-org/pagination'
 import { Spinner } from '@nextui-org/spinner'
 import { fetcherJson } from '@/app/_utils/fetch'
+import { pagination } from '@/app/_components/server-only/primitives'
 
 export default function CommonCodeTable(props: {
   page: number
   setPage?: (i: number) => void
   handleSelect: (code: any) => void
+  classNames?: TableProps['classNames']
   codeGroup: string
 }) {
   const { page, setPage, handleSelect, codeGroup } = props
@@ -33,25 +35,25 @@ export default function CommonCodeTable(props: {
   const loadingState = isLoading  ? 'loading' : !bodyData   ? 'error':  'idle'
 
   return (
-    <>
       <Table
         key={`common-code-table-${page}`}
         aria-label="Common Code Table"
-        color="default"
-        
+        classNames={props.classNames}
+        removeWrapper 
         bottomContent={
           totalPage > 0 ? (
-            <div className="flex w-full justify-center">
-              <Pagination
-                isCompact
-                showControls
-                showShadow
-                color="primary"
-                page={currentPage}
-                total={totalPage}
-                onChange={(page) => setPage && setPage(page)}
-              />
-            </div>
+            <Pagination
+              isCompact
+              showControls
+              showShadow
+              color="primary"
+              page={currentPage}
+              total={totalPage}
+              onChange={(page) => setPage && setPage(page)}
+              classNames={{
+                base: pagination()
+              }}
+            />
           ) : null
         }
       >
@@ -83,6 +85,5 @@ export default function CommonCodeTable(props: {
           )}
         </TableBody>
       </Table>
-    </>
   )
 }

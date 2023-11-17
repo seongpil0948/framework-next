@@ -1,7 +1,11 @@
+"use client"
+
 import React, { useState } from 'react'
 import { Select, SelectItem, SelectProps } from '@nextui-org/select'
 import { CmChip } from '../chip'
 import CmButton from '../button'
+import { dropdown } from '@/app/_components/server-only/primitives'
+
 interface DropdownItem {
   item?: string
   value?: string
@@ -63,7 +67,7 @@ export const CmDropdown = ({
 
   return (
     <>
-      <div className="flex items-end">
+      <div className={dropdown()}>
         <Select
           isOpen={isOpen}
           onOpenChange={(open) => open !== isOpen && setIsOpen(open)}

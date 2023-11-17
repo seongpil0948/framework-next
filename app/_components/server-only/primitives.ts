@@ -62,4 +62,25 @@ export const docWrapper = tv({
 
 export const box = tv({
   base: 'relative overflow-y-hidden flex items-center border border-default-200 dark:border-default-100 px-2 py-4 rounded-lg overflow-hidden',
+  variants: {
+    isSearch: {
+      true: "px-6 py-5 gap-16",
+    },
+  },
+})
+
+export const tableWrapper = tv({
+  base: 'table-wrapper flex mt-5',
+})
+
+export const table = tv({
+  base: 'table [&+&]:ml-5',
+})
+
+export const pagination = tv({
+  base: 'pagination mt-5',
+})
+
+export const dropdown = tv({
+  base: 'dropdown',
 })
