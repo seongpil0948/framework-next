@@ -27,12 +27,12 @@ export const Sheet = forwardRef<ElementRef<typeof Modal>, SheetProps>(
   ({ placement = 'left', classNames, ...props }, ref) => {
     const isLeft = placement == 'left'
     const extendedClassNames = {
-      backdrop: cn(classNames?.backdrop),
-      base: cn('!m-0 h-full !rounded-none', classNames?.base),
-      body: cn(classNames?.body),
-      closeButton: cn(classNames?.closeButton),
-      footer: cn(classNames?.footer),
-      header: cn(classNames?.header),
+      backdrop: cn('bg-gray-400/20',classNames?.backdrop),
+      base: cn('!m-0 h-full max-w-xs rounded-l-none rounded-r-xl shadow-xl', classNames?.base),
+      body: cn('px-4',classNames?.body),
+      closeButton: cn('top-3 right-4 rounded-md transition-all',classNames?.closeButton),
+      footer: cn('justify-start px-4 text-gray-400 text-xs',classNames?.footer),
+      header: cn('leading-8 px-4 py-3 pb-3',classNames?.header),
       wrapper: cn(
         isLeft
           ? '!justify-start'

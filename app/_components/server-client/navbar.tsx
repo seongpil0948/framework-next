@@ -1,3 +1,4 @@
+'use client'
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -6,9 +7,7 @@ import {
 } from '@nextui-org/navbar'
 import { Button } from '@nextui-org/button'
 import { Link } from '@nextui-org/link'
-import { link as linkStyles } from '@nextui-org/theme'
 import NextLink from 'next/link'
-import clsx from 'clsx'
 
 import { ThemeSwitch } from '@/app/_components/client-only/theme-switch'
 import {
@@ -35,30 +34,26 @@ export default function CommonNavbar(props: {
   }
 }) {
   const { navItems, children, prefix, landingPath, links } = props
+
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+    <NextUINavbar
+      maxWidth="xl"
+      position="sticky"
+      className="border-b border-slate-900/10 dark:border-slate-50/[0.06]"
+    >
+      <NavbarContent className="gap-6 basis-1/5 sm:basis-full">
         {prefix && prefix}
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink
-            className="flex justify-start items-center gap-1"
-            href={landingPath}
-          >
+        <NavbarBrand as="li" className="grow-0">
+          <NextLink className="flex-center-ver" href={landingPath}>
             <Logo />
-            <p className="font-bold text-inherit">Abacus</p>
+            <p className="font-bold">ACF</p>
           </NextLink>
         </NavbarBrand>
-        <ThemeSwitch />
-
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden gap-6 md:flex">
           {navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
-                className={clsx(
-                  linkStyles({ color: 'foreground' }),
-                  'data-[active=true]:text-primary data-[active=true]:font-medium',
-                )}
-                color="foreground"
+                className="data-[active=true]:text-primary data-[active=true]:font-medium text-sm"
                 href={item.href}
               >
                 {item.label}
@@ -69,11 +64,7 @@ export default function CommonNavbar(props: {
         {children}
       </NavbarContent>
 
-      <NavbarContent
-        // className="hidden sm:flex basis-1/5 sm:basis-full"
-        className="flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
+      <NavbarContent className="flex basis-1/5 sm:basis-full" justify="end">
         {links && (
           <NavbarItem className="hidden sm:flex gap-2">
             {links.twitter && (
@@ -96,6 +87,7 @@ export default function CommonNavbar(props: {
         <NavbarItem className="hidden lg:flex">
           <SearchInput />
         </NavbarItem>
+        <ThemeSwitch />
         {links?.sponsor && (
           <NavbarItem className="hidden md:flex">
             <Button
