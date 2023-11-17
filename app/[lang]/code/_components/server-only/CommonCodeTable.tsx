@@ -30,7 +30,7 @@ export default function CommonCodeTable(props: {
   )
   if (!data) return <div>Loading...</div>
   const { totalPage, data: bodyData, currentPage } = data.body
-  const loadingState = isLoading || bodyData?.length === 0 ? 'loading' : 'idle'
+  const loadingState = isLoading  ? 'loading' : !bodyData   ? 'error':  'idle'
 
   return (
     <>
@@ -38,6 +38,7 @@ export default function CommonCodeTable(props: {
         key={`common-code-table-${page}`}
         aria-label="Common Code Table"
         color="default"
+        
         bottomContent={
           totalPage > 0 ? (
             <div className="flex w-full justify-center">
@@ -66,6 +67,7 @@ export default function CommonCodeTable(props: {
           items={bodyData ?? []}
           loadingContent={<Spinner />}
           loadingState={loadingState}
+          emptyContent={"No rows to display."}
         >
           {(item: any) => (
             <TableRow key={item?.code} onClick={() => handleSelect(item?.code)}>
