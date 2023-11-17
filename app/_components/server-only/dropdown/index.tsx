@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select, SelectItem, SelectProps } from '@nextui-org/select'
 import { CmChip } from '../chip'
-import { CmButton } from '../button'
+import CmButton from '../button'
 interface DropdownItem {
   item?: string
   value?: string

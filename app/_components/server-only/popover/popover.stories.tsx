@@ -1,7 +1,7 @@
 import React from 'react'
-import { Meta, StoryObj } from '@storybook/react'
-import { CmButton } from '.././button/'
-import { CmPopover } from '.'
+import { Meta } from '@storybook/react'
+import CmButton from '.././button/'
+import CmPopover from '.'
 
 export default {
   title: 'Components/Popover',
@@ -21,19 +21,64 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     placement: {
+      options: [
+        'top',
+        'bottom',
+        'right',
+        'left',
+        'top-start',
+        'top-end',
+        'bottom-start',
+        'bottom-end',
+        'left-start',
+        'left-end',
+        'right-start',
+        'right-end',
+      ],
       control: { type: 'select' },
     },
+    color: {
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+      ],
+      control: 'select',
+    },
     size: {
+      options: ['sm', 'md', 'lg'],
       control: { type: 'select' },
     },
     radius: {
+      options: ['sm', 'md', 'lg', 'full'],
       control: { type: 'select' },
     },
     backdrop: {
+      options: ['sm', 'md', 'lg'],
+      control: { type: 'select' },
+    },
+    shadow: {
+      options: ['none', 'sm', 'md', 'lg'],
       control: { type: 'select' },
     },
     triggerType: {
+      options: ['dialog', 'menu', 'listbox', 'tree', 'grid'],
       control: { type: 'select' },
+    },
+    offset: {
+      control: { type: 'number' },
+    },
+    containerPadding: {
+      control: { type: 'number' },
+    },
+    showArrow: {
+      control: { type: 'boolean' },
+    },
+    isKeyboardDismissDisabled: {
+      control: { type: 'boolean' },
     },
   },
 } satisfies Meta<typeof CmPopover>
