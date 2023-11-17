@@ -16,6 +16,7 @@ export default function CodeController() {
       base: [table()],
       th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'],
       td: [
+        'cursor-pointer',
         'group-data-[first=true]:first:before:rounded-none',
         'group-data-[first=true]:last:before:rounded-none',
         'group-data-[middle=true]:before:rounded-none',
@@ -27,19 +28,21 @@ export default function CodeController() {
   )
   const CmCodeTable = () =>
     selectedGroupCode ? (
-      <div className={tableWrapper()}>
+      <div className={table({isSplit: true})}>
         <div className="hidden">
           <CommonCodeTable
             codeGroup={selectedGroupCode}
             page={pageIndex}
             setPage={(newPage) => setPageIndex(newPage)}
             handleSelect={(code) => setSelectedCode(code)}
+            classNames={classNames}
           />
         </div>
         <CommonCodeTable
           codeGroup={selectedGroupCode}
           page={pageIndex + 1}
           handleSelect={(code) => setSelectedCode(code)}
+          classNames={classNames}
         />
       </div>
     ) : (

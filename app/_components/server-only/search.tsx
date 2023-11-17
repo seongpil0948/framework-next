@@ -11,7 +11,9 @@ export default function CmSearch(props: SearchProps) {
 
   return (
     <div className={box({isSearch: true})}>
-      {children}
+      <div>
+        {children}
+      </div>
       <CmButton color="primary">
         <SearchIcon/>검색
       </CmButton>

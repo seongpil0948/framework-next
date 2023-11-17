@@ -13,6 +13,7 @@ interface DropdownItem {
   startContent?: React.ReactNode
 }
 interface DropdownProps {
+  className?: string
   dropdownItem: DropdownItem[]
   selectionMode?: 'single' | 'multiple'
   triggerType?: 'input' | 'button'
@@ -37,6 +38,7 @@ interface DropdownProps {
 }
 
 export const CmDropdown = ({
+  className,
   dropdownItem,
   triggerType = 'input',
   selectionMode = 'single',
@@ -69,6 +71,7 @@ export const CmDropdown = ({
     <>
       <div className={dropdown()}>
         <Select
+          className={className}
           isOpen={isOpen}
           onOpenChange={(open) => open !== isOpen && setIsOpen(open)}
           items={dropdownItem}

@@ -64,7 +64,7 @@ export const box = tv({
   base: 'relative overflow-y-hidden flex items-center border border-default-200 dark:border-default-100 px-2 py-4 rounded-lg overflow-hidden',
   variants: {
     isSearch: {
-      true: "px-6 py-5 gap-16",
+      true: "[&>div]:flex-center [&>div]:flex-1 [&>div]:w-full [&>div]:gap-16 px-6 py-5 gap-20",
     },
   },
 })
@@ -74,7 +74,12 @@ export const tableWrapper = tv({
 })
 
 export const table = tv({
-  base: 'table [&+&]:ml-5',
+  base: 'table flex-1 h-full',
+  variants: {
+    isSplit: {
+      true: "w-1/2 ml-5",
+    },
+  },
 })
 
 export const pagination = tv({
@@ -82,5 +87,5 @@ export const pagination = tv({
 })
 
 export const dropdown = tv({
-  base: 'dropdown',
+  base: 'dropdown [&>div]:flex-center-ver [&>div]:flex-1',
 })
