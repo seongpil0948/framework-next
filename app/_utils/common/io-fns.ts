@@ -79,3 +79,17 @@ export const SetUtils = {
   diff: twoSetDifferece,
   inter: twoSetIntersection,
 }
+
+export const paramToQuery = (
+  url: string,
+  params: Record<string, string | undefined | number>,
+) => {
+  const requestUrl = new URL(url, window.location.origin)
+  for (const [key, value] of Object.entries(params)) {
+    if (!value) continue
+    else if (typeof value === 'number')
+      requestUrl.searchParams.set(key, value.toString())
+    else requestUrl.searchParams.set(key, value)
+  }
+  return requestUrl
+}
