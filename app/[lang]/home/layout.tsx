@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+
 import {
   LANDING_PATH,
   homeNavItems,
@@ -7,11 +8,10 @@ import {
 } from '@/config/site'
 import { Link } from '@nextui-org/link'
 import CommonNavbar from '@/app/_components/server-client/navbar'
-import { link as linkStyles } from '@nextui-org/theme'
-import clsx from 'clsx'
 import CommonDrawer from '../../_components/client-only/drawer'
 import { TreeSection } from '@/app/_components/client-only/tree-section'
 import { layout, main } from '@/app/_components/server-only/primitives'
+import { Logo } from '@/app/_components/server-only/icons'
 
 export const metadata: Metadata = {
   title: {
@@ -42,7 +42,7 @@ export default function RootLayout({
         landingPath={LANDING_PATH}
         prefix={
           <CommonDrawer
-            title="Home Drawer"
+            title="Home"
             sheetProps={{
               placement: 'left',
             }}
@@ -54,16 +54,34 @@ export default function RootLayout({
       <main id="content-container" className={main()}>
         {children}
       </main>
-      <footer className="w-full flex items-center justify-center py-3">
-        <Link
-          isExternal
-          className="flex items-center gap-1 text-current"
-          href="http://www.iabacus.co.kr/"
-          title="abacus.org homepage"
-        >
-          <span className="text-default-600">Powered by</span>
-          <p className="text-primary">Abacus</p>
-        </Link>
+
+      <footer>
+        <div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
+          <div className="sm:flex sm:items-center sm:justify-between">
+            <Link
+              color="foreground"
+              href="/"
+              className="mb-4 flex items-center sm:mb-0"
+            >
+              <Logo />
+              <p className="font-bold">ACF</p>
+            </Link>
+            <div className="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:mb-0">
+              <span className="block text-sm text-gray-500 dark:text-gray-400 sm:text-center">
+                © 2023{' '}
+                <Link
+                  color="foreground"
+                  isExternal
+                  href="http://www.iabacus.co.kr/"
+                  className="hover:underline"
+                >
+                  Abacus
+                </Link>
+                . All Rights Reserved.
+              </span>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   )

@@ -16,7 +16,7 @@ export default function BlogLayout({
         landingPath={LANDING_PATH}
         prefix={
           <CommonDrawer
-            title="Home Drawer"
+            title="Home"
             sheetProps={{
               placement: 'left',
             }}

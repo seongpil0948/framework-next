@@ -34,18 +34,19 @@ export default function CommonDrawer(props: {
           {(onClose) => (
             <>
               {title && (
-                <SheetHeader className="flex flex-col gap-1">
+                <SheetHeader>
                   {title}
                 </SheetHeader>
               )}
               <SheetBody>{children}</SheetBody>
               <SheetFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                {/* <Button color="danger" variant="light" onPress={onClose}>
                   Close
-                </Button>
+                </Button> */}
                 {/* <Button color="primary" onPress={onClose}>
                   Action
                 </Button> */}
+                © 2023 ACF
               </SheetFooter>
             </>
           )}

@@ -1,43 +1,31 @@
 import { tv } from 'tailwind-variants'
 
 export const title = tv({
-  base: 'tracking-tight inline font-semibold',
-  variants: {
-    color: {
-      violet: 'from-[#FF1CF7] to-[#b249f8]',
-      yellow: 'from-[#FF705B] to-[#FFB457]',
-      blue: 'from-[#5EA2EF] to-[#0072F5]',
-      cyan: 'from-[#00b7fa] to-[#01cfea]',
-      green: 'from-[#6FEE8D] to-[#17c964]',
-      pink: 'from-[#FF72E1] to-[#F54C7A]',
-      foreground: 'dark:from-[#FFFFFF] dark:to-[#4B4B4B]',
-    },
-    size: {
-      sm: 'text-3xl lg:text-4xl',
-      md: 'text-[2.3rem] lg:text-5xl leading-9',
-      lg: 'text-4xl lg:text-6xl',
-    },
-    fullWidth: {
-      true: 'w-full block',
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-  compoundVariants: [
-    {
-      color: [
-        'violet',
-        'yellow',
-        'blue',
-        'cyan',
-        'green',
-        'pink',
-        'foreground',
-      ],
-      class: 'bg-clip-text text-transparent bg-gradient-to-b',
-    },
-  ],
+  base: 'inline-block text-2xl font-medium leading-8 mb-5',
+  // variants: {
+  //   size: {
+  //     sm: 'text-3xl lg:text-4xl',
+  //     md: 'text-[2.3rem] lg:text-5xl leading-9',
+  //     lg: 'text-4xl lg:text-6xl',
+  //   },
+  // },
+  // defaultVariants: {
+  //   size: 'md',
+  // },
+  // compoundVariants: [
+  //   {
+  //     color: [
+  //       'violet',
+  //       'yellow',
+  //       'blue',
+  //       'cyan',
+  //       'green',
+  //       'pink',
+  //       'foreground',
+  //     ],
+  //     class: 'bg-clip-text text-transparent bg-gradient-to-b',
+  //   },
+  // ],
 })
 
 export const subtitle = tv({
@@ -54,14 +42,24 @@ export const subtitle = tv({
 
 // =================================================================== in pre..
 export const layout = tv({
-  base: "flex flex-col h-screen relative",
-});
- 
+  base: 'flex flex-col h-screen relative',
+})
+
 export const main = tv({
-  base: "flex-grow min-w-full pt-20 px-14 relative",
-});
+  base: 'flex-grow min-w-full pt-20 px-14 relative',
+  variants: {
+    size: {
+      sm: 'px-8 pt-6 pb-8', // fin
+      md: 'md:py-10',
+      lg: 'px-4 py-10',
+    },
+  },
+})
 
 export const docWrapper = tv({
-  base: "max-w-6xl md:py-10 mx-auto px-4 py-10 relative w-4xl",
-});
- 
+  base: 'w-4xl max-w-6xl mx-auto relative',
+})
+
+export const box = tv({
+  base: 'relative overflow-y-hidden flex items-center border border-default-200 dark:border-default-100 px-2 py-4 rounded-lg overflow-hidden',
+})
