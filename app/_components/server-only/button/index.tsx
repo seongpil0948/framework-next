@@ -59,3 +59,5 @@ export const CmButton = forwardRef<HTMLButtonElement, CmButtonProps>(
 )
 
 CmButton.displayName = 'CmButton'
+
+export default CmButton

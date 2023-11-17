@@ -1,34 +1,29 @@
-import React, { ReactNode } from 'react'
-import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover'
+import React from 'react'
+import {
+  Popover,
+  PopoverProps,
+  PopoverTrigger,
+  PopoverTriggerProps,
+  PopoverContent,
+  PopoverContentProps,
+} from '@nextui-org/popover'
 
-interface PopoverProps {
-  trigger: ReactNode
-  contents: ReactNode
-  placement?:
-    | 'top'
-    | 'bottom'
-    | 'right'
-    | 'left'
-    | 'top-start'
-    | 'top-end'
-    | 'bottom-start'
-    | 'bottom-end'
-    | 'left-start'
-    | 'left-end'
-    | 'right-start'
-    | 'right-end'
-  showArrow?: boolean
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  size?: 'sm' | 'md' | 'lg'
-  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-  backdrop?: 'transparent' | 'opaque' | 'blur'
-  offset?: number
-  containerPadding?: number
-  triggerType?: 'dialog' | 'menu' | 'listbox' | 'tree' | 'grid'
-  isKeyboardDismissDisabled?: boolean
+interface CmPopoverProps {
+  trigger: PopoverTriggerProps['children']
+  contents: PopoverContentProps['children']
+  placement?: PopoverProps['placement']
+  showArrow?: PopoverProps['showArrow']
+  color?: PopoverProps['color']
+  size?: PopoverProps['size']
+  radius?: PopoverProps['radius']
+  backdrop?: PopoverProps['backdrop']
+  shadow?: PopoverProps['shadow']
+  offset?: PopoverProps['offset']
+  containerPadding?: PopoverProps['containerPadding']
+  triggerType?: PopoverProps['triggerType']
+  isKeyboardDismissDisabled?: PopoverProps['isKeyboardDismissDisabled']
 }
-
-export const CmPopover = ({
+export default function CmPopover({
   trigger,
   contents,
   placement = 'right',
@@ -37,11 +32,12 @@ export const CmPopover = ({
   size = 'md',
   radius = 'md',
   backdrop = 'transparent',
+  shadow = 'lg',
   offset = 7,
   containerPadding = 12,
   triggerType = 'dialog',
   isKeyboardDismissDisabled = false,
-}: PopoverProps) => {
+}: CmPopoverProps) {
   return (
     <Popover
       placement={placement}
@@ -50,13 +46,14 @@ export const CmPopover = ({
       size={size}
       radius={radius}
       backdrop={backdrop}
+      shadow={shadow}
       offset={offset}
       containerPadding={containerPadding}
       triggerType={triggerType}
       isKeyboardDismissDisabled={isKeyboardDismissDisabled}
     >
       <PopoverTrigger>{trigger}</PopoverTrigger>
-      <PopoverContent> {contents}</PopoverContent>
+      <PopoverContent>{contents}</PopoverContent>
     </Popover>
   )
 }

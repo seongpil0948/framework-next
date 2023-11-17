@@ -1,31 +1,31 @@
 import React from 'react'
-import { Tabs, Tab } from '@nextui-org/tabs'
+import { Tabs, TabsProps, Tab, TabItemProps } from '@nextui-org/tabs'
 
-interface TabProps {
+interface CmTabProps {
   tabs: [
     {
       id: string
       ariaLabel?: string
-      title: string
-      contents: string
-      disabled?: boolean
+      title: TabItemProps['title']
+      contents: TabItemProps['children']
+      disabled?: TabItemProps['isDisabled']
     },
   ]
-  size?: 'sm' | 'md' | 'lg'
-  variant?: 'solid' | 'bordered' | 'light' | 'underlined'
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-  fullWidth?: boolean
+  size?: TabsProps['size']
+  variant?: TabsProps['variant']
+  color?: TabsProps['color']
+  radius?: TabsProps['radius']
+  fullWidth?: TabsProps['fullWidth']
 }
 
-export const CmTab = ({
+export default function CmTab({
   tabs,
   size = 'md',
   variant = 'solid',
   color = 'default',
   radius = 'md',
   fullWidth,
-}: TabProps) => {
+}: CmTabProps) {
   return (
     <Tabs
       size={size}
