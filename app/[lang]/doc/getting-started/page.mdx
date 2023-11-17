@@ -83,6 +83,20 @@ export default async function SSGPage({ params: { lang } }: Param) {
 
 1. `pnpm storybook` 명령어를 통해 storybook 서버를 실행합니다.
 2. http://localhost:6006/ 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
+---
+## 프로젝트 테마 설정
+우리가 마주하는 가장 큰 과제중 하나는 프로젝트의 테마를 설정하는 것입니다.  
+백날 잘 만들어둔 컴포넌트들이 있지만, 테마를 설정하지 않으면 그 컴포넌트들은 아무런 의미가 없습니다.  
+우리는 프로젝트의 테마를 설정하기 위해, `app/_components/server-only/primitives.ts` 파일을 제공합니다.
+--- 
+### 폰트 변경하기
+폰트를 변경하기 위해서는 `app/_components/server-only/primitives.ts` 파일을 열어, `font` 함수를 찾습니다.
+### 버튼의 radius 변경하기
+버튼의 radius를 변경하기 위해서는 `app/_components/server-only/primitives.ts` 파일을 열어, `button` 함수를 찾습니다.
+### 전체 테마의 주요 컬러를 변경하기
+전체 테마의 주요 컬러를 변경하기 위해서는 `app/_components/server-only/primitives.ts` 파일을 열어, `color` 함수를 찾습니다.
+
+
 
 ---
 
