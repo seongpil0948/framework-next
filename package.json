@@ -10,7 +10,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
     "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore ."
+    "format:fix": "prettier --write --ignore-path .gitignore .",
+    "update:backend-dto": "openapi-typescript http://192.168.0.114:28090/acf/api/api-docs -o ./schema.d.ts"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.2",
@@ -91,6 +92,7 @@
     "@storybook/testing-library": "^0.2.2",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "openapi-typescript": "^6.7.1",
     "prettier": "3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "storybook": "^7.5.3"

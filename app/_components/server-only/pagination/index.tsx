@@ -1,21 +1,21 @@
 import React from 'react'
-import { Pagination } from '@nextui-org/pagination'
+import { Pagination, PaginationProps } from '@nextui-org/pagination'
 
-interface PaginationProps {
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  type?: 'flat' | 'bordered' | 'light' | 'faded'
-  size?: 'sm' | 'md' | 'lg'
-  useControl?: boolean
-  dotsJump?: number
-  disabled?: boolean
-  total: number
-  page?: number
-  siblings?: number
-  boundaries?: number
-  isCompact?: boolean
+interface CmPaginationProps {
+  color?: PaginationProps['color']
+  type?: PaginationProps['variant']
+  size?: PaginationProps['size']
+  useControl?: PaginationProps['showControls']
+  dotsJump?: PaginationProps['dotsJump']
+  disabled?: PaginationProps['isDisabled']
+  total: PaginationProps['total']
+  page?: PaginationProps['page']
+  siblings?: PaginationProps['siblings']
+  boundaries?: PaginationProps['boundaries']
+  isCompact?: PaginationProps['isCompact']
 }
 
-export const CmPagination = ({
+export default function CmPagination({
   color = 'primary',
   type = 'flat',
   size = 'md',
@@ -27,8 +27,7 @@ export const CmPagination = ({
   siblings = 2,
   boundaries = 0,
   isCompact = false,
-  ...props
-}: PaginationProps) => {
+}: CmPaginationProps) {
   return (
     <Pagination
       color={color}

@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmPagination } from '.'
+import CmPagination from '.'
 
 export default {
   title: 'Components/Pagination',
