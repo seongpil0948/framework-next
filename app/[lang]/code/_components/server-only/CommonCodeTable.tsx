@@ -18,7 +18,7 @@ import getCmPaginationProps from '@/app/_components/server-only/pagination/use'
 export default function CommonCodeTable(props: {
   page: number
   setPage?: (i: number) => void
-  handleSelect: (code: any) => void
+  handleSelect: (code: string) => void
   classNames?: TableProps['classNames']
   codeGroup: string
 }) {
@@ -68,7 +68,10 @@ export default function CommonCodeTable(props: {
         emptyContent={'No rows to display.'}
       >
         {(item) => (
-          <TableRow key={item?.code} onClick={() => handleSelect(item?.code)}>
+          <TableRow
+            key={item?.code}
+            onDoubleClick={() => handleSelect(item?.code)}
+          >
             {(columnKey) => {
               const val = getKeyValue(item, columnKey)
               return (
