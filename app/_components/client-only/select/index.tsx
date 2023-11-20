@@ -2,9 +2,15 @@
 
 import { useState } from 'react'
 import { Select, SelectItem, SelectProps } from '@nextui-org/select'
+import { SelectSlots, SlotsToClasses } from '@nextui-org/theme'
 import { CmChip } from '../../server-only/chip'
+import { clsx, type ClassValue } from 'clsx'
 import CmButton from '../../server-only/button'
-import { select } from '../../server-only/primitives'
+import { select } from './theme'
+
+export function cn(...inputs: ClassValue[]) {
+  return clsx(inputs)
+}
 
 interface SelectItem {
   item?: string
@@ -12,6 +18,7 @@ interface SelectItem {
   label?: string
   startContent?: React.ReactNode
 }
+
 interface ICmSelectProps extends Omit<SelectProps, 'children'> {
   // className?: string
   dropdownItem: SelectItem[]
@@ -61,6 +68,10 @@ const CmSelect = ({
   ...props
 }: ICmSelectProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const { base } = select()
+  const extendedClassNames = {
+    base: cn(base()),
+  } as SlotsToClasses<SelectSlots>
   const dropdownBtn = () => (
     <CmButton onPress={() => setIsOpen(!isOpen)}>
       {isOpen ? 'Close' : 'Open'}
@@ -69,9 +80,9 @@ const CmSelect = ({
 
   return (
     <>
-      <div className={select()}>
+      <div>
         <Select
-          className={className}
+          classNames={extendedClassNames}
           isOpen={isOpen}
           onOpenChange={(open) => open !== isOpen && setIsOpen(open)}
           items={dropdownItem}
