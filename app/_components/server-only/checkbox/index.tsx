@@ -26,7 +26,7 @@ interface CmCheckboxProps {
   successMsg?: string
   errorMsg?: CheckboxGroupProps['errorMessage']
   isInvalid?: CheckboxGroupProps['isInvalid']
-  validationState?: CheckboxGroupProps['validationState']
+  valid?: boolean
   orientation?: CheckboxGroupProps['orientation']
   selectedVaule?: boolean
   selected?: CheckboxGroupProps['value']
@@ -42,7 +42,7 @@ export default function CmCheckbox({
   disabled = false,
   readOnly = false,
   isInvalid = false,
-  validationState,
+  valid = false,
   successMsg = 'successMessage.',
   errorMsg = 'errorMessage.',
   checkboxList,
@@ -60,12 +60,12 @@ export default function CmCheckbox({
         label={checkboxList && label}
         isRequired={required}
         size={size}
-        color={validationState === 'valid' ? 'success' : color}
+        color={valid === true ? 'success' : color}
         isDisabled={disabled}
         isReadOnly={readOnly}
-        isInvalid={isInvalid === true || validationState === 'invalid'}
+        isInvalid={isInvalid === true && valid === false}
         errorMessage={
-          (isInvalid === true || validationState === 'invalid') && errorMsg
+          isInvalid === true && valid === false && errorMsg
         }
         orientation={orientation}
         value={selectedVaule}
@@ -84,7 +84,7 @@ export default function CmCheckbox({
           </Checkbox>
         ))}
       </CheckboxGroup>
-      {isInvalid === false && validationState === 'valid' && (
+      {isInvalid === false && valid === true && (
         <p className="mt-2 text-xs text-green-500">{successMsg}</p>
       )}
     </>

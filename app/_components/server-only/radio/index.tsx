@@ -23,7 +23,7 @@ interface CmRadioGroupProps {
   successMsg?: string
   errorMsg?: RadioGroupProps['errorMessage']
   isInvalid?: RadioGroupProps['isInvalid']
-  validationState?: RadioGroupProps['validationState']
+  valid?: boolean
   orientation?: RadioGroupProps['orientation']
 }
 
@@ -38,7 +38,7 @@ export default function CmRadio({
   successMsg = 'successMessage.',
   errorMsg = 'errorMessage.',
   isInvalid = false,
-  validationState,
+  valid = false,
   orientation = 'vertical',
   ...props
 }: CmRadioGroupProps) {
@@ -48,12 +48,12 @@ export default function CmRadio({
         label={label}
         isRequired={required}
         size={size}
-        color={validationState === 'valid' ? 'success' : color}
+        color={valid === true ? 'success' : color}
         isDisabled={disabled}
         isReadOnly={readOnly}
-        isInvalid={isInvalid === true || validationState === 'invalid'}
+        isInvalid={isInvalid && valid === false}
         errorMessage={
-          (isInvalid === true || validationState === 'invalid') && errorMsg
+          isInvalid === true && valid === false && errorMsg
         }
         orientation={orientation}
       >
@@ -67,7 +67,7 @@ export default function CmRadio({
           </Radio>
         ))}
       </RadioGroup>
-      {isInvalid === false && validationState === 'valid' && (
+      {isInvalid === false && valid === true && (
         <p className="mt-2 text-xs text-green-500">{successMsg}</p>
       )}
     </>
