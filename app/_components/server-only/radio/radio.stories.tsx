@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react'
-import CmCheckbox from '.'
+import CmRadio from '.'
 
 export default {
-  title: 'Components/Checkbox',
-  component: CmCheckbox,
+  title: 'Components/Radio',
+  component: CmRadio,
   parameters: {
     layout: 'centered',
     nextjs: {
@@ -53,25 +53,15 @@ export default {
       control: 'radio',
     },
   },
-} satisfies Meta<typeof CmCheckbox>
+} satisfies Meta<typeof CmRadio>
 
 export const Default = {
   args: {
-    label: 'CheckboxGroup',
-    selected: ['cat'],
-    checkboxList: [
-      {
-        label: 'cat',
-        value: 'cat',
-      },
-      {
-        label: 'dog',
-        value: 'dog',
-      },
-      {
-        label: 'hotdog',
-        value: 'hotdog',
-      },
+    label: 'default',
+    radioList: [
+      { label: 'Cat', value: 'cat' },
+      { label: 'Dog', value: 'dog' },
+      { label: 'Elephant', value: 'elephant', disabled: true },
     ],
   },
 }
