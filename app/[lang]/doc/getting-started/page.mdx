@@ -52,7 +52,7 @@ code app/\[lang\]/$moduleName/page.tsx
 아래 코드를 붙여넣습니다.
 
 ```tsx
-import { subtitle, title } from '@/app/_components/server-only/primitives'
+import CmTitle from '@/app/_components/server-only/title'
 import { AVAIL_LOCALES, TAvailLocale } from '@/config/system'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import CmButton from '@/app/_components/server-only/button'
@@ -71,13 +71,13 @@ export default async function SSGPage({ params: { lang } }: Param) {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8">
       <div className="inline-block max-w-lg justify-center text-center">
-        <h1 className={title()}>Welcome to &nbsp;</h1>
-        <h1 className={clsx(title(), 'text-primary-700')}>Hi?</h1>
-        <br />
-        <h2 className={subtitle({ class: 'mt-4' })}>by Abacus</h2>
+        <CmTitle>Welcome to &nbsp;</CmTitle>
+        <CmTitle>Hi?</CmTitle>
+        <h3>by Abacus</h3>
+        <p className={clsx('text-primary-700')}>Bye?</p>
       </div>
-      <CmButton className=" bg-purple-200">button</CmButton>
-      <CmButton color="primary">button</CmButton>
+      <CmButton className=" bg-purple-200">purple</CmButton>
+      <CmButton color="primary">primary</CmButton>
     </section>
   )
 }
@@ -95,6 +95,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
 ---
 
 ## 프로젝트 테마 설정
+
 우리가 마주하는 가장 큰 과제중 하나는 프로젝트의 테마를 설정하는 것입니다.  
 잘 만들어둔 컴포넌트들이 있어도, 테마를 설정하지 않으면 그 컴포넌트들은 아무런 의미가 없습니다.  
 프레임워크는 모든 컴포넌트들이 테마를 설정할 수 있도록 설계되어 있습니다.  

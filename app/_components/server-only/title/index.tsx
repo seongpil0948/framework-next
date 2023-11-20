@@ -1,4 +1,4 @@
-import { title } from '@/app/_components/server-only/primitives'
+import { title } from './theme'
 
 interface TitleProps {
   className?: string
