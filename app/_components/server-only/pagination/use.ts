@@ -1,5 +1,6 @@
+import { useMemo } from 'react'
 import { PaginationProps } from '@nextui-org/pagination'
-import { pagination } from '@/app/_components/server-only/primitives'
+import { pagination } from './theme'
 import clsx from 'clsx'
 
 type TUserCmPaginationReturn = {
@@ -11,13 +12,13 @@ export default function getCmPaginationProps(
 ): TUserCmPaginationReturn {
   return {
     paginationProps: {
+      classNames: {
+        base: clsx(pagination(), props.classNames?.base),
+      },
       isCompact: true,
       showControls: true,
       showShadow: true,
       color: 'primary',
-      classNames: {
-        base: clsx(pagination(), props.classNames?.base),
-      },
       ...props,
     },
   }

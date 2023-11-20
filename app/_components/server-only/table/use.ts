@@ -4,7 +4,7 @@ import { TableProps } from '@nextui-org/table'
 import { v4 } from 'uuid'
 
 import { useMemo } from 'react'
-import { tableWrapper, table } from '@/app/_components/server-only/primitives'
+import { tableWrapper, table } from './theme'
 
 interface IUseTableProps {
   tableProps: TableProps
