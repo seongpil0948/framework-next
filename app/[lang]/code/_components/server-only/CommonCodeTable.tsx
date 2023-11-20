@@ -11,11 +11,9 @@ import {
 } from '@nextui-org/table'
 import { Pagination } from '@nextui-org/pagination'
 import { Spinner } from '@nextui-org/spinner'
-import { fetcherJson } from '@/app/_utils/fetch'
-import { pagination } from '@/app/_components/server-only/primitives'
 import useCommonCode from '@/app/_utils/hooks/code'
-import useCmTable, { getCmPagination } from './table'
-import { use } from 'react'
+import useCmTable from '../../../../_components/server-only/table/use'
+import getCmPaginationProps from '@/app/_components/server-only/pagination/use'
 
 export default function CommonCodeTable(props: {
   page: number
@@ -39,6 +37,12 @@ export default function CommonCodeTable(props: {
   if (!data) return <div>Loading...</div>
   console.log('data', data)
   const { totalPage, data: bodyData, currentPage } = data.body
+  const { paginationProps } = getCmPaginationProps({
+    page: currentPage ?? 0,
+    total: totalPage ?? 0,
+    onChange: (page) => setPage && setPage(page),
+  })
+
   const isCompleted =
     bodyData && bodyData.length > 0 && totalPage && totalPage > 0
   const loadingState = isLoading ? 'loading' : error ? 'error' : 'idle'
@@ -47,17 +51,7 @@ export default function CommonCodeTable(props: {
     <Table
       {...tableProps}
       key={`common-code-table-${page}`}
-      bottomContent={
-        isCompleted ? (
-          <Pagination
-            {...getCmPagination({
-              page: currentPage,
-              total: totalPage,
-              onChange: (page) => setPage && setPage(page),
-            }).paginationProps}
-          />
-        ) : null
-      }
+      bottomContent={isCompleted ? <Pagination {...paginationProps} /> : null}
     >
       <TableHeader key={'common-code-table-header'}>
         <TableColumn key="code">코드</TableColumn>

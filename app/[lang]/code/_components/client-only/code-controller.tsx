@@ -1,10 +1,9 @@
 'use client'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import CommonCodeTable from '../server-only/CommonCodeTable'
 import GroupCodeTable from '../server-only/GroupCodeTable'
-import { TableProps } from '@nextui-org/table'
-import { tableWrapper,table } from '@/app/_components/server-only/primitives'
-import useCmTable from '../server-only/table'
+import { tableWrapper, table } from '@/app/_components/server-only/primitives'
+import useCmTable from '../../../../_components/server-only/table/use'
 
 export default function CodeController() {
   const [pageIndex, setPageIndex] = useState(1)
@@ -12,12 +11,12 @@ export default function CodeController() {
     string | undefined
   >()
   const [selectedCode, setSelectedCode] = useState<string | undefined>()
-  const {tableProps} = useCmTable({
-     tableProps: {}
-   })
+  const { tableProps } = useCmTable({
+    tableProps: {},
+  })
   const CmCodeTable = () =>
     selectedGroupCode ? (
-      <div className={table({isSplit: true})}>
+      <div className={table({ isSplit: true })}>
         <CommonCodeTable
           codeGroup={selectedGroupCode}
           page={pageIndex}

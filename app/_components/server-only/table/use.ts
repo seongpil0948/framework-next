@@ -1,10 +1,8 @@
 // 임시, #81 반영시 완료
 
 import { TableProps } from '@nextui-org/table'
-import { PaginationProps } from '@nextui-org/pagination'
 import { v4 } from 'uuid'
-import { pagination } from '@/app/_components/server-only/primitives'
-import clsx from 'clsx'
+
 import { useMemo } from 'react'
 import { tableWrapper, table } from '@/app/_components/server-only/primitives'
 
@@ -44,22 +42,5 @@ function useTableProps(props: IUseTableProps): TableProps {
     key: tableProps.key ?? v4(),
     classNames,
     removeWrapper: true,
-  }
-}
-
-export function getCmPagination(props: PaginationProps): {
-  paginationProps: PaginationProps
-} {
-  return {
-    paginationProps: {
-      isCompact: true,
-      showControls: true,
-      showShadow: true,
-      color: 'primary',
-      classNames: {
-        base: clsx(pagination(), props.classNames?.base),
-      },
-      ...props,
-    },
   }
 }
