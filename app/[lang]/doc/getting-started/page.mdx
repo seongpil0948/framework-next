@@ -1,6 +1,7 @@
-# What is this?
-
-[Next.js](https://nextjs.org/)를 기반으로 제작되었으며 애버커스의 프론트엔드 개발자들이 보다 빠르게 리액트 프로젝트를 시작 할 수 있도록 도와주는 템플릿입니다.
+# 소개 및 서론?
+이 프로젝트는 [Next.js](https://nextjs.org/)를 기반으로 제작되었으며 애버커스의 프론트엔드 개발자들이   
+보다 빠르게 리액트 프로젝트를 시작 할 수 있도록 도와주는 템플릿입니다.
+간편하게 프로젝트를 시작하고, 개발을 시작할 수 있습니다.  
 
 ---
 
@@ -77,13 +78,22 @@ export default async function SSGPage({ params: { lang } }: Param) {
 }
 ```
 
-### 3. 컴포넌트 선정 및 삽입
+### 3. 컴포넌트 선정 및 삽입(로컬서버)
 
 이미 프레임워크는 예시 컴포넌트 목록 페이지를 제공하고 있습니다.
 
 1. `pnpm storybook` 명령어를 통해 storybook 서버를 실행합니다.
 2. http://localhost:6006/ 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
+
+
+### 3. 컴포넌트 선정 및 삽입(배포서버)
+
+우리는 storybook 브랜치로 배포서버를 구축하였습니다.
+1. [스토리북 배포 서버](https://framework-next-git-storybook-seongpil0948.vercel.app/) 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
+
 ---
+
+
 ## 프로젝트 테마 설정
 우리가 마주하는 가장 큰 과제중 하나는 프로젝트의 테마를 설정하는 것입니다.  
 백날 잘 만들어둔 컴포넌트들이 있지만, 테마를 설정하지 않으면 그 컴포넌트들은 아무런 의미가 없습니다.  
@@ -95,7 +105,8 @@ export default async function SSGPage({ params: { lang } }: Param) {
 버튼의 radius를 변경하기 위해서는 `app/_components/server-only/primitives.ts` 파일을 열어, `button` 함수를 찾습니다.
 ### 전체 테마의 주요 컬러를 변경하기
 전체 테마의 주요 컬러를 변경하기 위해서는 `app/_components/server-only/primitives.ts` 파일을 열어, `color` 함수를 찾습니다.
-
+<br />
+변경된 테마를 확인해보세요
 
 
 ---
@@ -111,15 +122,14 @@ pnpm format:fix
 
 ### ESLint
 
-We recommend installing the [ESLint plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+우리는 일관된 코드 검사를 위해 [ESLint plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)를 권장합니다.
 
-You can find the enabled rules in the [ESLint config](https://github.com/vercel/next.js/blob/canary/.eslintrc.json)
+우리에게 필요한 룰이 있다면 [ESLint config](https://github.com/vercel/next.js/blob/canary/.eslintrc.json)를 참고해주세요.
 
 ### Prettier
 
-We recommend installing the [Prettier plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-You can find the format configuration in the [Prettier config](https://github.com/vercel/next.js/blob/canary/.prettierrc.json)
+우리는 일관된 코드 포맷팅을 위해 [Prettier plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)를 사용합니다.  
+우리에게 필요한 룰이 있다면 [Prettier config](https://github.com/vercel/next.js/blob/canary/.prettierrc.json)를 참고해주세요.  
 
 ## 마무리
 
