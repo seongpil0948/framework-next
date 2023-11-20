@@ -1,9 +1,9 @@
 'use client'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import CommonCodeTable from '../server-only/CommonCodeTable'
 import GroupCodeTable from '../server-only/GroupCodeTable'
-import { TableProps } from '@nextui-org/table'
-import { tableWrapper,table } from '@/app/_components/server-only/primitives'
+import { tableWrapper, table } from '@/app/_components/server-only/primitives'
+import useCmTable from '../../../../_components/server-only/table/use'
 
 export default function CodeController() {
   const [pageIndex, setPageIndex] = useState(1)
@@ -11,39 +11,27 @@ export default function CodeController() {
     string | undefined
   >()
   const [selectedCode, setSelectedCode] = useState<string | undefined>()
-  const classNames = useMemo<TableProps['classNames']>(
-    () => ({
-      base: [table()],
-      th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'],
-      td: [
-        'cursor-pointer',
-        'group-data-[first=true]:first:before:rounded-none',
-        'group-data-[first=true]:last:before:rounded-none',
-        'group-data-[middle=true]:before:rounded-none',
-        'group-data-[last=true]:first:before:rounded-none',
-        'group-data-[last=true]:last:before:rounded-none',
-      ],
-    }),
-    [],
-  )
+  const { tableProps } = useCmTable({
+    tableProps: {},
+  })
   const CmCodeTable = () =>
     selectedGroupCode ? (
-      <div className={table({isSplit: true})}>
+      <div className={table({ isSplit: true })}>
+        <CommonCodeTable
+          codeGroup={selectedGroupCode}
+          page={pageIndex}
+          setPage={(newPage) => setPageIndex(newPage)}
+          handleSelect={(code) => setSelectedCode(code)}
+          classNames={tableProps.classNames}
+        />
         <div className="hidden">
           <CommonCodeTable
             codeGroup={selectedGroupCode}
-            page={pageIndex}
-            setPage={(newPage) => setPageIndex(newPage)}
+            page={pageIndex + 1}
             handleSelect={(code) => setSelectedCode(code)}
-            classNames={classNames}
+            classNames={tableProps.classNames}
           />
         </div>
-        <CommonCodeTable
-          codeGroup={selectedGroupCode}
-          page={pageIndex + 1}
-          handleSelect={(code) => setSelectedCode(code)}
-          classNames={classNames}
-        />
       </div>
     ) : (
       <></>
@@ -54,13 +42,13 @@ export default function CodeController() {
         page={pageIndex}
         setPage={(newPage) => setPageIndex(newPage)}
         handleSelect={(code) => setSelectedGroupCode(code)}
-        classNames={classNames}
+        classNames={tableProps.classNames}
       />
       <div className="hidden">
         <GroupCodeTable
           page={pageIndex + 1}
           handleSelect={(code) => setSelectedGroupCode(code)}
-          classNames={classNames}
+          classNames={tableProps.classNames}
         />
       </div>
       <CmCodeTable />
