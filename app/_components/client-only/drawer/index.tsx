@@ -9,9 +9,9 @@ import {
   SheetProps,
 } from './sheet'
 import Icon from '@mdi/react'
-import { Button, ButtonProps } from '@nextui-org/button'
 import { useDisclosure } from '@nextui-org/modal'
 import { mdiMenuClose, mdiMenuOpen } from '@mdi/js'
+import CmButton from '@/app/_components/server-only/button'
 
 export default function CommonDrawer(props: {
   children: React.ReactNode
@@ -26,28 +26,17 @@ export default function CommonDrawer(props: {
   }
   return (
     <>
-      <Button isIconOnly onPress={handleClick} className="z-50">
+      <CmButton isIconOnly onPress={handleClick}>
         <Icon path={isOpen ? mdiMenuClose : mdiMenuOpen} size={1} />
-      </Button>
+      </CmButton>
+
       <Sheet isOpen={isOpen} onOpenChange={onOpenChange} {...sheetProps}>
         <SheetContent>
           {(onClose) => (
             <>
-              {title && (
-                <SheetHeader>
-                  {title}
-                </SheetHeader>
-              )}
+              {title && <SheetHeader>{title}</SheetHeader>}
               <SheetBody>{children}</SheetBody>
-              <SheetFooter>
-                {/* <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button> */}
-                {/* <Button color="primary" onPress={onClose}>
-                  Action
-                </Button> */}
-                © 2023 ACF
-              </SheetFooter>
+              <SheetFooter>© 2023 ACF</SheetFooter>
             </>
           )}
         </SheetContent>
