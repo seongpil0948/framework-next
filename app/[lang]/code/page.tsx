@@ -4,7 +4,7 @@ import { LoadingSuspense } from '@/app/_components/server-only/suspense'
 import CodeController from './_components/client-only/code-controller'
 import CmTitle from '@/app/_components/server-only/title'
 import CmSearch from '@/app/_components/server-only/search'
-import {CmDropdown} from '@/app/_components/server-only/dropdown'
+import CmSelect from '@/app/_components/client-only/select'
 import CmInput from '@/app/_components/server-only/input'
 
 export async function generateStaticParams() {
@@ -18,15 +18,24 @@ interface Param {
 export default async function SSGPage({ params: { lang } }: Param) {
   const dict = await getDictionary(lang)
   const searchItem = [
-      { value: 'value1', label: 'Label 1' },
-      { value: 'value2', label: 'Label 2' },
-    ]
+    { value: 'value1', label: 'Label 1' },
+    { value: 'value2', label: 'Label 2' },
+  ]
   return (
     <div>
       <CmTitle>{dict['code']['title']}</CmTitle>
       <CmSearch>
-          <CmDropdown label="검색 조건" labelPlacement="outside-left" dropdownItem={searchItem} className="w-xs [&>div]:flex-1" />
-        <CmInput label="검색어" labelPlacement="outside-left" className="[&>div]:w-full [&>div]:flex-1"/>
+        <CmSelect
+          label="검색 조건"
+          labelPlacement="outside-left"
+          dropdownItem={searchItem}
+          className="w-xs [&>div]:flex-1"
+        />
+        <CmInput
+          label="검색어"
+          labelPlacement="outside-left"
+          className="[&>div]:w-full [&>div]:flex-1"
+        />
       </CmSearch>
       <LoadingSuspense>
         <CodeController />

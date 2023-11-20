@@ -1,43 +1,43 @@
-"use client"
+'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Select, SelectItem, SelectProps } from '@nextui-org/select'
-import { CmChip } from '../chip'
-import CmButton from '../button'
-import { dropdown } from '@/app/_components/server-only/primitives'
+import { CmChip } from '../../server-only/chip'
+import CmButton from '../../server-only/button'
+import { select } from '../../server-only/primitives'
 
-interface DropdownItem {
+interface SelectItem {
   item?: string
   value?: string
   label?: string
   startContent?: React.ReactNode
 }
-interface DropdownProps {
-  className?: string
-  dropdownItem: DropdownItem[]
-  selectionMode?: 'single' | 'multiple'
+interface ICmSelectProps extends Omit<SelectProps, 'children'> {
+  // className?: string
+  dropdownItem: SelectItem[]
+  // selectionMode?: 'single' | 'multiple'
   triggerType?: 'input' | 'button'
-  selectedKeys?: SelectProps['selectedKeys']
-  disabledKeys?: SelectProps['disabledKeys']
-  defaultSelectedKeys?: SelectProps['defaultSelectedKeys']
-  size?: 'sm' | 'md' | 'lg'
-  placeholder?: string
-  label?: string
-  labelPlacement?: 'inside' | 'outside' | 'outside-left'
-  required?: boolean
-  disabled?: boolean
+  // selectedKeys?: SelectProps['selectedKeys']
+  // disabledKeys?: SelectProps['disabledKeys']
+  // defaultSelectedKeys?: SelectProps['defaultSelectedKeys']
+  // size?: 'sm' | 'md' | 'lg'
+  // placeholder?: string
+  // label?: string
+  // labelPlacement?: 'inside' | 'outside' | 'outside-left'
+  // required?: boolean
+  // disabled?: boolean
   readOnly?: boolean
-  selectorIcon?: React.ReactNode
-  isInvalid?: boolean
+  // selectorIcon?: React.ReactNode
+  // isInvalid?: boolean
   validationState?: 'valid' | 'invalid'
   errorMsg?: string
   successMsg?: string
   useChip?: boolean
-  isOpen?: boolean
-  onOpenChange?: (isOpen: boolean) => void
+  // isOpen?: boolean
+  // onOpenChange?: (isOpen: boolean) => void
 }
 
-export const CmDropdown = ({
+const CmSelect = ({
   className,
   dropdownItem,
   triggerType = 'input',
@@ -59,8 +59,8 @@ export const CmDropdown = ({
   successMsg = 'successMessage',
   useChip = false,
   ...props
-}: DropdownProps) => {
-  const [isOpen, setIsOpen] = React.useState(false)
+}: ICmSelectProps) => {
+  const [isOpen, setIsOpen] = useState(false)
   const dropdownBtn = () => (
     <CmButton onPress={() => setIsOpen(!isOpen)}>
       {isOpen ? 'Close' : 'Open'}
@@ -69,7 +69,7 @@ export const CmDropdown = ({
 
   return (
     <>
-      <div className={dropdown()}>
+      <div className={select()}>
         <Select
           className={className}
           isOpen={isOpen}
@@ -120,3 +120,5 @@ export const CmDropdown = ({
     </>
   )
 }
+
+export default CmSelect
