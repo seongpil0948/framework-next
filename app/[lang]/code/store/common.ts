@@ -1,8 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { TDetailCommonCode } from '../types'
-import { v4 } from 'uuid'
-import dayjs from 'dayjs'
-import { TDetailMode } from '@/types'
 
 interface ICodeState {
   selectedCode?: string

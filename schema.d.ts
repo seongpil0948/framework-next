@@ -467,6 +467,13 @@ export interface paths {
      */
     get: operations["getRoleApiList"];
   };
+  "/noties/excel": {
+    /**
+     * 알림 목록 엑셀 다운로드(jxls)
+     * @description jxls Template을 이용한 Excel 다운로드
+     */
+    get: operations["downloadNotfListExcel"];
+  };
   "/logout": {
     /**
      * 로그아웃
@@ -1460,6 +1467,21 @@ export interface components {
       /** @description 역할 리스트 */
       roleIds: string[];
     };
+    ComResponseDto: {
+      /**
+       * Format: int32
+       * @description httpStatusCode
+       */
+      httpStatusCode?: number;
+      /** @description code */
+      code?: string;
+      /** @description 응답 전문 메시지 */
+      message?: string;
+      detailMessage?: string;
+      status?: string;
+      /** @description 공통 응답 전문 body */
+      body?: Record<string, never>;
+    };
     /** @description 사용자에게 할당할 역할 아이디 목록 */
     UsrReadListResDto: {
       /** Format: int32 */
@@ -1795,10 +1817,7 @@ export interface components {
        */
       data: components["schemas"]["NotfReadResDto"][];
     };
-    /**
-     * @description 알림 조회
-     * @example 알림 목록 조회
-     */
+    /** @description 알림 조회 */
     NotfReadResDto: {
       /** Format: int32 */
       no?: number;
@@ -2063,21 +2082,33 @@ export interface components {
       menuScreenInfo?: components["schemas"]["LginUsrMenuDto"][];
     };
     ComResponseDtoVoid: {
-      /** Format: int32 */
+      /**
+       * Format: int32
+       * @description httpStatusCode
+       */
       httpStatusCode?: number;
+      /** @description code */
       code?: string;
+      /** @description 응답 전문 메시지 */
       message?: string;
       detailMessage?: string;
       status?: string;
+      /** @description 공통 응답 전문 body */
       body?: Record<string, never>;
     };
     ComResponseDtoString: {
-      /** Format: int32 */
+      /**
+       * Format: int32
+       * @description httpStatusCode
+       */
       httpStatusCode?: number;
+      /** @description code */
       code?: string;
+      /** @description 응답 전문 메시지 */
       message?: string;
       detailMessage?: string;
       status?: string;
+      /** @description 공통 응답 전문 body */
       body?: string;
     };
     MqttConnectionInfoDto: {
@@ -2652,10 +2683,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["UsrReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -2712,10 +2749,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["RoleReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -2808,10 +2851,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["RoleApiAuthReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -2899,10 +2948,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["NotfReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -2942,10 +2997,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["MenuReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -2984,10 +3045,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CucoReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3029,10 +3096,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CucoDeptReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3093,10 +3166,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CdReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3136,10 +3215,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CdGrpReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3178,10 +3263,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["FaqDetailResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3221,10 +3312,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["AnncDetailResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3264,10 +3361,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["AuthReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3351,10 +3454,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["ApiReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3433,10 +3542,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["UsrReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3478,10 +3593,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["RoleReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3544,10 +3665,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["NotfReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3602,10 +3729,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["MenuReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3761,10 +3894,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CucoReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3829,10 +3968,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CucoDeptReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3923,10 +4068,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CdReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -3968,10 +4119,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CdGrpReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4030,10 +4187,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["FaqReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4090,10 +4253,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["AnncReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4152,10 +4321,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["AuthReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4218,10 +4393,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["ApiReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4286,10 +4467,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["RoleMenuScrnMapgReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4312,11 +4499,43 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["RoleApiReadListResDto"];
         };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
+        };
+      };
+    };
+  };
+  /**
+   * 알림 목록 엑셀 다운로드(jxls)
+   * @description jxls Template을 이용한 Excel 다운로드
+   */
+  downloadNotfListExcel: {
+    parameters: {
+      query?: {
+        /** @description 알림 코드 */
+        notiId?: string;
+        /** @description 알림 타입 */
+        alarmType?: string;
+        /** @description 알림 내용 */
+        notiDescription?: string;
+        /** @description 사용여부(옵션) */
+        useYn?: string;
+        /** @description 변경 가능 여부(옵션) */
+        chgPsblYn?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
     };
   };
@@ -4356,10 +4575,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CucoUserReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4384,10 +4609,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CucoSiteReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4404,10 +4635,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
-          "application/json": components["schemas"]["CucoDeptReadResDto"][];
+          "application/json": components["schemas"]["CucoDeptReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4424,10 +4661,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
-          "application/json": components["schemas"]["CucoDeptReadResDto"][];
+          "application/json": components["schemas"]["CucoDeptReadResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4464,10 +4707,16 @@ export interface operations {
    */
   getSession: {
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["LginUsrSimpleInfoDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4516,10 +4765,16 @@ export interface operations {
    */
   getMqttConnectionInfo: {
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["MqttConnectionInfoDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
@@ -4595,10 +4850,16 @@ export interface operations {
       };
     };
     responses: {
-      /** @description OK */
+      /** @description Success body Dto schema */
       200: {
         content: {
           "application/json": components["schemas"]["CdCmmnReadListResDto"];
+        };
+      };
+      /** @description Default response */
+      default: {
+        content: {
+          "application/json": components["schemas"]["ComResponseDto"];
         };
       };
     };
