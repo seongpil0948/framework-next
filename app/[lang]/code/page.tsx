@@ -6,6 +6,7 @@ import CmTitle from '@/app/_components/server-only/title'
 import CmSearch from '@/app/_components/server-only/search'
 import CmSelect from '@/app/_components/client-only/select'
 import CmInput from '@/app/_components/server-only/input'
+import { ReduxCodeProvider } from './store/provider'
 
 export async function generateStaticParams() {
   return AVAIL_LOCALES.map((lang) => ({ lang }))
@@ -37,9 +38,9 @@ export default async function SSGPage({ params: { lang } }: Param) {
           className="[&>div]:w-full [&>div]:flex-1"
         />
       </CmSearch>
-      <LoadingSuspense>
+      <ReduxCodeProvider>
         <CodeController />
-      </LoadingSuspense>
+      </ReduxCodeProvider>
       {/* <p>{typeof window === 'undefined' ? 'server' : 'client'} component</p> */}
     </div>
   )

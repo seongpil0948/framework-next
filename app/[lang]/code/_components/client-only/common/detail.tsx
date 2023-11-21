@@ -1,12 +1,8 @@
 'use client'
 import { fetcherJson } from '@/app/_utils/fetch'
-import { paths } from '@/schema'
+
 import useSWR from 'swr'
-import CmInput from '@/app/_components/server-only/input'
-import {
-  LoadingComponent,
-  LoadingSuspense,
-} from '@/app/_components/server-only/suspense'
+import { LoadingComponent } from '@/app/_components/server-only/suspense'
 import { Button } from '@nextui-org/button'
 import {
   Modal,
@@ -15,28 +11,29 @@ import {
   ModalBody,
   ModalFooter,
   ModalProps,
+  useDisclosure,
 } from '@nextui-org/modal'
-import { Input } from '@nextui-org/input'
 import { TDetailMode } from '@/types'
-import { useState } from 'react'
-import { Checkbox } from '@nextui-org/checkbox'
-import { checkNotNull, length } from '@/app/_utils/validators'
-
-type TDetailCommonCode = {
-  // FIXME(sp): 백엔드 스웨거 수정 필요
-  body: paths['/codes/{codeGroup}/{code}']['get']['responses']['200']['content']['application/json']
-}
+import { TDetailCommonCodeResp } from '../../../types'
+import { CodeForm } from './form'
+import ConfirmModal from '@/app/_components/server-only/modal/confirm'
+import { useCodeDispatch, useCodeSelector } from '../../../store/store'
+import { setField, setMode } from '../../../store/common-code-form'
+import { useEffect } from 'react'
+import { mergeProps } from 'react-aria'
 
 export default function CommonCodeDetail(props: {
-  commonCode: string
-  groupCode: string
+  commonCode?: string
+  groupCode?: string
   modalProps?: Omit<ModalProps, 'children'>
-  initialMode?: TDetailMode
 }) {
-  const { commonCode, groupCode, modalProps, initialMode } = props
-  const [mode, setMode] = useState<TDetailMode>(initialMode ?? 'read')
+  console.log('rerender CommonCodeDetail')
+  const { commonCode, groupCode, modalProps } = props
+  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const dispatch = useCodeDispatch()
 
-  const { data, isLoading } = useSWR<TDetailCommonCode>(
+  const mode = useCodeSelector((state) => state.commonForm.mode)
+  const { data, isLoading } = useSWR<TDetailCommonCodeResp>(
     `${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/codes/${groupCode}/${commonCode}`,
     fetcherJson,
     {
@@ -45,14 +42,27 @@ export default function CommonCodeDetail(props: {
       suspense: true,
     },
   )
+  useEffect(() => {
+    if (
+      data?.body &&
+      commonCode === data.body.code &&
+      groupCode === data.body.codeGroup
+    ) {
+      dispatch(setField(data.body))
+    }
+  }, [commonCode, data?.body, dispatch, groupCode])
   if (isLoading || !data || !data.body) return <LoadingComponent />
-  const c = data.body
   const isEditable = mode === 'create' || mode === 'edit'
+
   return (
     <Modal
       isDismissable={false}
       isKeyboardDismissDisabled={false}
-      {...modalProps}
+      {...mergeProps(modalProps, {
+        onOpenChange: (isOpen: boolean) => {
+          if (!isOpen) dispatch(setMode('read'))
+        },
+      })}
     >
       <ModalContent>
         {(onClose) => (
@@ -61,7 +71,7 @@ export default function CommonCodeDetail(props: {
               mode,
             )}`}</ModalHeader>
             <ModalBody>
-              <CodeForm c={c} isEditable={isEditable} />
+              <CodeForm />
             </ModalBody>
             <ModalFooter>
               <Button color="warning" variant="light" onPress={onClose}>
@@ -76,91 +86,73 @@ export default function CommonCodeDetail(props: {
                 <Button
                   color="secondary"
                   onPress={() => {
-                    setMode('edit')
+                    dispatch(setMode('edit'))
                   }}
                 >
                   수정
                 </Button>
               )}
-              {mode !== 'read' && (
-                <Button color="primary" onPress={onClose}>
+              {isEditable && (
+                <Button color="primary" onPress={onOpen}>
                   제출
                 </Button>
               )}
             </ModalFooter>
+            <CodeConfirmModal isOpen={isOpen} onOpenChange={onOpenChange} />
           </>
         )}
       </ModalContent>
     </Modal>
   )
 }
-function getTitle(m: TDetailMode) {
+function CodeConfirmModal(props: {
+  isOpen?: boolean
+  onOpenChange?: () => void
+}) {
+  const { isOpen, onOpenChange } = props
+  const mode = useCodeSelector((state) => state.commonForm.mode)
+  const c = useCodeSelector((state) => state.commonForm.form)
+  return (
+    <ConfirmModal
+      title={getTitle(mode)}
+      body={getConfirmBody(mode)}
+      modalProps={{
+        isOpen,
+        onOpenChange,
+      }}
+      onConfirm={async () => {
+        console.log('confirm', c)
+      }}
+      onCancel={async () => {
+        console.log('cancel', c)
+      }}
+    />
+  )
+}
+
+function getConfirmBody(m: TDetailMode) {
   switch (m) {
     case 'create':
-      return 'Create'
-    case 'read':
-      return 'Detail'
+      return '코드를 등록 하시겠습니까?'
     case 'edit':
-      return 'Update'
+      return '코드를 수정 하시겠습니까?'
     case 'delete':
-      return 'Delete'
+      return '코드를 삭제 하시겠습니까?'
     default:
       return ''
   }
 }
-
-function CodeForm(props: {
-  c: TDetailCommonCode['body']
-  isEditable: boolean
-}) {
-  const { c, isEditable } = props
-  const [name, setName] = useState(c.codeName)
-  const [value, setValue] = useState(c.codeName)
-  const [useYn, setUseYn] = useState(c.useYn)
-  return (
-    <div>
-      <Input
-        label="Name"
-        placeholder="Enter code name"
-        variant="bordered"
-        value={name}
-        onValueChange={setName}
-        isReadOnly={!isEditable}
-        isClearable={isEditable}
-        isInvalid={!length(name, 3)}
-        errorMessage={!length(name, 3) ? '3자 이상 입력해주세요.' : undefined}
-        isRequired
-      />
-      <Input
-        label="Value"
-        placeholder="Enter Code value"
-        variant="bordered"
-        value={value}
-        onValueChange={setValue}
-        isReadOnly={!isEditable}
-        isClearable={isEditable}
-        isInvalid={!length(value, 3)}
-        errorMessage={!length(value, 3) ? '3자 이상 입력해주세요.' : undefined}
-        isRequired
-      />
-      <Checkbox
-        isSelected={useYn === 'Y'}
-        onValueChange={(isSelected) => {
-          setUseYn(isSelected ? 'Y' : 'N')
-        }}
-        isReadOnly={!isEditable}
-        isInvalid
-      >
-        사용여부
-      </Checkbox>
-      {!isEditable && (
-        <>
-          <Input label="등록정보" value={c.createDate} isDisabled />
-          <Input label="수정정보" value={c.updateDate} isDisabled />
-        </>
-      )}
-    </div>
-  )
+function getTitle(m: TDetailMode) {
+  switch (m) {
+    case 'create':
+      return '공통코드 생성'
+    case 'read':
+      return '공통코드 상세'
+    case 'edit':
+      return '공통코드 수정'
+    case 'delete':
+      return '공통코드 삭제'
+  }
 }
 
 /*

@@ -1,4 +1,3 @@
-import useSWR from 'swr'
 import {
   Table,
   TableHeader,
@@ -15,13 +14,15 @@ import useCommonCode from '@/app/_utils/hooks/code'
 import useCmTable from '../../../../_components/server-only/table/use'
 import getCmPaginationProps from '@/app/_components/server-only/pagination/use'
 
-export default function CommonCodeTable(props: {
+type Props = {
   page: number
   setPage?: (i: number) => void
   handleSelect: (code: string) => void
   classNames?: TableProps['classNames']
   codeGroup: string
-}) {
+}
+
+export default function CommonCodeTable(props: Props) {
   const { page, setPage, handleSelect, codeGroup } = props
   const { data, isLoading, error } = useCommonCode({
     params: { codeGroup, currentPage: page },
@@ -35,7 +36,6 @@ export default function CommonCodeTable(props: {
   })
 
   if (!data) return <div>Loading...</div>
-  console.log('data', data)
   const { totalPage, data: bodyData, currentPage } = data.body
   const { paginationProps } = getCmPaginationProps({
     page: currentPage ?? 0,
