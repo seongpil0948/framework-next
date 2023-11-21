@@ -1,10 +1,8 @@
 # 소개
 
-이 프로젝트는 [Next.js](https://nextjs.org/)를 기반으로 제작되었으며 애버커스의 프론트엔드 개발자들이   
+이 프로젝트는 [Next.js](https://nextjs.org/)를 기반으로 제작되었으며 애버커스의 프론트엔드 개발자들이  
 보다 빠르게 리액트 프로젝트를 시작 할 수 있도록 도와주는 템플릿입니다.  
-간편하게 프로젝트를 시작하고, 개발을 시작할 수 있습니다.  
-
----
+간편하게 프로젝트를 시작하고, 개발을 시작할 수 있습니다.
 
 ## 시작하기
 
@@ -29,8 +27,9 @@ pnpm install
 ```bash
 pnpm dev
 ```
+
 - http://localhost:3000 에 접속하여 확인해보세요.
--  원하는 에디터로 프로젝트를 열어보세요. (VSCode 권장)
+- 원하는 에디터로 프로젝트를 열어보세요. (VSCode 권장)
 
 ---
 
@@ -84,18 +83,21 @@ export default async function SSGPage({ params: { lang } }: Param) {
     </section>
   )
 }
-
 ```
+
 [http://localhost:3000/ko/test](http://localhost:3000/ko/test) 페이지에 접속하여 확인해보세요.  
 만약 moduelName 변수를 수정하셨다면 **test** 를 변경한 문자로 수정 후 접근해보세요.
 
 ---
+
 ### 3. 컴포넌트 선정 및 삽입(배포서버)
 
-우리는 storybook 브랜치로 컴포넌트 목록 페이지를 제공하고 있습니다.   
-기존 프레임워크와 다르게, 스토리북은 빌드 목록에 포함되지 않습니다.   
+우리는 storybook 브랜치로 컴포넌트 목록 페이지를 제공하고 있습니다.  
+기존 프레임워크와 다르게, 스토리북은 빌드 목록에 포함되지 않습니다.  
 즉 배포 용량을 줄이고, 배포 속도를 높이는 이점이 있습니다.
+
 1. [스토리북 배포 서버](https://framework-next-git-storybook-seongpil0948.vercel.app/) 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
+
 ---
 
 ## 프로젝트 테마 설정
@@ -105,11 +107,13 @@ export default async function SSGPage({ params: { lang } }: Param) {
 프레임워크는 모든 컴포넌트들이 테마를 설정할 수 있도록 설계되어 있습니다.  
 그럼, 테마를 변경해보겠습니다.
 
---- 
+---
+
 ### Primary 컬러 변경하기
+
 우리는 프로젝트의 주요 컬러를 `primary`라는 이름으로 `config/colors.ts` 파일에서 관리하고있습니다.
-__primary__ 컬러 와 __purple__ color를 변경해보겠습니다.
-위 파일의 내용을 다음과 같이 수정해주세요.  
+**primary** 컬러 와 **purple** color를 변경해보겠습니다.
+위 파일의 내용을 다음과 같이 수정해주세요.
 
 ```ts
 import { commonColors, semanticColors } from '@nextui-org/theme'
@@ -137,13 +141,11 @@ export { cmColors, cmSemanticColors }
 
 export type CommonColors = typeof cmColors
 export type SemanticColors = typeof cmSemanticColors
-
 ```
 
 서버를 재시작하고, [http://localhost:3000/ko/test](http://localhost:3000/ko/test)에서 변경된 테마를 확인해보세요.
 이와 같이 컬러와 더불어 모든 css 속성을 프로젝트에 맞게 변경할 수 있습니다.
 자세한 정보는 [css는 어떤 방식으로 사용하는 것이 효율적일까요?](https://github.com/seongpil0948/framework-next/discussions/21)를 참고해보세요!
-
 
 ---
 
@@ -165,10 +167,9 @@ pnpm format:fix
 ### Prettier
 
 우리는 일관된 코드 포맷팅을 위해 [Prettier plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)를 사용합니다.  
-우리에게 필요한 룰이 있다면 [Prettier config](https://github.com/vercel/next.js/blob/canary/.prettierrc.json)를 참고해주세요.  
+우리에게 필요한 룰이 있다면 [Prettier config](https://github.com/vercel/next.js/blob/canary/.prettierrc.json)를 참고해주세요.
 
 ## 마무리
-
 
 리액트를 도입하며 막막했을 동료들에게 도움이 되었으면 좋겠다는 마음으로
 여러 팀원들이 힘을 합쳐 만든 프레임워크입니다.  
@@ -178,8 +179,7 @@ pnpm format:fix
 누구든지 이 프레임워크에 기여할 수 있습니다.  
 [Contribute](/doc/guide/contribute) 문서를 확인하고 기여해주세요.
 
-
---- 
+---
 
 우리는 이제 Next.js 프로젝트를 시작할 준비가 되었습니다. 이제 프로젝트를 시작하고, 개발을 시작할 수 있습니다.  
 아래 링크를 확인하여, 더 자세히 알아보세요.
