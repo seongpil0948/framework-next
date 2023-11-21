@@ -1,12 +1,12 @@
 import { title } from './theme'
 
 interface TitleProps {
-  className?: string
   children?: any
+  size?: 'sm' | 'md' | 'lg'
 }
 
 export default function CmTitle(props: TitleProps) {
-  const { className = title(), children } = props
+  const { children, size = 'sm' } = props
 
-  return <h2 className={className}>{children}</h2>
+  return <h2 className={title({ size: size })}>{children}</h2>
 }

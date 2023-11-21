@@ -1,7 +1,14 @@
 import { tv } from '@nextui-org/theme'
 
 const title = tv({
-  base: 'inline-block text-2xl font-medium leading-8 mb-5',
+  base: 'inline-block',
+  variants: {
+    size: {
+      sm: 'text-2xl font-medium leading-8 mb-5',
+      md: 'text-5xl',
+      lg: 'text-7xl font-bold',
+    },
+  },
 })
 
 export { title }
