@@ -27,21 +27,3 @@ export const box = tv({
     },
   },
 })
-
-// Todo: CmTable 생성 이후 이동
-export const tableWrapper = tv({
-  base: 'table-wrapper flex mt-5',
-})
-
-export const table = tv({
-  base: 'table flex-1 h-full',
-  variants: {
-    isSplit: {
-      true: 'w-1/2 ml-5',
-    },
-  },
-})
-
-export const pagination = tv({
-  base: 'pagination mt-5',
-})

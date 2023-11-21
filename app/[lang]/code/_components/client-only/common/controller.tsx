@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { table } from '@/app/_components/server-only/primitives'
 import useCmTable from '@/app/_components/server-only/table/use'
 import { selectCommonCode } from '../../../store/common'
 import { useCodeDispatch, useCodeSelector } from '../../../store/store'
@@ -21,7 +20,7 @@ export default function CommonCodeController() {
 
   if (!selectedCodeGroup) return <></>
   const component = [
-    <div key="common-code-table" className={table({ isSplit: true })}>
+    <div key="common-code-table">
       <CommonCodeTable
         codeGroup={selectedCodeGroup}
         page={pageIndex}
