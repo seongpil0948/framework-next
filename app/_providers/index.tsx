@@ -10,6 +10,7 @@ import UserProvider from './user'
 import { useEffect } from 'react'
 import { I18nProvider } from 'react-aria'
 import { useRouter } from 'next/navigation'
+import CommonProvider from './common'
 // import { ErrorBoundary } from '../_utils/exceptions'
 
 export interface ProvidersProps {
@@ -30,22 +31,24 @@ export function Providers({ children, themeProps }: ProvidersProps) {
         {/* <ErrorBoundary fallback={VideoFallback} onError={onVideoError}> */}
         {/* Fixme as user locale */}
         <I18nProvider locale="ko">
-          <UserProvider>
-            <ReduxProvider>
-              <LoadingProvider>
-                {children}
-                <ToastContainer
-                  position="top-right"
-                  autoClose={false}
-                  pauseOnHover={false}
-                  hideProgressBar={false}
-                  theme={theme === 'dark' ? 'dark' : 'light'}
-                  newestOnTop={false}
-                  rtl={false}
-                />
-              </LoadingProvider>
-            </ReduxProvider>
-          </UserProvider>
+          <CommonProvider>
+            <UserProvider>
+              <ReduxProvider>
+                <LoadingProvider>
+                  {children}
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={false}
+                    pauseOnHover={false}
+                    hideProgressBar={false}
+                    theme={theme === 'dark' ? 'dark' : 'light'}
+                    newestOnTop={false}
+                    rtl={false}
+                  />
+                </LoadingProvider>
+              </ReduxProvider>
+            </UserProvider>
+          </CommonProvider>
         </I18nProvider>
         {/* </ErrorBoundary> */}
       </NextThemesProvider>
