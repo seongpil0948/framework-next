@@ -14,7 +14,8 @@ Node.js 버전 "18.12" 이상과 PNPM 버전 "8" 이상이 필요합니다.
 ### 1. 프로젝트 클론
 
 ```bash
-git clone https://gitlab.abacussw.co.kr/aiplatform/abacus-common-framework/framework-next.git
+git clone https://github.com/seongpil0948/framework-next.git
+cd framework-next
 ```
 
 ### 2. 의존성 설치
@@ -28,6 +29,8 @@ pnpm install
 ```bash
 pnpm dev
 ```
+- http://localhost:3000 에 접속하여 확인해보세요.
+-  원하는 에디터로 프로젝트를 열어보세요. (VSCode 권장)
 
 ---
 
@@ -35,14 +38,14 @@ pnpm dev
 
 ### 1. 페이지 생성
 
-`app/[lang]/{moudule-name}` 디렉토리에 page.tsx 파일을 생성합니다.
-아래 명령어의 test 부분을 원하는 페이지 이름으로 변경합니다.
+아래 명령어는 **app/[lang]/\{moduleName\}** 디렉토리에 **page.tsx** 파일을 생성합니다.  
+명령어의 test 부분을 원하는 페이지 이름으로 변경하여 실행 시켜보세요
 
 ```bash
 moduleName=test
-mkdir -p app/\[lang\]/$moduleName
-touch app/\[lang\]/$moduleName/page.tsx
-code app/\[lang\]/$moduleName/page.tsx
+mkdir -p ./app/\[lang\]/$moduleName
+touch ./app/\[lang\]/$moduleName/page.tsx
+code ./app/\[lang\]/$moduleName/page.tsx
 ```
 
 ---
@@ -83,7 +86,8 @@ export default async function SSGPage({ params: { lang } }: Param) {
 }
 
 ```
-[http://localhost:3000/ko/test](http://localhost:3000/ko/test) 페이지에 접속하여 확인해보세요.
+[http://localhost:3000/ko/test](http://localhost:3000/ko/test) 페이지에 접속하여 확인해보세요.  
+만약 moduelName 변수를 수정하셨다면 **test** 를 변경한 문자로 수정 후 접근해보세요.
 
 ---
 ### 3. 컴포넌트 선정 및 삽입(배포서버)

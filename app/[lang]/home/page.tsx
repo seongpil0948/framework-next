@@ -25,9 +25,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-lg justify-center text-center">
         <CmTitle>{dict['home']['description']['title']}&nbsp;</CmTitle>
-        <CmTitle>
-          {dict['home']['description']['summary']}
-        </CmTitle>
+        <CmTitle>{dict['home']['description']['summary']}</CmTitle>
       </div>
 
       <div className="flex gap-3">
@@ -44,16 +42,15 @@ export default async function SSGPage({ params: { lang } }: Param) {
         </Link> */}
         <AuthButton />
         <Link
-          isExternal
           as={NextLink}
-          href={siteConfig.links.docs}
+          href={`/doc/getting-started`}
           className={buttonStyles({
             color: 'primary',
             radius: 'full',
             variant: 'shadow',
           })}
         >
-          Documentation
+          Getting Started
         </Link>
         <Link
           isExternal
