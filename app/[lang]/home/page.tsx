@@ -9,6 +9,7 @@ import { UserProfile } from '../(auth)/_components/client-only/profile'
 import { AVAIL_LOCALES, TAvailLocale } from '@/config/system'
 import { getDictionary } from '../dictionaries'
 import CmButton from '@/app/_components/server-only/button'
+import HiButton from '@/app/_components/client-only/three-d/intro-button'
 
 export async function generateStaticParams() {
   return AVAIL_LOCALES.map((lang) => ({ lang }))
@@ -61,6 +62,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
           <GithubIcon size={20} />
           GitHub
         </Link>
+        <HiButton />
       </div>
 
       <div className="mt-8">
