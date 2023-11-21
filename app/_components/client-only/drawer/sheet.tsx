@@ -14,6 +14,7 @@ import { ModalSlots, SlotsToClasses } from '@nextui-org/theme'
 import { HTMLMotionProps } from 'framer-motion'
 import { clsx, type ClassValue } from 'clsx'
 import { useIsSSR } from '@react-aria/ssr'
+import { sheet } from './theme'
 
 export function cn(...inputs: ClassValue[]) {
   return clsx(inputs)
@@ -26,19 +27,20 @@ export interface SheetProps extends Omit<ModalProps, 'placement'> {
 export const Sheet = forwardRef<ElementRef<typeof Modal>, SheetProps>(
   ({ placement = 'left', classNames, ...props }, ref) => {
     const isLeft = placement == 'left'
+    const { backdrop, base, body, closeButton, footer, header } = sheet()
     const extendedClassNames = {
-      backdrop: cn('bg-gray-400/20',classNames?.backdrop),
-      base: cn('!m-0 h-full max-w-xs rounded-l-none rounded-r-xl shadow-xl', classNames?.base),
-      body: cn('px-4',classNames?.body),
-      closeButton: cn('top-3 right-4 rounded-md transition-all',classNames?.closeButton),
-      footer: cn('justify-start px-4 text-gray-400 text-xs',classNames?.footer),
-      header: cn('leading-8 px-4 py-3 pb-3',classNames?.header),
+      backdrop: cn(backdrop(), classNames?.backdrop),
+      base: cn(base(), classNames?.base),
+      body: cn(body(), classNames?.body),
+      closeButton: cn(closeButton(), classNames?.closeButton),
+      footer: cn(footer(), classNames?.footer),
+      header: cn(header(), classNames?.header),
       wrapper: cn(
         isLeft
           ? '!justify-start'
           : placement == 'right'
-          ? 'justify-end'
-          : 'auto',
+            ? 'justify-end'
+            : 'auto',
         classNames?.wrapper,
       ),
     } as SlotsToClasses<ModalSlots>

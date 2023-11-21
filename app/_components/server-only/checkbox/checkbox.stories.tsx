@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmCheckbox } from '.'
+import CmCheckbox from '.'
 
 export default {
   title: 'Components/Checkbox',
@@ -18,6 +18,9 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
+    required: {
+      control: 'boolean',
+    },
     size: {
       options: ['sm', 'md', 'lg'],
       control: 'select',
@@ -33,8 +36,20 @@ export default {
       ],
       control: 'select',
     },
-    validationState: {
-      options: ['valid', 'invalid'],
+    disabled: {
+      control: 'boolean',
+    },
+    readOnly: {
+      control: 'boolean',
+    },
+    errorMsg: {
+      control: 'text',
+    },
+    isInvalid: {
+      control: 'boolean',
+    },
+    orientation: {
+      options: ['vertical','horizontal'],
       control: 'radio',
     },
   },
@@ -42,7 +57,21 @@ export default {
 
 export const Default = {
   args: {
-    label: 'default',
-    seleted: true,
+    label: 'CheckboxGroup',
+    selected: ['cat'],
+    checkboxList: [
+      {
+        label: 'cat',
+        value: 'cat',
+      },
+      {
+        label: 'dog',
+        value: 'dog',
+      },
+      {
+        label: 'hotdog',
+        value: 'hotdog',
+      },
+    ],
   },
 }

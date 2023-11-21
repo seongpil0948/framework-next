@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react'
-import { CmDropdown } from '.'
+import CmSelect from '.'
 
 export default {
-  title: 'Components/Dropdown',
-  component: CmDropdown,
+  title: 'Components/Select',
+  component: CmSelect,
   parameters: {
     layout: 'centered',
     nextjs: {
@@ -30,7 +30,7 @@ export default {
       control: 'select',
     },
   },
-} satisfies Meta<typeof CmDropdown>
+} satisfies Meta<typeof CmSelect>
 
 export const Default = {
   args: {

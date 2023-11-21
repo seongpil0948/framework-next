@@ -25,7 +25,7 @@ export default function BlogLayout({
           </CommonDrawer>
         }
       ></CommonNavbar>
-      <main id="content-container" className={main()}>
+      <main id="content-container" className={main({size:'sm'})}>
         {children}
       </main>
     </div>

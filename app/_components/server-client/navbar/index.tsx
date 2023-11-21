@@ -5,10 +5,9 @@ import {
   NavbarBrand,
   NavbarItem,
 } from '@nextui-org/navbar'
-import { Button } from '@nextui-org/button'
+import { NavbarSlots, SlotsToClasses } from '@nextui-org/theme'
 import { Link } from '@nextui-org/link'
 import NextLink from 'next/link'
-
 import { ThemeSwitch } from '@/app/_components/client-only/theme-switch'
 import {
   TwitterIcon,
@@ -16,10 +15,15 @@ import {
   DiscordIcon,
   HeartFilledIcon,
 } from '@/app/_components/server-only/icons'
-
 import { Logo } from '@/app/_components/server-only/icons'
 import { THrefLinks } from '@/types'
-import { SearchInput } from '../client-only/input/search'
+import { SearchInput } from '@/app/_components/client-only/input/search'
+import { clsx, type ClassValue } from 'clsx'
+import { navbar } from './theme'
+
+export function cn(...inputs: ClassValue[]) {
+  return clsx(inputs)
+}
 
 export default function CommonNavbar(props: {
   navItems: THrefLinks
@@ -34,66 +38,68 @@ export default function CommonNavbar(props: {
   }
 }) {
   const { navItems, children, prefix, landingPath, links } = props
+  const { base, content, brand, item } = navbar()
+  const extendedClassNames = {
+    base: cn(base()),
+    content: cn(content()),
+    brand: cn(brand()),
+    item: cn(item()),
+  } as SlotsToClasses<NavbarSlots>
 
   return (
     <NextUINavbar
+      classNames={extendedClassNames}
       maxWidth="xl"
       position="sticky"
-      className="border-b border-slate-900/10 dark:border-slate-50/[0.06]"
     >
-      <NavbarContent className="gap-6 basis-1/5 sm:basis-full">
+      <NavbarContent>
         {prefix && prefix}
-        <NavbarBrand as="li" className="grow-0">
-          <NextLink className="flex-center-ver" href={landingPath}>
+        <NavbarBrand as="li">
+          <NextLink href={landingPath}>
             <Logo />
             <p className="font-bold">ACF</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden gap-6 md:flex">
+        <ul>
           {navItems.map((item) => (
             <NavbarItem key={item.href}>
-              <NextLink
-                className="data-[active=true]:text-primary data-[active=true]:font-medium text-sm"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
+              <NextLink href={item.href}>{item.label}</NextLink>
             </NavbarItem>
           ))}
         </ul>
         {children}
       </NavbarContent>
 
-      <NavbarContent className="flex basis-1/5 sm:basis-full" justify="end">
+      <NavbarContent justify="end">
         {links && (
-          <NavbarItem className="hidden sm:flex gap-2">
+          <NavbarItem>
             {links.twitter && (
               <Link isExternal href={links.twitter} aria-label="Twitter">
-                <TwitterIcon className="text-default-500" />
+                <TwitterIcon />
               </Link>
             )}
             {links.discord && (
               <Link isExternal href={links.discord} aria-label="Discord">
-                <DiscordIcon className="text-default-500" />
+                <DiscordIcon />
               </Link>
             )}
             {links.github && (
               <Link isExternal href={links.github} aria-label="Github">
-                <GithubIcon className="text-default-500" />
+                <GithubIcon />
               </Link>
             )}
           </NavbarItem>
         )}
-        <NavbarItem className="hidden lg:flex">
+        <NavbarItem>
           <SearchInput />
         </NavbarItem>
         <ThemeSwitch />
-        {links?.sponsor && (
-          <NavbarItem className="hidden md:flex">
+        {/* {links?.sponsor && (
+          <NavbarItem>
             <Button
               isExternal
               as={Link}
-              className="text-sm font-normal text-default-600 bg-default-100"
+              className="bg-default-100 text-sm font-normal text-default-600"
               href={links.sponsor}
               startContent={<HeartFilledIcon className="text-danger" />}
               variant="flat"
@@ -101,7 +107,7 @@ export default function CommonNavbar(props: {
               Contribute
             </Button>
           </NavbarItem>
-        )}
+        )} */}
       </NavbarContent>
 
       {/* <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
