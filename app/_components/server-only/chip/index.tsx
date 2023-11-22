@@ -1,33 +1,36 @@
-import React, { useState } from 'react'
-import { Chip } from '@nextui-org/chip'
+import React from 'react'
+import { Chip, ChipProps } from '@nextui-org/chip'
 import { PressEvent } from 'react-aria'
 
-interface ChipProps {
-  content?: string
-  size?: 'sm' | 'md' | 'lg'
-  radius?: 'sm' | 'md' | 'lg' | 'full'
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  variant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow' | 'dot'
-  disabled?: boolean
+interface CmChipProps {
+  className?: ChipProps['className']
+  children: ChipProps['children']
+  size?: ChipProps['size']
+  radius?: ChipProps['radius']
+  color?: ChipProps['color']
+  variant?: ChipProps['variant']
+  disabled?: ChipProps['isDisabled']
   readOnly?: boolean
-  onClose?: () => void
   isDelete?: boolean
+  onClose?: () => void
 }
 
-export const CmChip = ({
-  content,
+export default function CmChip({
+  children,
+  className,
   size = 'md',
   radius = 'full',
   color = 'default',
   variant = 'flat',
   disabled = false,
   readOnly = false,
-  onClose,
   isDelete = false,
+  onClose,
   ...props
-}: ChipProps) => {
+}: CmChipProps) {
   return (
     <Chip
+      className={className}
       size={size}
       radius={radius}
       color={color}
@@ -35,7 +38,7 @@ export const CmChip = ({
       isDisabled={disabled}
       onClose={isDelete ? () => console.log('close') : undefined}
     >
-      {content}
+      {children}
     </Chip>
   )
 }

@@ -49,7 +49,7 @@ export default {
       control: 'boolean',
     },
     orientation: {
-      options: ['vertical','horizontal'],
+      options: ['vertical', 'horizontal'],
       control: 'radio',
     },
   },
@@ -58,10 +58,11 @@ export default {
 export const Default = {
   args: {
     label: 'default',
+    selected: ['selected'],
     radioList: [
-      { label: 'Cat', value: 'cat' },
-      { label: 'Dog', value: 'dog' },
-      { label: 'Elephant', value: 'elephant', disabled: true },
+      { label: 'default', value: 'default' },
+      { label: 'selected', value: 'selected' },
+      { label: 'disabled', value: 'disabled', disabled: true },
     ],
   },
 }

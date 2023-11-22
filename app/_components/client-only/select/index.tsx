@@ -1,9 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { Select, SelectItem, SelectProps } from '@nextui-org/select'
+import {
+  Select,
+  SelectItem,
+  SelectProps,
+  SelectItemProps,
+} from '@nextui-org/select'
 import { SelectSlots, SlotsToClasses } from '@nextui-org/theme'
-import { CmChip } from '../../server-only/chip'
+import CmChip from '../../server-only/chip'
 import { clsx, type ClassValue } from 'clsx'
 import CmButton from '../../server-only/button'
 import { select } from './theme'
@@ -12,46 +17,42 @@ export function cn(...inputs: ClassValue[]) {
   return clsx(inputs)
 }
 
-interface SelectItem {
-  item?: string
-  value?: string
-  label?: string
-  startContent?: React.ReactNode
-}
-
 interface ICmSelectProps extends Omit<SelectProps, 'children'> {
-  // className?: string
-  dropdownItem: SelectItem[]
-  // selectionMode?: 'single' | 'multiple'
+  selectItem: Array<{
+    id: SelectItemProps['key']
+    title: SelectItemProps['title']
+    value?: SelectItemProps['textValue']
+    startContent?: SelectItemProps['startContent']
+  }>
+  className?: SelectProps['className']
+  selectionMode?: SelectProps['selectionMode']
   triggerType?: 'input' | 'button'
-  // selectedKeys?: SelectProps['selectedKeys']
-  // disabledKeys?: SelectProps['disabledKeys']
-  // defaultSelectedKeys?: SelectProps['defaultSelectedKeys']
-  // size?: 'sm' | 'md' | 'lg'
-  // placeholder?: string
-  // label?: string
-  // labelPlacement?: 'inside' | 'outside' | 'outside-left'
-  // required?: boolean
-  // disabled?: boolean
+  disabledKeys?: SelectProps['disabledKeys']
+  selectedKeys?: SelectProps['selectedKeys']
+  size?: SelectProps['size']
+  placeholder?: SelectProps['placeholder']
+  label?: SelectProps['label']
+  labelPlacement?: SelectProps['labelPlacement']
+  required?: SelectProps['isRequired']
+  disabled?: SelectProps['isDisabled']
   readOnly?: boolean
-  // selectorIcon?: React.ReactNode
-  // isInvalid?: boolean
-  validationState?: 'valid' | 'invalid'
-  errorMsg?: string
+  selectorIcon?: SelectProps['selectorIcon']
+  isInvalid?: SelectProps['isInvalid']
+  errorMsg?: SelectProps['errorMessage']
+  valid?: boolean
   successMsg?: string
   useChip?: boolean
-  // isOpen?: boolean
-  // onOpenChange?: (isOpen: boolean) => void
+  isOpen?: SelectProps['isOpen']
+  onOpenChange?: SelectProps['onOpenChange']
 }
 
-const CmSelect = ({
+export default function CmSelect({
   className,
-  dropdownItem,
+  selectItem,
   triggerType = 'input',
   selectionMode = 'single',
-  selectedKeys,
   disabledKeys,
-  defaultSelectedKeys,
+  selectedKeys,
   size = 'md',
   placeholder = '선택해주세요.',
   label,
@@ -61,75 +62,92 @@ const CmSelect = ({
   readOnly = false,
   selectorIcon,
   isInvalid = false,
-  validationState,
+  valid = false,
   errorMsg = 'errorMessage',
   successMsg = 'successMessage',
   useChip = false,
   ...props
-}: ICmSelectProps) => {
+}: ICmSelectProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const { base } = select()
+  const { base, innerWrapper, value } = select({ size })
   const extendedClassNames = {
-    base: cn(base()),
+    base: cn(`${readOnly ? 'pointer-events-none' : base()}`),
+    innerWrapper: cn(innerWrapper()),
+    value: cn(value()),
   } as SlotsToClasses<SelectSlots>
-  const dropdownBtn = () => (
-    <CmButton onPress={() => setIsOpen(!isOpen)}>
+
+  const selectBtn = () => (
+    <CmButton
+      onPress={() => setIsOpen(!isOpen)}
+      className={`${readOnly ? 'pointer-events-none' : ''}, ${
+        disabled ? 'opacity-disabled' : ''
+      }`}
+    >
       {isOpen ? 'Close' : 'Open'}
     </CmButton>
   )
 
   return (
-    <>
-      <div>
-        <Select
-          classNames={extendedClassNames}
-          isOpen={isOpen}
-          onOpenChange={(open) => open !== isOpen && setIsOpen(open)}
-          items={dropdownItem}
-          selectionMode={selectionMode}
-          disabledKeys={disabledKeys}
-          selectedKeys={selectedKeys}
-          defaultSelectedKeys={defaultSelectedKeys}
-          size={size}
-          placeholder={placeholder}
-          label={label}
-          labelPlacement={labelPlacement}
-          isRequired={required}
-          isDisabled={disabled}
-          selectorIcon={selectorIcon}
-          isInvalid={isInvalid === true || validationState === 'invalid'}
-          errorMessage={
-            (isInvalid === true || validationState === 'invalid') && errorMsg
-          }
-          renderValue={
-            useChip
-              ? (items) => {
-                  return (
-                    <div className="flex gap-2">
-                      {items.map((item: any) => (
-                        <CmChip key={item.value} content={item.data.label} />
-                      ))}
-                    </div>
-                  )
-                }
-              : undefined
-          }
-        >
-          {(item) => (
-            <SelectItem
-              key={`dropdown-item-key-${item.value}`}
-              textValue={item.value}
-              startContent={item.startContent}
-            >
-              {item.label}
-            </SelectItem>
-          )}
-        </Select>
-        {triggerType === 'button' && dropdownBtn()}
-      </div>
-      {validationState === 'valid' && <p>{successMsg}</p>}
-    </>
+    <div className={select.base}>
+      <Select
+        classNames={extendedClassNames}
+        isOpen={isOpen}
+        onOpenChange={(open) => open !== isOpen && setIsOpen(open)}
+        items={selectItem}
+        selectionMode={selectionMode}
+        disabledKeys={disabledKeys}
+        defaultSelectedKeys={selectedKeys}
+        size={size}
+        placeholder={placeholder}
+        label={label}
+        labelPlacement={labelPlacement}
+        isRequired={required}
+        isDisabled={disabled}
+        selectorIcon={selectorIcon}
+        isInvalid={isInvalid === true && valid === false}
+        errorMessage={isInvalid === true && valid === false && errorMsg}
+        renderValue={
+          useChip
+            ? (chips) => {
+                return (
+                  <div>
+                    {chips.map((chip: any) => (
+                      <CmChip key={chip.key}>
+                        {chip.data.startContent && (
+                          <span>{chip.data.startContent}</span>
+                        )}
+                        <span>{chip.data.title}</span>
+                      </CmChip>
+                    ))}
+                  </div>
+                )
+              }
+            : (items) => {
+                return (
+                  <div>
+                    {items.map((item: any) => (
+                      <div key={`select-item-key-${item.id}`}>
+                        {item.data.startContent && (
+                          <span>{item.data.startContent}</span>
+                        )}
+                        <span className="!inline-block">{item.data.title}</span>
+                      </div>
+                    ))}
+                  </div>
+                )
+              }
+        }
+      >
+        {(item) => (
+          <SelectItem
+            key={`select-item-key-${item.id}`}
+            title={item.title}
+            id={item.value}
+            startContent={item.startContent}
+          />
+        )}
+      </Select>
+      {triggerType === 'button' && selectBtn()}
+    </div>
   )
 }
-
-export default CmSelect

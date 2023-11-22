@@ -25,6 +25,9 @@ interface CmRadioGroupProps {
   isInvalid?: RadioGroupProps['isInvalid']
   valid?: boolean
   orientation?: RadioGroupProps['orientation']
+  selectedValue?: RadioGroupProps['value']
+  selected?: string
+  onValueChange?: (value: string) => void
 }
 
 export default function CmRadio({
@@ -40,8 +43,14 @@ export default function CmRadio({
   isInvalid = false,
   valid = false,
   orientation = 'vertical',
+  selected,
+  onValueChange,
   ...props
 }: CmRadioGroupProps) {
+  const [selectedValue, setSelected] = React.useState(
+    selected ? selected[0] : undefined,
+  )
+
   return (
     <>
       <RadioGroup
@@ -52,10 +61,10 @@ export default function CmRadio({
         isDisabled={disabled}
         isReadOnly={readOnly}
         isInvalid={isInvalid && valid === false}
-        errorMessage={
-          isInvalid === true && valid === false && errorMsg
-        }
+        errorMessage={isInvalid === true && valid === false && errorMsg}
         orientation={orientation}
+        value={selectedValue}
+        onValueChange={setSelected}
       >
         {radioList.map((radio) => (
           <Radio

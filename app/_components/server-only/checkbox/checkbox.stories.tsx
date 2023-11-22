@@ -49,7 +49,7 @@ export default {
       control: 'boolean',
     },
     orientation: {
-      options: ['vertical','horizontal'],
+      options: ['vertical', 'horizontal'],
       control: 'radio',
     },
   },
@@ -58,19 +58,25 @@ export default {
 export const Default = {
   args: {
     label: 'CheckboxGroup',
-    selected: ['cat'],
+    selected: ['selected', 'selected and disabled'],
     checkboxList: [
       {
-        label: 'cat',
-        value: 'cat',
+        label: 'default',
+        value: 'default',
       },
       {
-        label: 'dog',
-        value: 'dog',
+        label: 'selected',
+        value: 'selected',
       },
       {
-        label: 'hotdog',
-        value: 'hotdog',
+        label: 'disabled',
+        value: 'disabled',
+        disabled: true,
+      },
+      {
+        label: 'selected and disabled',
+        value: 'selected and disabled',
+        disabled: true,
       },
     ],
   },

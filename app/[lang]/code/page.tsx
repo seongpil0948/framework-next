@@ -19,8 +19,8 @@ interface Param {
 export default async function SSGPage({ params: { lang } }: Param) {
   const dict = await getDictionary(lang)
   const searchItem = [
-    { value: 'value1', label: 'Label 1' },
-    { value: 'value2', label: 'Label 2' },
+    { id: 'id1', value: 'value1', title: 'Title 1' },
+    { id: 'id2', value: 'value2', title: 'Title 2' },
   ]
   return (
     <div>
@@ -29,7 +29,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
         <CmSelect
           label="검색 조건"
           labelPlacement="outside-left"
-          dropdownItem={searchItem}
+          selectItem={searchItem}
           className="w-xs [&>div]:flex-1"
         />
         <CmInput
