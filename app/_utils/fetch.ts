@@ -15,7 +15,7 @@ export async function fetcher(input: RequestInfo, init?: RequestInit) {
 
   // if (
   //   url.startsWith(process.env.NEXT_PUBLIC_BACKEND_BASE_PATH) &&
-  //   process.env.NEXT_PUBLIC_ACF_ENV !== "local"
+  //   process.env.NEXT_PUBLIC_ENV !== "local"
   // ) {
   //   url = process.env.NEXT_PUBLIC_BACKEND_URL + url;
   //   console.log("[fetching] backend url: ", url);
