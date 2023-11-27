@@ -46,8 +46,6 @@ touch ./app/\[lang\]/$moduleName/page.tsx
 code ./app/\[lang\]/$moduleName/page.tsx
 ```
 
----
-
 ### 2. 페이지 컴포넌트 작성
 
 아래 코드를 붙여넣습니다.
@@ -87,7 +85,6 @@ export default async function SSGPage({ params: { lang } }: Param) {
 [http://localhost:3000/ko/test](http://localhost:3000/ko/test) 페이지에 접속하여 확인해보세요.  
 만약 moduelName 변수를 수정하셨다면 **test** 를 변경한 문자로 수정 후 접근해보세요.
 
----
 
 ### 3. 컴포넌트 선정 및 삽입(배포서버)
 
@@ -98,6 +95,152 @@ export default async function SSGPage({ params: { lang } }: Param) {
 1. [스토리북 배포 서버](https://framework-next-git-storybook-seongpil0948.vercel.app/) 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
 
 ---
+## 새로운 컴포넌트 추가하기
+우리는 컴포넌트를 추가할 때, 스토리북을 사용합니다.  
+다른 팀원들은 스토리북을 통해 컴포넌트를 확인하고, 사용할 수 있습니다.
+
+### 1. 컴포넌트 생성
+가장 기본적인 버튼 컴포넌트를 생성 해보겠습니다.
+`app/_components/server-only/button-test/index.tsx` 파일을 생성하고, 아래 코드를 붙여넣습니다.
+
+```tsx
+import React, { forwardRef } from 'react'
+import { Button, ButtonProps } from '@nextui-org/button'
+
+interface CmButtonProps extends ButtonProps {
+  ref?: ButtonProps['ref']
+  className?: ButtonProps['className']
+  children?: ButtonProps['children']
+  variant?: ButtonProps['variant']
+  color?: ButtonProps['color']
+  size?: ButtonProps['size']
+  radius?: ButtonProps['radius']
+  fullWidth?: ButtonProps['fullWidth']
+  startContent?: ButtonProps['startContent']
+  endContent?: ButtonProps['endContent']
+  isIconOnly?: ButtonProps['isIconOnly']
+  disabled?: ButtonProps['disabled']
+  onPress?: ButtonProps['onPress']
+}
+
+export const CmButtonTest = forwardRef<HTMLButtonElement, CmButtonProps>(
+  (
+    {
+      children,
+      className,
+      variant = 'solid',
+      color = 'default',
+      size = 'md',
+      radius = 'md',
+      fullWidth = false,
+      isIconOnly = false,
+      disabled = false,
+      startContent,
+      endContent,
+      onPress,
+      ...props
+    }: CmButtonProps,
+    ref?: React.ForwardedRef<HTMLButtonElement>,
+  ) => {
+    return (
+      <Button
+        ref={ref}
+        className={className}
+        variant={variant}
+        color={color}
+        size={size}
+        radius={radius}
+        fullWidth={fullWidth}
+        startContent={startContent}
+        endContent={endContent}
+        isIconOnly={isIconOnly}
+        isDisabled={disabled}
+        onPress={onPress}
+        {...props}
+      >
+        {children}
+      </Button>
+    )
+  },
+)
+
+CmButtonTest.displayName = 'CmButtonTest'
+
+export default CmButtonTest
+```
+
+### 2. 스토리 생성
+스토리북은 컴포넌트를 확인하고, 사용할 수 있도록 도와줍니다.
+`app/_components/server-only/button-test/button.stories.tsx` 파일을 생성하고, 아래 코드를 붙여넣습니다.
+
+```tsx
+import { Meta } from '@storybook/react'
+import CmButtonTest from '.'
+import { HeadphonesIcon } from '@nextui-org/shared-icons'
+
+export default {
+  title: 'Components/ButtonTest',
+  component: CmButtonTest,
+  parameters: {
+    layout: 'centered',
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: '/profile',
+        query: {
+          user: 'santa',
+        },
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+    },
+    color: {
+      control: { type: 'select' },
+    },
+    size: {
+      control: { type: 'select' },
+    },
+    fullWidth: {
+      control: { type: 'boolean' },
+    },
+    radius: {
+      control: { type: 'select' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+  },
+} as Meta<typeof CmButtonTest>
+
+export const Default = {
+  args: {
+    children: 'button',
+  },
+}
+
+export const IconOnly = {
+  args: {
+    isIconOnly: true,
+    children: <HeadphonesIcon className="h-5 w-5" />,
+  },
+}
+
+```
+
+### 3. 스토리북 실행
+아래 명령어를 실행하여 스토리북을 실행합니다.
+
+```bash
+pnpm storybook
+```
+[http://localhost:6006/](http://localhost:6006/)에 접속하여 확인해보세요.  
+좌측 메뉴에 우리가 만든 ButtonTest 컴포넌트가 보이는 것을 확인할 수 있습니다.
+클릭하여 컴포넌트를 확인해보세요.
+
 
 ## 프로젝트 테마 설정
 
@@ -155,9 +298,9 @@ export type SemanticColors = typeof cmSemanticColors
 
 ## Linting
 
-애버커스는 [ESLint](https://eslint.org), [Prettier](https://prettier.io/) 를 사용하여 코드를 검사, 통일화합니다.  
-코드 포맷 공통화는 불필요한 커밋을 줄이고, 코드를 읽기 쉽게 만들어줍니다.
-아래 명령어를 실행하여 다 포맷 해버리세요.
+프로젝트 기여전 먼저 해야할 일 중 하나는 자신의 의도와 다른 코드수정이 일어나지 않도록 하는 것입니다.  
+이를 위해 우리는 코드 검사를 통해 코드를 통일화하고, 불필요한 커밋을 줄입니다.
+우리팀은 [ESLint](https://eslint.org), [Prettier](https://prettier.io/) 를 사용하고있습니다.  
 
 ```bash
 pnpm format:fix
