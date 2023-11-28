@@ -67,7 +67,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...props}
       />
     ),
-    ol: (props) => <ul className="mb-5 ml-5 mt-2 list-decimal" {...props} />,
+    ol: (props) => (
+      <ul
+        className="mb-5 ml-5 mt-2 list-decimal [&>li:before]:mr-4 [&>li:before]:content-['']"
+        {...props}
+      />
+    ),
     p: (props) => (
       <p className="text-md my-5 font-normal leading-7" {...props} />
     ),
