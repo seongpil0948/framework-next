@@ -21,7 +21,7 @@ interface Param {
 
 export default async function SSGPage({ params: { lang } }: Param) {
   const dict = await getDictionary(lang)
-  const storyComp = () => <CmButton>button</CmButton>
+  const storyComp = () => <CmButton>{dict['button']['button']}</CmButton>
   return (
     <section className="flex-center-col">
       <div className="inline-block justify-center text-center">
@@ -64,7 +64,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
             variant: 'shadow',
           })}
         >
-          Getting Started
+          {dict['button']['started']}
         </Link>
         <Link
           isExternal
