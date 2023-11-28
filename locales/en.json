@@ -1,21 +1,30 @@
 {
-  "status": {
-    "success": "Success",
-    "fail": "Fail"
+  "button": {
+    "button": "Button",
+    "started": "Getting Started"
+  },
+  "code": {
+    "title": "Abacus Common Code"
+  },
+  "home": {
+    "description": {
+      "by": "by Team Convergence",
+      "summary1": "ACF is a framework for building web applications with a focus on expressive, elegant syntax.",
+      "summary2": "We believe development must be an enjoyable, creative experience to be truly fulfilling.",
+      "summary3": "ACF attempts to take the pain out of development by easing common tasks used in the majority of web projects",
+      "title": "ACF"
+    }
+  },
+  "login": {
+    "signIn": "Sign In",
+    "signOut": "SignOut",
+    "signUp": "Sign Up"
   },
   "manifest": {
     "title": "Abacus"
   },
-  "home": {
-    "description": {
-      "title": "ACF",
-      "by": "by Team Convergence",
-      "summary1": "ACF is a framework for building web applications with a focus on expressive, elegant syntax.",
-      "summary2": "We believe development must be an enjoyable, creative experience to be truly fulfilling.",
-      "summary3": "ACF attempts to take the pain out of development by easing common tasks used in the majority of web projects"
-    }
-  },
-  "code": {
-    "title": "Abacus Common Code"
+  "status": {
+    "success": "Success",
+    "fail": "Fail"
   }
 }
