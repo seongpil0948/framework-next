@@ -5,7 +5,7 @@ export const layout = tv({
 })
 
 export const main = tv({
-  base: 'flex-grow min-w-full pt-20 px-14 relative',
+  base: 'flex-grow pt-36 px-8 relative',
   variants: {
     size: {
       sm: 'px-8 pt-6 pb-8',
@@ -26,22 +26,4 @@ export const box = tv({
       true: '[&>div]:flex-center [&>div]:flex-1 [&>div]:w-full [&>div]:gap-16 px-6 py-5 gap-20',
     },
   },
-})
-
-// Todo: CmTable 생성 이후 이동
-export const tableWrapper = tv({
-  base: 'table-wrapper flex mt-5',
-})
-
-export const table = tv({
-  base: 'table flex-1 h-full',
-  variants: {
-    isSplit: {
-      true: 'w-1/2 ml-5',
-    },
-  },
-})
-
-export const pagination = tv({
-  base: 'pagination mt-5',
 })

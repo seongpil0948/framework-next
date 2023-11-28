@@ -1,12 +1,11 @@
 'use client'
 
-import { tableWrapper } from '@/app/_components/server-only/primitives'
 import GroupCodeTable from '../server-only/GroupCodeTable'
 import CommonCodeController from './common/controller'
 import { useState } from 'react'
 import { useCodeDispatch } from '../../store/store'
 import { selectCommonCode, selectGroupCode } from '../../store/common'
-import useCmTable from '@/app/_components/server-only/table/use'
+import useCmTable from '../../../../_components/server-only/table/use'
 
 export default function CodeController() {
   const [pageIndex, setPageIndex] = useState(1)
@@ -15,7 +14,7 @@ export default function CodeController() {
     tableProps: {},
   })
   return (
-    <div className={tableWrapper()}>
+    <div>
       <GroupCodeTable
         page={pageIndex}
         setPage={(newPage) => setPageIndex(newPage)}

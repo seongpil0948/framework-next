@@ -13,6 +13,7 @@ declare namespace NodeJS {
 
     readonly PRODUCTION_ENV_VARIABLE: string
     readonly NEXT_PUBLIC_PRODUCTION_ENV_VARIABLE: string
-    readonly NEXT_PUBLIC_ACF_ENV: 'local' | 'development' | 'production'
+    readonly NEXT_PUBLIC_ENV: 'local' | 'development' | 'production'
+    readonly NEXT_PUBLIC_PROXY_BASE_URL: string
   }
 }

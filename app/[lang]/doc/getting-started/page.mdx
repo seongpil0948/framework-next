@@ -1,14 +1,11 @@
 # 소개
-
-이 프로젝트는 [Next.js](https://nextjs.org/)를 기반으로 제작되었으며 애버커스의 프론트엔드 개발자들이   
-보다 빠르게 리액트 프로젝트를 시작 할 수 있도록 도와주는 템플릿입니다.  
-간편하게 프로젝트를 시작하고, 개발을 시작할 수 있습니다.  
+애버커스의 프론트엔드 개발자들이 React 프로젝트를 보다 빠르게 시작할 수 있도록 돕기 위해 [Next.js](https://nextjs.org/) 기반의 템플릿을 제작했습니다.  
+이 템플릿은 매 프로젝트마다 프레임워크를 새로 제작하는 번거로움을 줄이고, 장소와 시간에 구애받지 않고 해결된 문제점을 공유합니다.  
+이를 통해 개발자는 같은 문제를 반복적으로 겪지 않고, 보다 완성도 높은 프로젝트를 진행할 수 있습니다.
 
 ---
-
 ## 시작하기
-
-Node.js 버전 "18.12" 이상과 PNPM 버전 "8" 이상이 필요합니다.
+먼저 Node.js 버전 "18.12" 이상과 PNPM 버전 "8" 이상이 필요합니다.  
 최신 버전의 Node.js를 설치하려면 [Node.js 공식 홈페이지](https://nodejs.org/ko/)를 참고하세요.
 
 ### 1. 프로젝트 클론
@@ -29,8 +26,9 @@ pnpm install
 ```bash
 pnpm dev
 ```
-- http://localhost:3000 에 접속하여 확인해보세요.
--  원하는 에디터로 프로젝트를 열어보세요. (VSCode 권장)
+
+- [http://localhost:3000](http://localhost:3000)에 접속하여 확인해보세요.
+- 원하는 에디터로 프로젝트를 열어보세요. (VSCode 권장)
 
 ---
 
@@ -47,8 +45,6 @@ mkdir -p ./app/\[lang\]/$moduleName
 touch ./app/\[lang\]/$moduleName/page.tsx
 code ./app/\[lang\]/$moduleName/page.tsx
 ```
-
----
 
 ### 2. 페이지 컴포넌트 작성
 
@@ -84,20 +80,168 @@ export default async function SSGPage({ params: { lang } }: Param) {
     </section>
   )
 }
-
 ```
+
 [http://localhost:3000/ko/test](http://localhost:3000/ko/test) 페이지에 접속하여 확인해보세요.  
 만약 moduelName 변수를 수정하셨다면 **test** 를 변경한 문자로 수정 후 접근해보세요.
 
----
+
 ### 3. 컴포넌트 선정 및 삽입(배포서버)
 
-우리는 storybook 브랜치로 컴포넌트 목록 페이지를 제공하고 있습니다.   
-기존 프레임워크와 다르게, 스토리북은 빌드 목록에 포함되지 않습니다.   
+우리는 storybook 브랜치로 컴포넌트 목록 페이지를 제공하고 있습니다.  
+기존 프레임워크와 다르게, 스토리북은 빌드 목록에 포함되지 않습니다.  
 즉 배포 용량을 줄이고, 배포 속도를 높이는 이점이 있습니다.
-1. [스토리북 배포 서버](https://framework-next-git-storybook-seongpil0948.vercel.app/) 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
----
 
+1. [스토리북 배포 서버](https://framework-next-git-storybook-seongpil0948.vercel.app/) 에 접속하여 원하는 컴포넌트를 선정, 삽입합니다.
+
+---
+## 새로운 컴포넌트 추가하기
+우리는 컴포넌트를 추가할 때, 스토리북을 사용합니다.  
+다른 팀원들은 스토리북을 통해 컴포넌트를 확인하고, 사용할 수 있습니다.
+
+### 1. 컴포넌트 생성
+가장 기본적인 버튼 컴포넌트를 생성 해보겠습니다.
+`app/_components/server-only/button-test/index.tsx` 파일을 생성하고, 아래 코드를 붙여넣습니다.
+
+```tsx
+import React, { forwardRef } from 'react'
+import { Button, ButtonProps } from '@nextui-org/button'
+
+interface CmButtonProps extends ButtonProps {
+  ref?: ButtonProps['ref']
+  className?: ButtonProps['className']
+  children?: ButtonProps['children']
+  variant?: ButtonProps['variant']
+  color?: ButtonProps['color']
+  size?: ButtonProps['size']
+  radius?: ButtonProps['radius']
+  fullWidth?: ButtonProps['fullWidth']
+  startContent?: ButtonProps['startContent']
+  endContent?: ButtonProps['endContent']
+  isIconOnly?: ButtonProps['isIconOnly']
+  disabled?: ButtonProps['disabled']
+  onPress?: ButtonProps['onPress']
+}
+
+export const CmButtonTest = forwardRef<HTMLButtonElement, CmButtonProps>(
+  (
+    {
+      children,
+      className,
+      variant = 'solid',
+      color = 'default',
+      size = 'md',
+      radius = 'md',
+      fullWidth = false,
+      isIconOnly = false,
+      disabled = false,
+      startContent,
+      endContent,
+      onPress,
+      ...props
+    }: CmButtonProps,
+    ref?: React.ForwardedRef<HTMLButtonElement>,
+  ) => {
+    return (
+      <Button
+        ref={ref}
+        className={className}
+        variant={variant}
+        color={color}
+        size={size}
+        radius={radius}
+        fullWidth={fullWidth}
+        startContent={startContent}
+        endContent={endContent}
+        isIconOnly={isIconOnly}
+        isDisabled={disabled}
+        onPress={onPress}
+        {...props}
+      >
+        {children}
+      </Button>
+    )
+  },
+)
+
+CmButtonTest.displayName = 'CmButtonTest'
+
+export default CmButtonTest
+```
+
+### 2. 스토리 생성
+스토리북은 컴포넌트를 확인하고, 사용할 수 있도록 도와줍니다.
+`app/_components/server-only/button-test/button.stories.tsx` 파일을 생성하고, 아래 코드를 붙여넣습니다.
+
+```tsx
+import { Meta } from '@storybook/react'
+import CmButtonTest from '.'
+import { HeadphonesIcon } from '@nextui-org/shared-icons'
+
+export default {
+  title: 'Components/ButtonTest',
+  component: CmButtonTest,
+  parameters: {
+    layout: 'centered',
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: '/profile',
+        query: {
+          user: 'santa',
+        },
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+    },
+    color: {
+      control: { type: 'select' },
+    },
+    size: {
+      control: { type: 'select' },
+    },
+    fullWidth: {
+      control: { type: 'boolean' },
+    },
+    radius: {
+      control: { type: 'select' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+  },
+} as Meta<typeof CmButtonTest>
+
+export const Default = {
+  args: {
+    children: 'button',
+  },
+}
+
+export const IconOnly = {
+  args: {
+    isIconOnly: true,
+    children: <HeadphonesIcon className="h-5 w-5" />,
+  },
+}
+
+```
+
+### 3. 스토리북 실행
+아래 명령어를 실행하여 스토리북을 실행합니다.
+
+```bash
+pnpm storybook
+```
+[http://localhost:6006/](http://localhost:6006/)에 접속하여 확인해보세요.  
+좌측 메뉴에 우리가 만든 ButtonTest 컴포넌트가 보이는 것을 확인할 수 있습니다.
+클릭하여 컴포넌트를 확인해보세요.
+
+---
 ## 프로젝트 테마 설정
 
 우리가 마주하는 가장 큰 과제중 하나는 프로젝트의 테마를 설정하는 것입니다.  
@@ -105,15 +249,19 @@ export default async function SSGPage({ params: { lang } }: Param) {
 프레임워크는 모든 컴포넌트들이 테마를 설정할 수 있도록 설계되어 있습니다.  
 그럼, 테마를 변경해보겠습니다.
 
---- 
+
 ### Primary 컬러 변경하기
+
 우리는 프로젝트의 주요 컬러를 `primary`라는 이름으로 `config/colors.ts` 파일에서 관리하고있습니다.
-__primary__ 컬러 와 __purple__ color를 변경해보겠습니다.
-위 파일의 내용을 다음과 같이 수정해주세요.  
+**primary** 컬러 와 **purple** color를 변경해보겠습니다.
+위 파일의 내용을 다음과 같이 수정해주세요.
 
 ```ts
 import { commonColors, semanticColors } from '@nextui-org/theme'
 
+commonColors.cyan = {
+  ...commonColors.red,
+}
 commonColors.purple = {
   ...commonColors.red,
 }
@@ -138,19 +286,20 @@ export { cmColors, cmSemanticColors }
 export type CommonColors = typeof cmColors
 export type SemanticColors = typeof cmSemanticColors
 
+
 ```
 
-서버를 재시작하고, [http://localhost:3000/ko/test](http://localhost:3000/ko/test)에서 변경된 테마를 확인해보세요.
+서버를 **재시작**하고, [http://localhost:3000/ko/test](http://localhost:3000/ko/test)에서 변경된 테마를 확인해보세요.
 이와 같이 컬러와 더불어 모든 css 속성을 프로젝트에 맞게 변경할 수 있습니다.
 자세한 정보는 [css는 어떤 방식으로 사용하는 것이 효율적일까요?](https://github.com/seongpil0948/framework-next/discussions/21)를 참고해보세요!
-
 
 ---
 
 ## Linting
 
-애버커스는 [ESLint](https://eslint.org), [Prettier](https://prettier.io/) 를 사용하여 코드를 검사, 통일화합니다.  
-모든 코드를 린트하려면 다음을 실행할 수 있습니다.
+프로젝트 기여전 먼저 해야할 일 중 하나는 자신의 의도와 다른 코드수정이 일어나지 않도록 하는 것입니다.  
+이를 위해 우리는 코드 검사를 통해 코드를 통일화하고, 불필요한 커밋을 줄입니다.
+우리팀은 [ESLint](https://eslint.org), [Prettier](https://prettier.io/) 를 사용하고있습니다.  
 
 ```bash
 pnpm format:fix
@@ -165,21 +314,16 @@ pnpm format:fix
 ### Prettier
 
 우리는 일관된 코드 포맷팅을 위해 [Prettier plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)를 사용합니다.  
-우리에게 필요한 룰이 있다면 [Prettier config](https://github.com/vercel/next.js/blob/canary/.prettierrc.json)를 참고해주세요.  
+우리에게 필요한 룰이 있다면 [Prettier config](https://github.com/vercel/next.js/blob/canary/.prettierrc.json)를 참고해주세요.
 
 ## 마무리
 
-
-리액트를 도입하며 막막했을 동료들에게 도움이 되었으면 좋겠다는 마음으로
-여러 팀원들이 힘을 합쳐 만든 프레임워크입니다.  
-아직 부족한 부분이 많고, 개선해야 할 부분이 많습니다.
-또한 많은 팀들이 프로젝트를 진행하며 시행착오를 많이 겪게 될 것 입니다.
-서로가 서로에게 도움이 될 수 있도록 이 프레임워크를 함께 발전시켜 나가면 좋겠습니다.
-누구든지 이 프레임워크에 기여할 수 있습니다.  
+리액트를 도입하며 막막했을 동료들에게 도움이 되었으면 좋겠다는 마음으로 여러 팀원들이 힘을 합쳐 만든 프레임워크입니다.  
+아직 부족한 부분이 많고, 개선해야 할 부분이 많습니다. 또한 많은 팀들이 프로젝트를 진행하며 시행착오를 많이 겪게 될 것 입니다.  
+누구든지 이 프레임워크에 기여할 수 있습니다. 서로가 서로에게 도움이 될 수 있도록 이 프레임워크를 함께 발전시켜 나가면 좋겠습니다.  
 [Contribute](/doc/guide/contribute) 문서를 확인하고 기여해주세요.
 
-
---- 
+---
 
 우리는 이제 Next.js 프로젝트를 시작할 준비가 되었습니다. 이제 프로젝트를 시작하고, 개발을 시작할 수 있습니다.  
 아래 링크를 확인하여, 더 자세히 알아보세요.

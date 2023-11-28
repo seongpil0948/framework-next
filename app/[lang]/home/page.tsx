@@ -9,6 +9,7 @@ import { UserProfile } from '../(auth)/_components/client-only/profile'
 import { AVAIL_LOCALES, TAvailLocale } from '@/config/system'
 import { getDictionary } from '../dictionaries'
 import CmButton from '@/app/_components/server-only/button'
+import HiButton from '@/app/_components/client-only/three-d/intro-button'
 
 export async function generateStaticParams() {
   return AVAIL_LOCALES.map((lang) => ({ lang }))
@@ -20,17 +21,30 @@ interface Param {
 
 export default async function SSGPage({ params: { lang } }: Param) {
   const dict = await getDictionary(lang)
-  const storyComp = () => <CmButton>button</CmButton>
+  const storyComp = () => <CmButton>{dict['button']['button']}</CmButton>
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-lg justify-center text-center">
-        <CmTitle>{dict['home']['description']['title']}&nbsp;</CmTitle>
-        <CmTitle>{dict['home']['description']['summary']}</CmTitle>
+    <section className="flex-center-col">
+      <div className="inline-block justify-center text-center">
+        <div className="flex-center-col">
+          <CmTitle className="m-auto" size="lg">
+            Abacus Convergence
+          </CmTitle>
+          <CmTitle size="lg" gradient>
+            {dict['home']['description']['title']}&nbsp;
+          </CmTitle>
+        </div>
+        <p className="mb-12 mt-6 max-w-6xl text-xl text-default-500">
+          {dict['home']['description']['summary1']}
+          <br />
+          {dict['home']['description']['summary2']}
+          <br />
+          {dict['home']['description']['summary3']}
+        </p>
       </div>
+      <HiButton />
 
-      <div className="flex gap-3">
-        {storyComp()}
-        {/* <Link
+      {/* {storyComp()} */}
+      {/* <Link
           href="/signin"
           className={buttonStyles({
             color: "primary",
@@ -40,7 +54,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
         >
           Login
         </Link> */}
-        <AuthButton />
+      {/* <AuthButton />
         <Link
           as={NextLink}
           href={`/doc/getting-started`}
@@ -50,7 +64,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
             variant: 'shadow',
           })}
         >
-          Getting Started
+          {dict['button']['started']}
         </Link>
         <Link
           isExternal
@@ -61,11 +75,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
           <GithubIcon size={20} />
           GitHub
         </Link>
-      </div>
-
-      <div className="mt-8">
-        <UserProfile />
-      </div>
+        <UserProfile /> */}
     </section>
   )
 }

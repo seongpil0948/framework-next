@@ -1,7 +1,6 @@
 'use client'
-import { fetcherJson } from '@/app/_utils/fetch'
 
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 import { LoadingComponent } from '@/app/_components/server-only/suspense'
 import { Button } from '@nextui-org/button'
 import {
@@ -21,6 +20,10 @@ import { useCodeDispatch, useCodeSelector } from '../../../store/store'
 import { setField, setMode } from '../../../store/common-code-form'
 import { useEffect } from 'react'
 import { mergeProps } from 'react-aria'
+import { toast } from 'react-toastify'
+import { paramToQuery } from '@/app/_utils'
+import { useCommonCode } from '../../../hooks/code'
+import useFetcher from '@/app/_utils/hooks/fetch'
 
 export default function CommonCodeDetail(props: {
   commonCode?: string
@@ -31,6 +34,7 @@ export default function CommonCodeDetail(props: {
   const { commonCode, groupCode, modalProps } = props
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const dispatch = useCodeDispatch()
+  const { fetcherJson } = useFetcher()
 
   const mode = useCodeSelector((state) => state.commonForm.mode)
   const { data, isLoading } = useSWR<TDetailCommonCodeResp>(
@@ -112,6 +116,12 @@ function CodeConfirmModal(props: {
   const { isOpen, onOpenChange } = props
   const mode = useCodeSelector((state) => state.commonForm.mode)
   const c = useCodeSelector((state) => state.commonForm.form)
+  const codeGroup = useCodeSelector(
+    (state) => state.codeSlice.selectedCodeGroup,
+  )
+  const commonCode = useCodeSelector((state) => state.codeSlice.selectedCode)
+  const { put } = useCommonCode()
+
   return (
     <ConfirmModal
       title={getTitle(mode)}
@@ -122,6 +132,26 @@ function CodeConfirmModal(props: {
       }}
       onConfirm={async () => {
         console.log('confirm', c)
+        try {
+          if (mode === 'create') {
+            throw new Error('not implemented')
+            // await repoCommonCode.post(c)
+          } else if (mode === 'edit') {
+            await put(c.codeGroup, c.code, c)
+          }
+          await mutate(
+            paramToQuery(`${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/codes`, {
+              codeGroup,
+            }),
+          )
+          await mutate(
+            `${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/codes/${codeGroup}/${commonCode}`,
+          )
+          toast.success('성공적으로 처리되었습니다.')
+        } catch (e) {
+          console.error(e)
+          toast.error('처리중 오류가 발생했습니다.')
+        }
       }}
       onCancel={async () => {
         console.log('cancel', c)

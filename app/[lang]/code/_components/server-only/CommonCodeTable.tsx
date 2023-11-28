@@ -10,7 +10,7 @@ import {
 } from '@nextui-org/table'
 import { Pagination } from '@nextui-org/pagination'
 import { Spinner } from '@nextui-org/spinner'
-import useCommonCode from '@/app/_utils/hooks/code'
+import { useCommonCodeSwr } from '@/app/[lang]/code/hooks/code'
 import useCmTable from '../../../../_components/server-only/table/use'
 import getCmPaginationProps from '@/app/_components/server-only/pagination/use'
 
@@ -24,7 +24,7 @@ type Props = {
 
 export default function CommonCodeTable(props: Props) {
   const { page, setPage, handleSelect, codeGroup } = props
-  const { data, isLoading, error } = useCommonCode({
+  const { data, isLoading, error } = useCommonCodeSwr({
     params: { codeGroup, currentPage: page },
   })
 
@@ -35,7 +35,7 @@ export default function CommonCodeTable(props: Props) {
     },
   })
 
-  if (!data) return <div>Loading...</div>
+  if (!data || !data.body) return <div>Loading...</div>
   const { totalPage, data: bodyData, currentPage } = data.body
   const { paginationProps } = getCmPaginationProps({
     page: currentPage ?? 0,

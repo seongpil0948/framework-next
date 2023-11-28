@@ -2,6 +2,7 @@ import React from 'react'
 import { Pagination, PaginationProps } from '@nextui-org/pagination'
 
 interface CmPaginationProps {
+  classNames?: PaginationProps['classNames']
   color?: PaginationProps['color']
   type?: PaginationProps['variant']
   size?: PaginationProps['size']
@@ -16,6 +17,7 @@ interface CmPaginationProps {
 }
 
 export default function CmPagination({
+  classNames,
   color = 'primary',
   type = 'flat',
   size = 'md',
@@ -30,6 +32,7 @@ export default function CmPagination({
 }: CmPaginationProps) {
   return (
     <Pagination
+      classNames={classNames}
       color={color}
       variant={type}
       size={size}

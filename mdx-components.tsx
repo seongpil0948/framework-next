@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { parseNumber } from './app/_utils'
 import { Link as NextLink } from '@nextui-org/link'
 import { Snippet } from '@nextui-org/snippet'
+// import CmTitle from '@/app/_components/server-only/title'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -10,44 +11,44 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: (props: React.HTMLAttributes<HTMLAnchorElement>) => <Link {...props} />,
     blockquote: (props) => (
       <blockquote
-        className="[&>p]:m-0 border bg-default-200/20 border-default-200 dark:border-default-100 my-6 py-3 px-4 rounded-xl"
+        className="my-6 rounded-xl border border-default-200 bg-default-200/20 px-4 py-3 dark:border-default-100 [&>p]:m-0"
         {...props}
       />
     ),
     code: (props) => (
       <code
-        className="after:content-['`'] before:content-['`'] bg-transparent font-mono font-normal h-fit inline-block py-0 px-0 rounded-small text-sky-400 text-small whitespace-nowrap"
+        className="inline-block h-fit whitespace-nowrap rounded-small bg-transparent px-0 py-0 font-mono text-small font-normal text-sky-400 before:content-['`'] after:content-['`']"
         {...props}
       />
     ),
     h1: (props) => (
       <h1
-        className="dark:text-slate-200 font-extrabold mb-8 sm:text-4xl text-slate-900 text-3xl tracking-tight"
+        className="mb-5 text-5xl font-bold leading-tight text-slate-900 dark:text-slate-200"
         {...props}
       />
     ),
     h2: (props) => (
       <h2
-        className="dark:text-slate-200 font-bold mb-4 mt-8 text-slate-900 text-2xl tracking-tight"
+        className="my-10 text-3xl font-bold text-slate-900 dark:text-slate-200"
         {...props}
       />
     ),
     h3: (props) => (
       <h3
-        className="dark:text-slate-200 font-semibold mb-3 mt-8 text-slate-900 text-xl"
+        className="mb-8 mt-10 text-2xl font-semibold text-slate-900 dark:text-slate-200"
         {...props}
       />
     ),
     h4: (props) => (
       <h4
-        className="dark:text-slate-200 font-semibold leading-6 mb-2 text-slate-900 text-sm"
+        className="mb-2 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-200"
         {...props}
       />
     ),
     hr: (props) => (
       <div
         {...props}
-        className="bg-slate-900 dark:bg-default-100 h-px my-8 w-full"
+        className="my-8 h-px w-full bg-slate-400 dark:bg-default-100"
       />
     ),
     img: (props) => (
@@ -60,20 +61,32 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         height={parseNumber(props.height, 100)}
       />
     ),
-    li: (props) => <li className="my-px" {...props} />,
-    ol: (props) => <ul className="list-decimal mb-5 ml-5 mt-2" {...props} />,
-    p: (props) => <p className="break-keep font-normal my-3" {...props} />,
+    li: (props) => (
+      <li
+        className="text-md mb-2 leading-6 [&:before]:mr-6 [&:before]:content-['-']"
+        {...props}
+      />
+    ),
+    ol: (props) => (
+      <ul
+        className="mb-5 ml-5 mt-2 list-decimal [&>li:before]:mr-4 [&>li:before]:content-['']"
+        {...props}
+      />
+    ),
+    p: (props) => (
+      <p className="text-md my-5 font-normal leading-7" {...props} />
+    ),
     pre: (props) => {
       return (
-        <Snippet size="sm" hideSymbol className="w-full">
-          <span className="inline-flex leading-5 p-2.5 whitespace-pre-wrap">
+        <Snippet size="sm" hideSymbol className="my-10 flex w-full">
+          <span className="flex whitespace-pre-wrap p-7 text-sm leading-6">
             {props.children}
           </span>
         </Snippet>
       )
     },
     ul: (props) => (
-      <ul className="[blockquote_&]:my-0 list-disc mb-5 ml-5 mt-2" {...props} />
+      <ul className="my-5 list-none [blockquote_&]:my-0" {...props} />
     ),
   }
 }
