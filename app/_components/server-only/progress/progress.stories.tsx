@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmProgress } from '.'
+import CmProgress from '.'
 
 export default {
   title: 'Components/Progress',
@@ -19,6 +19,14 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     color: {
+      option: [
+        'default',
+        'primary',
+        'secondary',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: 'select',
     },
     size: {
@@ -26,7 +34,17 @@ export default {
       control: 'select',
     },
     radius: {
+      options: ['none', 'sm', 'md', 'lg', 'full'],
       control: 'select',
+    },
+    disableAnimation: {
+      control: 'boolean',
+    },
+    isLoof: {
+      control: 'boolean',
+    },
+    maxValue: {
+      control: 'number',
     },
   },
 } satisfies Meta<typeof CmProgress>
@@ -37,7 +55,3 @@ export const Default = {
     value: 77,
   },
 }
-// export const Circular = {
-//   args: {
-//   },
-// }

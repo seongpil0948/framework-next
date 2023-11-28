@@ -1,19 +1,19 @@
 import React from 'react'
-import { Progress } from '@nextui-org/progress'
+import { Progress, ProgressProps } from '@nextui-org/progress'
 
-interface ProgressProps {
-  color?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
-  size?: 'sm' | 'md' | 'lg'
-  radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-  value?: number
-  maxValue?: number
+interface CmProgressProps {
+  color?: ProgressProps['color']
+  size?: ProgressProps['size']
+  radius?: ProgressProps['radius']
+  value?: ProgressProps['value']
+  maxValue?: ProgressProps['maxValue']
   ariaLabel: string
-  label?: string
-  disableAnimation?: boolean
-  isLoof?: boolean
+  label?: ProgressProps['label']
+  disableAnimation?: ProgressProps['disableAnimation']
+  isLoof?: ProgressProps['isIndeterminate']
 }
 
-export const CmProgress = ({
+export default function CmProgress({
   color = 'primary',
   radius = 'md',
   size = 'md',
@@ -24,7 +24,7 @@ export const CmProgress = ({
   disableAnimation = false,
   isLoof = false,
   ...props
-}: ProgressProps) => {
+}: CmProgressProps) {
   return (
     <Progress
       color={color}

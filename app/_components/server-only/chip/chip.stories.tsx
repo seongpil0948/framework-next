@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react'
-import { CmChip } from '.'
+import CmChip from '.'
 
 export default {
   title: 'Components/Chip',
@@ -18,6 +18,10 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
+    radius: {
+      options: ['sm', 'md', 'lg', 'full'],
+      control: 'select',
+    },
     color: {
       options: [
         'default',
@@ -29,10 +33,6 @@ export default {
       ],
       control: 'select',
     },
-    radius: {
-      options: ['sm', 'md', 'lg', 'full'],
-      control: 'select',
-    },
     variant: {
       options: ['solid', 'bordered', 'light', 'flat', 'faded', 'shadow', 'dot'],
       control: 'select',
@@ -40,6 +40,12 @@ export default {
     size: {
       options: ['sm', 'md', 'lg'],
       control: 'select',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    className: {
+      control: 'text',
     },
   },
 } satisfies Meta<typeof CmChip>
