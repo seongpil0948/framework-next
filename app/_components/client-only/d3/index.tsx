@@ -1,7 +1,6 @@
 'use client'
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import * as d3 from 'd3'
-import Tooltip from './tooltip'
 
 interface DataItem {
   year: string
