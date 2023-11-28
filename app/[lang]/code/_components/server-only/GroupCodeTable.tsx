@@ -11,9 +11,9 @@ import {
 } from '@nextui-org/table'
 import { Pagination } from '@nextui-org/pagination'
 import { Spinner } from '@nextui-org/spinner'
-import { fetcherJson } from '@/app/_utils/fetch'
 import useCmTable from '../../../../_components/server-only/table/use'
 import getCmPaginationProps from '@/app/_components/server-only/pagination/use'
+import useFetcher from '@/app/_utils/hooks/fetch'
 
 export default function GroupCodeTable(props: {
   page: number
@@ -22,7 +22,7 @@ export default function GroupCodeTable(props: {
   classNames?: TableProps['classNames']
 }) {
   const { page, setPage, handleSelect } = props
-
+  const { fetcherJson } = useFetcher()
   const { tableProps } = useCmTable({
     tableProps: {
       'aria-label': 'Group Code Table',

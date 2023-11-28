@@ -1,5 +1,4 @@
 'use client'
-import { fetcherJson } from '@/app/_utils/fetch'
 
 import useSWR, { mutate } from 'swr'
 import { LoadingComponent } from '@/app/_components/server-only/suspense'
@@ -21,9 +20,10 @@ import { useCodeDispatch, useCodeSelector } from '../../../store/store'
 import { setField, setMode } from '../../../store/common-code-form'
 import { useEffect } from 'react'
 import { mergeProps } from 'react-aria'
-import repoCommonCode from '../../../repo/common'
 import { toast } from 'react-toastify'
 import { paramToQuery } from '@/app/_utils'
+import { useCommonCode } from '../../../hooks/code'
+import useFetcher from '@/app/_utils/hooks/fetch'
 
 export default function CommonCodeDetail(props: {
   commonCode?: string
@@ -34,6 +34,7 @@ export default function CommonCodeDetail(props: {
   const { commonCode, groupCode, modalProps } = props
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const dispatch = useCodeDispatch()
+  const { fetcherJson } = useFetcher()
 
   const mode = useCodeSelector((state) => state.commonForm.mode)
   const { data, isLoading } = useSWR<TDetailCommonCodeResp>(
@@ -119,6 +120,8 @@ function CodeConfirmModal(props: {
     (state) => state.codeSlice.selectedCodeGroup,
   )
   const commonCode = useCodeSelector((state) => state.codeSlice.selectedCode)
+  const { put } = useCommonCode()
+
   return (
     <ConfirmModal
       title={getTitle(mode)}
@@ -134,7 +137,7 @@ function CodeConfirmModal(props: {
             throw new Error('not implemented')
             // await repoCommonCode.post(c)
           } else if (mode === 'edit') {
-            await repoCommonCode.put(c.codeGroup, c.code, c)
+            await put(c.codeGroup, c.code, c)
           }
           await mutate(
             paramToQuery(`${process.env.NEXT_PUBLIC_BACKEND_BASE_PATH}/codes`, {
