@@ -1,12 +1,33 @@
-import { title } from './theme'
+import { title as originalTitle } from './theme'
 
-interface TitleProps {
-  children?: any
-  size?: 'sm' | 'md' | 'lg'
+type HeadingSize = 'sm' | 'md' | 'lg'
+
+interface ExtendedTitleFunc {
+  (options: { size: HeadingSize; gradient?: boolean }): string
 }
 
-export default function CmTitle(props: TitleProps) {
-  const { children, size = 'sm' } = props
+const title = originalTitle as ExtendedTitleFunc
 
-  return <h2 className={title({ size: size })}>{children}</h2>
+interface TitleProps extends Omit<React.HTMLProps<HTMLHeadingElement>, 'size'> {
+  size?: HeadingSize
+  gradient?: boolean
 }
+
+const CmTitle: React.FC<TitleProps> = ({
+  children,
+  size = 'sm',
+  gradient = false,
+  className = '',
+  ...restProps
+}) => {
+  const tvClassName = title({ size, gradient })
+  const combinedClassName = `${tvClassName} ${className}`.trim()
+
+  return (
+    <h2 className={combinedClassName} {...restProps}>
+      {children}
+    </h2>
+  )
+}
+
+export default CmTitle

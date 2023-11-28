@@ -1,6 +1,7 @@
 import { nextui } from '@nextui-org/theme'
 import { cmColors, cmSemanticColors } from './config/colors'
 const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -25,6 +26,16 @@ module.exports = {
         '6xl': '72rem',
       },
       colors: cmColors,
+      fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+        serif: defaultTheme.fontFamily.serif,
+        mono: defaultTheme.fontFamily.mono,
+      },
+      // backgroundImage: {
+      //   'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      //   'gradient-conic':
+      //     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      // },
     },
   },
   darkMode: 'class',
@@ -65,7 +76,7 @@ module.exports = {
           alignItems: 'center',
           justifyContent: 'center',
         },
-        '.flex-center-column': {
+        '.flex-center-col': {
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
@@ -78,6 +89,10 @@ module.exports = {
         '.flex-center-hor': {
           display: 'flex',
           justifyContent: 'center',
+        },
+        '.gradient': {
+          background:
+            'linear-gradient(60deg,#61dafb 0%,#d6cbf6 30%,#f2056f 70%)',
         },
       })
     }),
