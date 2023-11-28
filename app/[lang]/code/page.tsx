@@ -27,13 +27,13 @@ export default async function SSGPage({ params: { lang } }: Param) {
       <CmTitle>{dict['code']['title']}</CmTitle>
       <CmSearch>
         <CmSelect
-          label="검색 조건"
+          label={dict['search']['searchCriteria']}
           labelPlacement="outside-left"
           selectItem={searchItem}
           className="w-xs [&>div]:flex-1"
         />
         <CmInput
-          label="검색어"
+          label={dict['search']['searchWord']}
           labelPlacement="outside-left"
           className="[&>div]:w-full [&>div]:flex-1"
         />

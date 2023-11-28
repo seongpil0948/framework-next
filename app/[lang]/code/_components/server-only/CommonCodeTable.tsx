@@ -13,6 +13,7 @@ import { Spinner } from '@nextui-org/spinner'
 import { useCommonCodeSwr } from '@/app/[lang]/code/hooks/code'
 import useCmTable from '../../../../_components/server-only/table/use'
 import getCmPaginationProps from '@/app/_components/server-only/pagination/use'
+import { useDictionary } from '@/app/_utils/hooks/locale'
 
 type Props = {
   page: number
@@ -28,6 +29,8 @@ export default function CommonCodeTable(props: Props) {
     params: { codeGroup, currentPage: page },
   })
 
+  const dict = useDictionary()
+
   const { tableProps } = useCmTable({
     tableProps: {
       'aria-label': 'Common Code Table',
@@ -35,7 +38,7 @@ export default function CommonCodeTable(props: Props) {
     },
   })
 
-  if (!data || !data.body) return <div>Loading...</div>
+  if (!data || !data.body) return <div>{dict && dict['common']['loading']}</div>
   const { totalPage, data: bodyData, currentPage } = data.body
   const { paginationProps } = getCmPaginationProps({
     page: currentPage ?? 0,
@@ -46,7 +49,6 @@ export default function CommonCodeTable(props: Props) {
   const isCompleted =
     bodyData && bodyData.length > 0 && totalPage && totalPage > 0
   const loadingState = isLoading ? 'loading' : error ? 'error' : 'idle'
-
   return (
     <Table
       {...tableProps}
@@ -54,11 +56,21 @@ export default function CommonCodeTable(props: Props) {
       bottomContent={isCompleted ? <Pagination {...paginationProps} /> : null}
     >
       <TableHeader key={'common-code-table-header'}>
-        <TableColumn key="code">코드</TableColumn>
-        <TableColumn key="codeName">이름</TableColumn>
-        <TableColumn key="codeValue">값</TableColumn>
-        <TableColumn key="codeDescription">설명</TableColumn>
-        <TableColumn key="useYn">사용여부</TableColumn>
+        <TableColumn key="code">
+          {dict && dict['code']['label']['code']}
+        </TableColumn>
+        <TableColumn key="codeName">
+          {dict && dict['code']['label']['name']}
+        </TableColumn>
+        <TableColumn key="codeValue">
+          {dict && dict['code']['label']['value']}
+        </TableColumn>
+        <TableColumn key="codeDescription">
+          {dict && dict['code']['label']['description']}
+        </TableColumn>
+        <TableColumn key="useYn">
+          {dict && dict['code']['label']['useStatus']}
+        </TableColumn>
       </TableHeader>
       <TableBody
         key={'common-code-table-body'}

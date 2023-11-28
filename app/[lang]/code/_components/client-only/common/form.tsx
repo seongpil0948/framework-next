@@ -13,6 +13,7 @@ export function CodeForm() {
   const mode = useCodeSelector((state) => state.commonForm.mode)
   const isEditable = mode === 'create' || mode === 'edit'
   const c = useCodeSelector((state) => state.commonForm.form)
+  const dict = useDictionary()
 
   return (
     <div>
@@ -24,10 +25,18 @@ export function CodeForm() {
       {!isEditable && (
         <>
           {c.createDate && (
-            <Input label="등록정보" value={c.createDate} isDisabled />
+            <Input
+              label={dict && dict['common']['label']['createInformation']}
+              value={c.createDate}
+              isDisabled
+            />
           )}
           {c.updateDate && (
-            <Input label="수정정보" value={c.updateDate} isDisabled />
+            <Input
+              label={dict && dict['common']['label']['updateInformation']}
+              value={c.updateDate}
+              isDisabled
+            />
           )}
         </>
       )}
@@ -48,7 +57,7 @@ function InputUseYn(props: { isEditable: boolean }) {
       isReadOnly={!props.isEditable}
       isInvalid
     >
-      사용여부
+      {dict && dict['code']['label']['useStatus']}
     </Checkbox>
   )
 }
@@ -64,15 +73,19 @@ function InputCodeValue(props: { isEditable: boolean }) {
     <Input
       isRequired
       labelPlacement="inside"
-      label="Value"
-      placeholder="Enter Code value"
+      label={dict && dict['code']['label']['value']}
+      placeholder={dict && dict['code']['placeholder']['value']}
       variant="bordered"
       value={value}
       onValueChange={handleChange}
       isReadOnly={!props.isEditable}
       isClearable={props.isEditable}
       isInvalid={!length(value, 1)}
-      errorMessage={!length(value, 1) ? '1자 이상 입력해주세요.' : undefined}
+      errorMessage={
+        !length(value, 1)
+          ? `${dict && dict['error']['errorMessage']['code']['error']}`
+          : undefined
+      }
     />
   )
 }
@@ -87,7 +100,6 @@ function InputCodeName(props: { isEditable: boolean }) {
   return (
     <Input
       isRequired
-      // label={dict && dict["label"]["title"]}
       labelPlacement="inside"
       value={name}
       onValueChange={handleChange}
@@ -96,13 +108,17 @@ function InputCodeName(props: { isEditable: boolean }) {
       //     {dict && dict["placeholder"]["title"]}
       //   </p>
       // }
-      label="Name"
-      placeholder="Enter code name"
+      label={dict && dict['code']['label']['name']}
+      placeholder={dict && dict['code']['placeholder']['name']}
       variant="bordered"
       isReadOnly={!props.isEditable}
       isClearable={props.isEditable}
       isInvalid={!length(name, 1)}
-      errorMessage={!length(name, 1) ? '1자 이상 입력해주세요.' : undefined}
+      errorMessage={
+        !length(name, 1)
+          ? `${dict && dict['error']['errorMessage']['code']['error']}`
+          : undefined
+      }
     />
   )
 }
@@ -116,16 +132,19 @@ function InputCodeDesc(props: { isEditable: boolean }) {
   return (
     <Textarea
       isRequired
-      // label={dict && dict["label"]["title"]}
       labelPlacement="inside"
       value={desc}
       onValueChange={handleChange}
-      label="Code Description"
-      placeholder="Enter code description"
+      label={dict && dict['code']['label']['description']}
+      placeholder={dict && dict['code']['placeholder']['description']}
       variant="bordered"
       isReadOnly={!props.isEditable}
       isInvalid={!length(desc, 1)}
-      errorMessage={!length(desc, 1) ? '1자 이상 입력해주세요.' : undefined}
+      errorMessage={
+        !length(desc, 1)
+          ? `${dict && dict['error']['errorMessage']['code']['error']}`
+          : undefined
+      }
     />
   )
 }
@@ -142,17 +161,20 @@ function InputCodeIdx(props: { isEditable: boolean }) {
   return (
     <Input
       isRequired
-      // label={dict && dict["label"]["title"]}
       labelPlacement="inside"
       value={idx}
       onValueChange={setIdx}
       onBlur={handleBlur}
-      label="Code Description"
-      placeholder="Enter code description"
+      label={dict && dict['code']['label']['sequence']}
+      placeholder={dict && dict['code']['placeholder']['sequence']}
       variant="bordered"
       isReadOnly={!props.isEditable}
       isInvalid={isInvalid}
-      errorMessage={isInvalid ? '1이상 입력해주세요.' : undefined}
+      errorMessage={
+        isInvalid
+          ? `${dict && dict['error']['errorMessage']['code']['error']}`
+          : undefined
+      }
     />
   )
 }
