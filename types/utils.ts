@@ -10,9 +10,9 @@ export interface IFileUploaded {
   url: string
 }
 
-export type NonNullable<T> = T extends null | undefined ? never : T
+export type NotNullable<T> = T extends null | undefined ? never : T
 export type Concrete<Type> = {
-  [Key in keyof Type]-?: NonNullable<Type[Key]>
+  [Key in keyof Type]-?: NotNullable<Type[Key]>
 }
 export type PromiseType<T> = T extends Promise<infer U> ? U : never
 export type PromiseReturnType<T extends (...args: any) => Promise<any>> =
