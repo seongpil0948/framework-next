@@ -5,7 +5,7 @@ export const layout = tv({
 })
 
 export const main = tv({
-  base: 'flex-grow min-w-full pt-20 px-14 relative',
+  base: 'flex-grow pt-36 px-8 relative',
   variants: {
     size: {
       sm: 'px-8 pt-6 pb-8',

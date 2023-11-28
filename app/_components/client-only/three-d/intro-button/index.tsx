@@ -50,6 +50,7 @@ export default function HiButton(props: { onClick?: () => void }) {
           mouseX.set(e.clientX - bounds.x - bounds.width / 2)
           mouseY.set(e.clientY - bounds.y - bounds.height / 2)
         }}
+        className="gradient flex-center relative px-10 py-5 text-center font-['Poppins'] text-2xl font-semibold"
       >
         <motion.div
           className="shapes"
@@ -73,9 +74,9 @@ export default function HiButton(props: { onClick?: () => void }) {
         </motion.div>
         <motion.div
           variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}
-          className="label"
+          className="w-fit"
         >
-          Getting started
+          Get started &#8594;
         </motion.div>
       </motion.button>
     </MotionConfig>
