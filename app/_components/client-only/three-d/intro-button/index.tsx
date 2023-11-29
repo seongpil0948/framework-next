@@ -1,10 +1,10 @@
 'use client'
-import './styles.css'
 import { Suspense, useState } from 'react'
 import { motion, MotionConfig, useMotionValue } from 'framer-motion'
 import { Shapes, transition } from './shapes'
 import useMeasure from 'react-use-measure'
 import { useRouter } from 'next/navigation'
+import { introBtn } from './theme'
 
 export default function HiButton(props: { onClick?: () => void }) {
   const [ref, bounds] = useMeasure({ scroll: false })
@@ -18,6 +18,7 @@ export default function HiButton(props: { onClick?: () => void }) {
     mouseX.set(0)
     mouseY.set(0)
   }
+  const { wrapper, shapes, blushPink, blushBlue, container } = introBtn()
 
   return (
     <MotionConfig transition={transition}>
@@ -50,18 +51,18 @@ export default function HiButton(props: { onClick?: () => void }) {
           mouseX.set(e.clientX - bounds.x - bounds.width / 2)
           mouseY.set(e.clientY - bounds.y - bounds.height / 2)
         }}
-        className="gradient flex-center relative px-10 py-5 text-center font-['Poppins'] text-2xl font-semibold"
+        className={wrapper()}
       >
         <motion.div
-          className="shapes"
+          className={shapes()}
           variants={{
             rest: { opacity: 0 },
             hover: { opacity: 1 },
           }}
         >
-          <div className="pink blush" />
-          <div className="blue blush" />
-          <div className="container">
+          <div className={blushPink()} />
+          <div className={blushBlue()} />
+          <div className={container()}>
             <Suspense fallback={null}>
               <Shapes
                 isHover={isHover}
