@@ -24,6 +24,7 @@ import { toast } from 'react-toastify'
 import { paramToQuery } from '@/app/_utils'
 import { useCommonCode } from '../../../hooks/code'
 import useFetcher from '@/app/_utils/hooks/fetch'
+import { useDictionary } from '@/app/_utils/hooks/locale'
 
 export default function CommonCodeDetail(props: {
   commonCode?: string
@@ -35,6 +36,7 @@ export default function CommonCodeDetail(props: {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const dispatch = useCodeDispatch()
   const { fetcherJson } = useFetcher()
+  const dict = useDictionary()
 
   const mode = useCodeSelector((state) => state.commonForm.mode)
   const { data, isLoading } = useSWR<TDetailCommonCodeResp>(
@@ -55,6 +57,7 @@ export default function CommonCodeDetail(props: {
       dispatch(setField(data.body))
     }
   }, [commonCode, data?.body, dispatch, groupCode])
+
   if (isLoading || !data || !data.body) return <LoadingComponent />
   const isEditable = mode === 'create' || mode === 'edit'
 
@@ -79,11 +82,11 @@ export default function CommonCodeDetail(props: {
             </ModalBody>
             <ModalFooter>
               <Button color="warning" variant="light" onPress={onClose}>
-                취소
+                {dict && dict['button']['cancel']}
               </Button>
               {mode === 'read' && (
                 <Button color="danger" variant="light" onPress={onClose}>
-                  삭제
+                  {dict && dict['button']['delete']}
                 </Button>
               )}
               {mode === 'read' && (
@@ -93,12 +96,12 @@ export default function CommonCodeDetail(props: {
                     dispatch(setMode('edit'))
                   }}
                 >
-                  수정
+                  {dict && dict['button']['modify']}
                 </Button>
               )}
               {isEditable && (
                 <Button color="primary" onPress={onOpen}>
-                  제출
+                  {dict && dict['button']['submit']}
                 </Button>
               )}
             </ModalFooter>
@@ -184,6 +187,19 @@ function getTitle(m: TDetailMode) {
       return '공통코드 삭제'
   }
 }
+// function getTitle(m: TDetailMode) {
+//   const dict = useDictionary()
+//   switch (m) {
+//     case 'create':
+//       return `${dict && dict['code']['popup']['title']['create']}`
+//     case 'read':
+//       return `${dict && dict['code']['popup']['title']['detail']}`
+//     case 'edit':
+//       return `${dict && dict['code']['popup']['title']['modify']}`
+//     case 'delete':
+//       return `${dict && dict['code']['popup']['title']['delete']}`
+//   }
+// }
 
 /*
 

@@ -10,9 +10,6 @@ function LogoutButton() {
   const dict = useDictionary()
   const router = useRouter()
   const { fetcher } = useFetcher()
-  if (!dict) {
-    return null
-  }
   return (
     <Button
       onPress={async () => {
@@ -20,27 +17,23 @@ function LogoutButton() {
         router.push('/signin')
       }}
     >
-      {dict['login']['signOut']}
+      {dict && dict['login']['signOut']}
     </Button>
   )
 }
 
 const LoginButton = () => {
   const dict = useDictionary()
-  if (!dict) {
-    return null
-  }
-  return <RouteButton href="/signin">{dict['login']['signIn']}</RouteButton>
+  return (
+    <RouteButton href="/signin">{dict && dict['login']['signIn']}</RouteButton>
+  )
 }
 
 export const SignUpToButton = (props: ButtonProps) => {
   const dict = useDictionary()
-  if (!dict) {
-    return null
-  }
   return (
     <RouteButton {...props} href="/signUp">
-      {dict['login']['signIn']}
+      {dict && dict['login']['signIn']}
     </RouteButton>
   )
 }

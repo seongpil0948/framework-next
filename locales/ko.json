@@ -1,10 +1,50 @@
 {
   "button": {
+    "cancel": "취소",
+    "delete": "삭제",
     "button": "버튼",
-    "started": "시작하기"
+    "modify": "수정",
+    "search": "검색",
+    "started": "시작하기",
+    "submit": "제출"
   },
   "code": {
-    "title": "애버커스 공통 코드"
+    "title": "애버커스 공통 코드",
+    "label": {
+      "code": "코드",
+      "description": "코드 설명",
+      "groupCode": "그룹 코드",
+      "name": "이름",
+      "sequence": "코드 순서",
+      "useStatus": "사용여부",
+      "value": "값"
+    },
+    "placeholder": {
+      "description": "코드 설명을 입력해 주세요.",
+      "name": "코드 이름을 입력해 주세요.",
+      "sequence": "코드 순서를 입력해 주세요",
+      "value": "코드 값을 입력해 주세요."
+    },
+    "popup": {
+      "title": {
+        "create": "공통코드 생성",
+        "delete": "공통코드 삭제",
+        "detail": "공통코드 상세",
+        "modify": "공통코드 수정"
+      }
+    }
+  },
+  "common": {
+    "label": {
+      "createInformation": "등록 정보",
+      "updateInformation": "수정 정보"
+    },
+    "loading": "로딩 중..."
+  },
+  "error": {
+    "errorMessage": {
+      "code": "1자 이상 입력해주세요."
+    }
   },
   "home": {
     "description": {
@@ -22,6 +62,10 @@
   },
   "manifest": {
     "title": "애버커스"
+  },
+  "search": {
+    "searchCriteria": "검색조건",
+    "searchWord": "검색어"
   },
   "status": {
     "success": "성공",

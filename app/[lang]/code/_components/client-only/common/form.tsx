@@ -5,7 +5,7 @@ import { Checkbox } from '@nextui-org/checkbox'
 import { length } from '@/app/_utils/validators'
 import { useCodeDispatch, useCodeSelector } from '../../../store/store'
 import { setField } from '../../../store/common-code-form'
-import { useDictionary } from '@/app/_utils/hooks/locale'
+import { useDict } from '@/app/_utils/hooks/locale'
 import { parseNumber } from '@/app/_utils/common/comlib'
 import { useState } from 'react'
 
@@ -13,6 +13,8 @@ export function CodeForm() {
   const mode = useCodeSelector((state) => state.commonForm.mode)
   const isEditable = mode === 'create' || mode === 'edit'
   const c = useCodeSelector((state) => state.commonForm.form)
+  const createInformation = useDict(['common', 'label', 'createInformation'])
+  const updateInformation = useDict(['common', 'label', 'updateInformation'])
 
   return (
     <div>
@@ -24,10 +26,10 @@ export function CodeForm() {
       {!isEditable && (
         <>
           {c.createDate && (
-            <Input label="등록정보" value={c.createDate} isDisabled />
+            <Input label={createInformation} value={c.createDate} isDisabled />
           )}
           {c.updateDate && (
-            <Input label="수정정보" value={c.updateDate} isDisabled />
+            <Input label={updateInformation} value={c.updateDate} isDisabled />
           )}
         </>
       )}
@@ -38,7 +40,7 @@ export function CodeForm() {
 function InputUseYn(props: { isEditable: boolean }) {
   const value = useCodeSelector((state) => state.commonForm.form.useYn)
   const dispatch = useCodeDispatch()
-  const dict = useDictionary()
+  const text = useDict(['code', 'label', 'useStatus'])
   return (
     <Checkbox
       isSelected={value === 'Y'}
@@ -48,7 +50,7 @@ function InputUseYn(props: { isEditable: boolean }) {
       isReadOnly={!props.isEditable}
       isInvalid
     >
-      사용여부
+      {text}
     </Checkbox>
   )
 }
@@ -59,20 +61,22 @@ function InputCodeValue(props: { isEditable: boolean }) {
   const handleChange = (value: string) => {
     dispatch(setField({ codeValue: value }))
   }
-  const dict = useDictionary()
+  const label = useDict(['code', 'label', 'value'])
+  const placeholder = useDict(['code', 'placeholder', 'value'])
+  const errorMessage = useDict(['error', 'errorMessage', 'code'])
   return (
     <Input
       isRequired
       labelPlacement="inside"
-      label="Value"
-      placeholder="Enter Code value"
+      label={label}
+      placeholder={placeholder}
       variant="bordered"
       value={value}
       onValueChange={handleChange}
       isReadOnly={!props.isEditable}
       isClearable={props.isEditable}
       isInvalid={!length(value, 1)}
-      errorMessage={!length(value, 1) ? '1자 이상 입력해주세요.' : undefined}
+      errorMessage={!length(value, 1) ? errorMessage : undefined}
     />
   )
 }
@@ -83,26 +87,22 @@ function InputCodeName(props: { isEditable: boolean }) {
   const handleChange = (value: string) => {
     dispatch(setField({ codeName: value }))
   }
-  const dict = useDictionary()
+  const label = useDict(['code', 'label', 'name'])
+  const placeholder = useDict(['code', 'placeholder', 'name'])
+  const errorMessage = useDict(['error', 'errorMessage', 'code'])
   return (
     <Input
       isRequired
-      // label={dict && dict["label"]["title"]}
       labelPlacement="inside"
       value={name}
       onValueChange={handleChange}
-      // description={
-      //   <p className="text-default-500 text-xs">
-      //     {dict && dict["placeholder"]["title"]}
-      //   </p>
-      // }
-      label="Name"
-      placeholder="Enter code name"
+      label={label}
+      placeholder={placeholder}
       variant="bordered"
       isReadOnly={!props.isEditable}
       isClearable={props.isEditable}
       isInvalid={!length(name, 1)}
-      errorMessage={!length(name, 1) ? '1자 이상 입력해주세요.' : undefined}
+      errorMessage={!length(name, 1) ? errorMessage : undefined}
     />
   )
 }
@@ -112,20 +112,21 @@ function InputCodeDesc(props: { isEditable: boolean }) {
   const handleChange = (value: string) => {
     dispatch(setField({ codeDescription: value }))
   }
-  const dict = useDictionary()
+  const label = useDict(['code', 'label', 'description'])
+  const placeholder = useDict(['code', 'placeholder', 'description'])
+  const errorMessage = useDict(['error', 'errorMessage', 'code'])
   return (
     <Textarea
       isRequired
-      // label={dict && dict["label"]["title"]}
       labelPlacement="inside"
       value={desc}
       onValueChange={handleChange}
-      label="Code Description"
-      placeholder="Enter code description"
+      label={label}
+      placeholder={placeholder}
       variant="bordered"
       isReadOnly={!props.isEditable}
       isInvalid={!length(desc, 1)}
-      errorMessage={!length(desc, 1) ? '1자 이상 입력해주세요.' : undefined}
+      errorMessage={!length(desc, 1) ? errorMessage : undefined}
     />
   )
 }
@@ -138,21 +139,22 @@ function InputCodeIdx(props: { isEditable: boolean }) {
   const handleBlur = () => {
     dispatch(setField({ codeIndex: parseNumber(idx, 0) }))
   }
-  const dict = useDictionary()
+  const label = useDict(['code', 'label', 'sequence'])
+  const placeholder = useDict(['code', 'placeholder', 'sequence'])
+  const errorMessage = useDict(['error', 'errorMessage', 'code'])
   return (
     <Input
       isRequired
-      // label={dict && dict["label"]["title"]}
       labelPlacement="inside"
       value={idx}
       onValueChange={setIdx}
       onBlur={handleBlur}
-      label="Code Description"
-      placeholder="Enter code description"
+      label={label}
+      placeholder={placeholder}
       variant="bordered"
       isReadOnly={!props.isEditable}
       isInvalid={isInvalid}
-      errorMessage={isInvalid ? '1이상 입력해주세요.' : undefined}
+      errorMessage={isInvalid ? errorMessage : undefined}
     />
   )
 }
