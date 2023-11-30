@@ -12,6 +12,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useUserCtx } from '@/app/_providers/user'
 import useFetcher from '@/app/_utils/hooks/fetch'
 import { useError } from '@/app/_utils/hooks/error'
+import { useDictionary } from '@/app/_utils/hooks/locale'
 
 export function EmailForm(p: {
   email: string
@@ -33,6 +34,7 @@ export function LoginForm() {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const param = useSearchParams()
+  const dict = useDictionary()
   const { fetchSession } = useUserCtx()
   const { fetcherJson } = useFetcher()
   const { handleError } = useError({
@@ -90,7 +92,7 @@ export function LoginForm() {
       />
       <ForgetPasswordBtn />
       <Button className="flex-1 py-2" color="primary" onPress={handleSignIn}>
-        Sign in
+        {dict && dict['login']['signIn']}
       </Button>
     </div>
   )
