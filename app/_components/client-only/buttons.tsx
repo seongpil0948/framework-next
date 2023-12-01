@@ -15,6 +15,7 @@ import {
   ModalFooter,
 } from '@nextui-org/modal'
 import { InputEmail } from './input/fields'
+import { useDictionary } from '@/app/_utils/hooks/locale'
 
 export const RouteButton = (
   props: { href: string; children: ReactNode } & ButtonProps,
@@ -32,7 +33,7 @@ export const PlusButton = (props: {
   btnProps: ButtonProps
 }) => {
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex items-center gap-4">
       <Button
         color="danger"
         variant="bordered"
@@ -49,7 +50,7 @@ export function ForgetPasswordBtn() {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
   const [email, setEmail] = useState('')
   // const dispatch = useAppDispatch();
-
+  const dict = useDictionary()
   const handleSubmit = async () => {
     console.log('handleSubmit')
   }
@@ -57,12 +58,12 @@ export function ForgetPasswordBtn() {
   return (
     <>
       <Button onPress={onOpen} color="primary" size="sm" variant="bordered">
-        Forgot password?
+        {dict && dict['login']['searchPassword']}
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="auto">
         <ModalContent>
           <>
-            <ModalHeader className="flex flex-col gap-1">Find </ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">Find</ModalHeader>
             <ModalBody>
               <p>Sending password reset email...</p>
               <form>
@@ -71,7 +72,7 @@ export function ForgetPasswordBtn() {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onPress={handleSubmit}>
-                Submit
+                {dict && dict['button']['submit']}
               </Button>
             </ModalFooter>
           </>

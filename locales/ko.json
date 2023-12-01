@@ -6,7 +6,7 @@
     "modify": "수정",
     "search": "검색",
     "started": "시작하기",
-    "submit": "제출"
+    "submit": "확인"
   },
   "code": {
     "title": "애버커스 공통 코드",
@@ -53,18 +53,20 @@
       "summary2": "팀 컨버전스는 개발이 진정으로 충족되기 위해서는 즐겁고 창의적인 경험이어야 한다고 믿습니다.",
       "summary3": "ACF는 대부분의 웹 프로젝트에서 사용되는 일반적인 작업들을 완화함으로써 개발에서 고통을 제거하려고 시도합니다.",
       "title": "ACF"
-    }
+    },
+    "teamName": "애버커스 컨버전스사업팀"
   },
   "login": {
     "signIn": "로그인",
     "signOut": "로그아웃",
-    "signUp": "회원가입"
+    "signUp": "회원가입",
+    "searchPassword": "비밀번호 찾기"
   },
   "manifest": {
     "title": "애버커스"
   },
   "search": {
-    "searchCriteria": "검색조건",
+    "searchCriteria": "검색 조건",
     "searchWord": "검색어"
   },
   "status": {

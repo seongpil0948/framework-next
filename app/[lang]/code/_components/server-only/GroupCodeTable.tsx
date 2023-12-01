@@ -14,6 +14,7 @@ import { Spinner } from '@nextui-org/spinner'
 import useCmTable from '../../../../_components/server-only/table/use'
 import getCmPaginationProps from '@/app/_components/server-only/pagination/use'
 import useFetcher from '@/app/_utils/hooks/fetch'
+import { useDictionary } from '@/app/_utils/hooks/locale'
 
 export default function GroupCodeTable(props: {
   page: number
@@ -23,6 +24,7 @@ export default function GroupCodeTable(props: {
 }) {
   const { page, setPage, handleSelect } = props
   const { fetcherJson } = useFetcher()
+  const dict = useDictionary()
   const { tableProps } = useCmTable({
     tableProps: {
       'aria-label': 'Group Code Table',
@@ -36,7 +38,7 @@ export default function GroupCodeTable(props: {
       keepPreviousData: true,
     },
   )
-  if (!data) return <div>Loading...</div>
+  if (!data) return <div>{dict && dict['common']['loading']}</div>
   const { totalPage, data: bodyData, currentPage } = data.body
   const { paginationProps } = getCmPaginationProps({
     page: currentPage ?? 0,
@@ -52,9 +54,15 @@ export default function GroupCodeTable(props: {
       bottomContent={totalPage > 0 ? <Pagination {...paginationProps} /> : null}
     >
       <TableHeader key={'group-code-table-header'}>
-        <TableColumn key="codeGroup">그룹코드</TableColumn>
-        <TableColumn key="codeGroupName">이름</TableColumn>
-        <TableColumn key="codeGroupDescription">설명</TableColumn>
+        <TableColumn key="codeGroup">
+          {dict && dict['code']['label']['groupCode']}
+        </TableColumn>
+        <TableColumn key="codeGroupName">
+          {dict && dict['code']['label']['name']}
+        </TableColumn>
+        <TableColumn key="codeGroupDescription">
+          {dict && dict['code']['label']['description']}
+        </TableColumn>
       </TableHeader>
       <TableBody
         key={'group-code-table-body'}

@@ -53,12 +53,14 @@
       "summary2": "We believe development must be an enjoyable, creative experience to be truly fulfilling.",
       "summary3": "ACF attempts to take the pain out of development by easing common tasks used in the majority of web projects",
       "title": "ACF"
-    }
+    },
+    "teamName": "Abacus Convergence"
   },
   "login": {
     "signIn": "Sign In",
     "signOut": "SignOut",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "searchPassword": "Forgot password"
   },
   "manifest": {
     "title": "Abacus"

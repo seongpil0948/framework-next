@@ -27,7 +27,7 @@ export default async function SSGPage({ params: { lang } }: Param) {
       <div className="inline-block justify-center text-center">
         <div className="flex-center-col">
           <CmTitle className="m-auto" size="lg">
-            Abacus Convergence
+            {dict['home']['teamName']}
           </CmTitle>
           <CmTitle size="lg" gradient>
             {dict['home']['description']['title']}&nbsp;

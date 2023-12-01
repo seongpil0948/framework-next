@@ -16,9 +16,9 @@ export default async function SSGPage({ params: { lang } }: Param) {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8">
       <div className="inline-block max-w-lg justify-center text-center">
-        <CmTitle>Login to&nbsp;</CmTitle>
+        <CmTitle>{dict['login']['signIn']}&nbsp;</CmTitle>
         <CmTitle>{dict['manifest']['title']} &nbsp;</CmTitle>
-        <h3>Login</h3>
+        <h3>{dict['login']['signIn']}</h3>
       </div>
       <LoginForm />
     </section>
