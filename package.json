@@ -81,7 +81,7 @@
     "swr": "^2.2.4",
     "tailwind-variants": "^0.1.18",
     "tailwindcss": "3.3.5",
-    "three": "^0.158.0",
+    "three": "^0.135.0",
     "typescript": "5.2.2"
   },
   "devDependencies": {
