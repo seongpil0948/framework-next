@@ -12,7 +12,7 @@ const introBtn = tv({
     blushBlue: `blushBlue ${blushStyle} right-[20px] bg-[${colorBlue}]`,
     container:
       'absolute inset-x-[-100px] inset-y-[-100px] w-[calc(100%+200px)] pointer-events-none',
-    cnavas: 'absolute w-full h-full',
+    canvas: 'absolute w-full h-full',
   },
 })
 export { introBtn }
